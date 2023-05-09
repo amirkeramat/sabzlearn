@@ -1,21 +1,24 @@
-import React from "react";
-import "./PopularCourses.css";
-import SectionHeader from "../SectionHeader/SectionHeader";
+import React from 'react'
+import SectionHeader from '../../Components/SectionHeader/SectionHeader'
 import { Swiper, SwiperSlide } from "swiper/react";
-import CourseBox from '../../Components/CourseBox/CourseBox'
-export default function PopularCourses() {
+import './PreSellCourses.css'
+import CourseBox from "../CourseBox/CourseBox";
+export default function PreSellCourses() {
   return (
-    <div class='popular'>
+    <div class='presell'>
       <div class='container'>
-        <div class='popular__header'>
-          <SectionHeader title='محبوب ترین دوره ها' />
+        <div class='presell__header'>
+          <SectionHeader title='دوره های در حال پیش فروش' />
         </div>
-        <div class='popular__slider'>
+        <div className='presell__slider'>
           <Swiper
             spaceBetween={1}
             slidesPerView={3}
             onSlideChange={() => console.log("slide change")}
             onSwiper={(swiper) => console.log(swiper)}>
+            <SwiperSlide>
+              <CourseBox />
+            </SwiperSlide>
             <SwiperSlide>
               <CourseBox />
             </SwiperSlide>

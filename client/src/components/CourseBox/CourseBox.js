@@ -2,7 +2,7 @@ import React from "react";
 import "./CourseBox.css";
 export default function CourseBox() {
   return (
-    <div class='col-4'>
+
       <div class='course-box'>
         <a href='#'>
           <img
@@ -68,6 +68,6 @@ export default function CourseBox() {
           </a>
         </div>
       </div>
-    </div>
+
   );
 }

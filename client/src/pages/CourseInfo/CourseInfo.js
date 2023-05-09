@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
 
-import './CourseInfo.css'
+import Footer from "../../Components/Footer/Footer";
+import Topbar from "../../Components/Topbar/Topbar";
+import Navbar from "../../Components/Navbar/Navbar";
+
+import "./CourseInfo.css";
 
 export default function CourseInfo() {
   return (
-    <div>CourseInfo</div>
-  )
+    <>
+ 
+      <Topbar/>
+      <Navbar/>
+   
+      <Footer />
+    </>
+  );
 }

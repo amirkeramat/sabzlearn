@@ -14,7 +14,9 @@ export default function LastCourses() {
         <div className="courses-content">
             <div className="container">
                 <div className="row">
-                   <CourseBox/> 
+                  <div className="col-4">
+                    <CourseBox/> 
+                  </div>
                 </div>
             </div>
         </div>
