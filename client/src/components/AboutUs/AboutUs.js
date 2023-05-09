@@ -25,7 +25,7 @@ export default function AboutUs() {
               icon='fa fa-leaf'
             />
             <AboutUsBox
-              title=''
+              title='دوره پولی و رایگان'
               desc='براش مهم نیست. به مدرسینش حقوق میده تا نهایت کیفیت رو در پشتیبانی و اپدیت دوره ارائه بده'
               icon='fa fa-gem'
             />

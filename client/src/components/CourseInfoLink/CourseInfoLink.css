@@ -1,0 +1,24 @@
+.course-info__header-short-url {
+    display: flex;
+    align-items: center;
+    color: #7b868a;
+}
+
+.course-info__short-url-icon {
+    font-size: 2rem;
+}
+
+.course-info__short-url-text {
+    font-size: 1.7rem;
+    margin-right: 0.5rem;
+}
+
+.course-info__short-url {
+    display: block;
+    margin: 1rem 0;
+    border: 1px solid #dcdcdc;
+    color: #a7a7a7;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+}

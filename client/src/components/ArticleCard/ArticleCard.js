@@ -12,7 +12,7 @@ export default function ArticleCard() {
         class='article-card'
         data-aos='fade-up'
         data-aos-anchor-placement='top-bottom'
-        data-aos-delay='1000'
+        data-aos-delay='500'
         data-aos-duration='2000'
         
         >
