@@ -1,8 +1,7 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Topbar from "../Topbar/Topbar";
-import Landing from "../../Components/Landing/Landing";
-
+import Landing from '../Landing/Landing'
 import "./Header.css";
 
 export default function Header() {
