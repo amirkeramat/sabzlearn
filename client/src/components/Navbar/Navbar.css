@@ -43,7 +43,7 @@
   
   .main-header__dropdown {
     position: absolute;
-    top:6rem;
+    top: 5.5rem;
     left: 0;
     right: 0;
     background-color: var(--white-color);
@@ -61,7 +61,7 @@
   .main-header__item:hover .main-header__dropdown {
     opacity: 1;
     visibility: visible;
-    top: 3.5rem;
+    top: 6.5rem;
   }
   
   .main-header__dropdown-link {
