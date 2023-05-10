@@ -6,12 +6,12 @@ import CourseInfoLink from "../CourseInfoLink/CourseInfoLink";
 import CourseInfoTopic from "../CourseInfoTopic/CourseInfoTopic";
 import CourseInfoRelatedCourses from "../CourseInfoRelatedCourses/CourseInfoRelatedCourses";
 import CourseInfoBox from "../CourseInfoBox/CourseInfoBox";
-import CourseProgress from "../CouseInfoComponents/CourseProgress/CourseProgress";
+import CourseProgress from "../CourseProgress/CourseProgress";
 import CourseIntroduction1 from "../CourseIntoduction1/CourseIntroduction1";
 import CourseIntroduction2 from "../CourseIntroduction-2/CourseIntoduction2";
 import CourseIntroductionBtns from "../CourseIntrodutionBtns/CourseIntroductionBtns";
-import TopicAccordion from "../CouseInfoComponents/TopicAccordion/TopicAccordion";
-import TeacherDetail from "../CouseInfoComponents/TeacherDetail/TeacherDetail";
+import TopicAccordion from "../../TopicAccordion/TopicAccordion";
+import TeacherDetail from "../../TeacherDetail/TeacherDetail";
 export default function CourseInfoMain() {
   return (
     <main class='main'>
