@@ -1,5 +1,5 @@
 import React from 'react'
-import SectionHeader from '../../Components/SectionHeader/SectionHeader'
+import SectionHeader from '../../SectionHeader/SectionHeader'
 import { Swiper, SwiperSlide } from "swiper/react";
 import './PreSellCourses.css'
 import CourseBox from "../CourseBox/CourseBox";

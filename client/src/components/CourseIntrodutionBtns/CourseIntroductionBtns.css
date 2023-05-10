@@ -1,0 +1,17 @@
+.introduction__btns {
+    margin-top: 4rem;
+}
+
+.introduction__btns-item {
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.introduction__btns-item:hover {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}

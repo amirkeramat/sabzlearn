@@ -1,0 +1,26 @@
+.course-boxes__box-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.course-boxes__box-right-icon {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+}
+
+.course-boxes__box-left {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1.5rem;
+}
+
+.course-boxes__box-left-title {
+    font-size: 1.6rem;
+    color: #858c96;
+}
+
+.course-boxes__box-left--subtitle {
+    font-size: 1.6rem;
+    color: #7d7e7f;
+}

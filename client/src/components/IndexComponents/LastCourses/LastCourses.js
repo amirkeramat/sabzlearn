@@ -1,6 +1,6 @@
 import React from "react";
 import "./LastCourses.css";
-import SectionHeader from "../SectionHeader/SectionHeader";
+import SectionHeader from "../../SectionHeader/SectionHeader";
 import CourseBox from "../CourseBox/CourseBox";
 export default function LastCourses() {
   return (

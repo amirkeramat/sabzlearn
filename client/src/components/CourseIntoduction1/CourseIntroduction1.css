@@ -1,0 +1,17 @@
+.introduction {
+    padding: 3rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 13px 1px rgba(70, 72, 77, 0.08);
+}
+
+.introduction__img {
+    margin-top: 3rem;
+    display: block;
+    border-radius: 1rem;
+}
+
+.introduction__text {
+    margin-top: 2rem;
+    color: #7a7a7a;
+    font-size: 1.5rem;
+}

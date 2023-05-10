@@ -1,0 +1,32 @@
+.course-progress {
+    border-radius: 1rem;
+    margin: 3rem 0;
+    padding: 2rem 2rem 1.2rem 2rem;
+    background-color: #f0f2f7;
+}
+
+.course-progress__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.course-progress__icon {
+    font-size: 2.5rem;
+    color: #7b868a;
+}
+
+.course-progress__title {
+    margin-right: 1.5rem;
+    color: #7b868a;
+    font-size: 1.5rem;
+}
+
+.course-progress__bar {
+    border-radius: 10rem;
+    height: 1rem;
+}
+
+.progress-bar {
+    background-color: #1fbd50;
+}

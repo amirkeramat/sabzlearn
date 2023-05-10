@@ -1,5 +1,5 @@
 import React from "react";
-import SectionHeader from "../SectionHeader/SectionHeader";
+import SectionHeader from "../../SectionHeader/SectionHeader";
 import ArticleCard from "../ArticleCard/ArticleCard";
 import "./Articels.css";
 export default function Articles() {

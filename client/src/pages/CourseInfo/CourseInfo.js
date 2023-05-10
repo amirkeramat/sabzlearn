@@ -2,8 +2,8 @@ import React from "react";
 import Footer from "../../Components/Footer/Footer";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
-import CourseInfoHeader from "../../Components/CourseInfoHeader/CourseInfoHeader";
-import CourseInfoMain from "../../Components/CourseInfoMain/CourseInfoMain";
+import CourseInfoHeader from "../../CourseInfoComponents/Components/CourseInfoHeader/CourseInfoHeader";
+import CourseInfoMain from "../../Components/CourseInfoComponents/CourseInfoMain/CourseInfoMain";
 import "./CourseInfo.css";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 

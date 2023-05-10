@@ -1,8 +1,8 @@
 import React from "react";
 import "./PopularCourses.css";
-import SectionHeader from "../SectionHeader/SectionHeader";
+import SectionHeader from "../../SectionHeader/SectionHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
-import CourseBox from '../../Components/CourseBox/CourseBox'
+import CourseBox from '../CourseBox/CourseBox'
 export default function PopularCourses() {
   return (
     <div class='popular'>
