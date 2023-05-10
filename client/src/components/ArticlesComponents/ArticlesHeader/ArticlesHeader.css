@@ -1,0 +1,19 @@
+.article__header {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.article-header__item {
+    margin-left: 2rem;
+}
+
+.article-header__icon {
+    font-size: 1.7rem;
+    color: #c7c7c7;
+}
+
+.article-header__text {
+    font-size: 1.2rem;
+    color: #8f8f8f;
+}

@@ -1,0 +1,29 @@
+.article {
+    padding: 2.4rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 30px rgba(70, 72, 77, 0.08);
+}
+
+.article__title {
+    font-size: 2.6rem;
+    font-weight: bold;
+    color: var(--dark-color);
+    border-bottom: 2px solid #f3f3f3;
+    padding-bottom: 1rem;
+}
+.article__banner {
+    margin-top: 4rem;
+}
+.article__seconadary-banner {
+    display: block;
+    margin: 0 auto;
+}
+.suggestion-articles {
+    margin: 4rem 0;
+    padding: 3.5rem 2.5rem;
+    border-radius: 0.5rem;
+    background-color: #f0f2f7;
+}
+.course-info {
+    overflow: hidden;
+}

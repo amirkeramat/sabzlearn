@@ -1,0 +1,15 @@
+.article__score {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.article__score-icon {
+    margin-left: -0.4rem;
+}
+
+.article__score-text {
+    margin-right: 2rem;
+    font-size: 1.7rem;
+    color: #7d7d7f;
+}

@@ -10,8 +10,8 @@ import CourseProgress from "../CourseProgress/CourseProgress";
 import CourseIntroduction1 from "../CourseIntoduction1/CourseIntroduction1";
 import CourseIntroduction2 from "../CourseIntroduction-2/CourseIntoduction2";
 import CourseIntroductionBtns from "../CourseIntrodutionBtns/CourseIntroductionBtns";
-import TopicAccordion from "../../TopicAccordion/TopicAccordion";
-import TeacherDetail from "../../TeacherDetail/TeacherDetail";
+import TopicAccordion from "../TopicAccordion/TopicAccordion";
+import TeacherDetail from "../TeacherDetail/TeacherDetail";
 export default function CourseInfoMain() {
   return (
     <main class='main'>
