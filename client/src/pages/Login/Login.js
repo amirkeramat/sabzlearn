@@ -6,10 +6,24 @@ import Topbar from "../../Components/Topbar/Topbar";
 import "./Login.css";
 import Input from "../../Components/Form/Input/Input";
 import Button from "../../Components/Form/Button/Button";
+import {requireValidator,maxValidator,minValidator,emailValidator} from '../../Validator/rules'
+import { useForm } from "../../hooks/useForm";
+
 export default function Login() {
+  const [formState,onInputHandler]= useForm({
+    username:{
+      value:'',
+      isValid:false
+    },
+    password:{
+      value:'',
+      isValid:false
+    },
+  },false)
+  console.log(formState);
   const onClickHandler = (event)=>{
     event.preventDefault()
-    console.log('form submited');
+    console.log('form submit');
   }
   return (
     <>
@@ -33,8 +47,16 @@ export default function Login() {
               <Input
                 element='input'
                 className='login-form__username-input'
+                id='username'
                 type='text'
                 placeholder='نام کاربری یا آدرس ایمیل'
+                validations={[
+                  requireValidator(),
+                  minValidator(5),
+                  maxValidator(12),
+                  emailValidator(),
+                ]}
+                onInputHandler={onInputHandler}
               />
               <i className='login-form__username-icon fa fa-user'></i>
             </div>
@@ -42,12 +64,22 @@ export default function Login() {
               <Input
                 element='input'
                 className='login-form__password-input'
+                id='password'
                 type='text'
                 placeholder='رمز عبور'
+                validations={[
+                  requireValidator(),
+                  minValidator(8),
+                  maxValidator(12),
+                ]}
+                onInputHandler={onInputHandler}
               />
               <i className='login-form__password-icon fa fa-lock-open'></i>
             </div>
-            <Button className='login-form__btn' type='submit' onClick={onClickHandler}>
+            <Button
+              className='login-form__btn'
+              type='submit'
+              onClick={onClickHandler}>
               <i className='login-form__btn-icon fas fa-sign-out-alt'></i>
               <span className='login-form__btn-text'>ورود</span>
             </Button>

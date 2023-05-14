@@ -17,13 +17,13 @@ export default function Navbar() {
 
             <ul className='main-header__menu d-none d-lg-flex'>
               <li className='main-header__item'>
-                <Button href='#' className='main-header__link'>
+                <Button to='/' className='main-header__link'>
                   صفحه اصلی
                 </Button>
               </li>
 
               <li className='main-header__item'>
-                <Button href='#' className='main-header__link'>
+                <Button to='/course-info/frontend' className='main-header__link'>
                   فرانت اند
                   <i className='fas fa-angle-down main-header__link-icon'></i>
                   <ul className='main-header__dropdown'>
@@ -84,7 +84,7 @@ export default function Navbar() {
                 </Button>
               </li>
               <li className='main-header__item'>
-                <Button href='#' className='main-header__link'>
+                <Button href='/article-info/js' className='main-header__link'>
                   مقالات
                   <i className='fas fa-angle-down main-header__link-icon'></i>
                   <ul className='main-header__dropdown'>
