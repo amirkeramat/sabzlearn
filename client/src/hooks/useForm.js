@@ -3,11 +3,12 @@ import { useReducer } from "react";
 const formReducer = (state, action) => {
   switch (action.type) {
     case "INPUT_CHANGE": {
+      let isFormValid = true;
       for (const inputID in state.inputs) {
         if (inputID === action.inputID) {
-          state.isFormValid = state.isFormValid && action.isValid
+          isFormValid = isFormValid && action.isValid;
         } else {
-          state.isFormValid = state.isFormValid && state.inputs[inputID].isValid
+          isFormValid = isFormValid && state.inputs[inputID].isValid;
         }
       }
       return {
@@ -18,11 +19,10 @@ const formReducer = (state, action) => {
             value: action.value,
             isValid: action.isValid,
           },
-          isFormValid: state.isFormValid,
         },
+        isFormValid: isFormValid,
       };
     }
-
     default: {
       return state;
     }
@@ -34,6 +34,7 @@ export const useForm = (initInputs, initFormIsValid) => {
     inputs: initInputs,
     isFormValid: initFormIsValid,
   });
+
   const onInputHandler = (id, value, isValid) => {
     dispatch({
       type: "INPUT_CHANGE",

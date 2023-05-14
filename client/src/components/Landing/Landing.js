@@ -25,7 +25,7 @@ export default function Landing() {
           با آکادمی سبزلرن، برنامه نویسی رو با خیال راحت یاد بگیر و پیشرفت کن.
         </h2>
         <div className='landing__searchbar'>
-          <Input
+          <input
             element='input'
             type='text'
             className='landing__searchbar-input'

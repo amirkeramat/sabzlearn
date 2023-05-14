@@ -52,9 +52,9 @@ export default function Login() {
                 placeholder='نام کاربری یا آدرس ایمیل'
                 validations={[
                   requireValidator(),
-                  minValidator(5),
-                  maxValidator(12),
-                  emailValidator(),
+                  minValidator(8),
+                  maxValidator(30),
+                  emailValidator()
                 ]}
                 onInputHandler={onInputHandler}
               />
@@ -70,16 +70,22 @@ export default function Login() {
                 validations={[
                   requireValidator(),
                   minValidator(8),
-                  maxValidator(12),
+                  maxValidator(18),
                 ]}
                 onInputHandler={onInputHandler}
               />
               <i className='login-form__password-icon fa fa-lock-open'></i>
             </div>
             <Button
-              className='login-form__btn'
+              className={`login-form__btn ${
+                formState.isFormValid
+                  ? "login-form__btn-success"
+                  : "login-form__btn-error"
+              }`}
               type='submit'
-              onClick={onClickHandler}>
+              onClick={onClickHandler}
+              disabled={!formState.isFormValid}
+              >
               <i className='login-form__btn-icon fas fa-sign-out-alt'></i>
               <span className='login-form__btn-text'>ورود</span>
             </Button>
