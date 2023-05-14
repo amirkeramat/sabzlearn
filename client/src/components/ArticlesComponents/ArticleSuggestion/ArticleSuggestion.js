@@ -1,14 +1,15 @@
-import React from 'react'
-import './ArticleSuggestion.css'
+import React from "react";
+import "./ArticleSuggestion.css";
+import Button from '../../Form/Button/Button'
 export default function ArticleSuggestion() {
   return (
-    <div class='suggestion-articles__right suggestion-articles__content'>
-      <a href='#' class='suggestion-articles__icon-link'>
-        <i class='fas fa-arrow-right suggestion-articles__icon'></i>
-      </a>
-      <a href='#' class='suggestion-articles__link'>
+    <div className='suggestion-articles__right suggestion-articles__content'>
+      <Button href='#' className='suggestion-articles__icon-link'>
+        <i className='fas fa-arrow-right suggestion-articles__icon'></i>
+      </Button>
+      <Button href='#' className='suggestion-articles__link'>
         سریع ترین و بهترین راه یادگیری جاوا اسکریپت چیست؟ | تجربه برنامه نویسان
-      </a>
+      </Button>
     </div>
   );
 }

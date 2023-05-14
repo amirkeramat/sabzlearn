@@ -1,35 +1,36 @@
-import React from 'react'
-import './Pagination.css'
+import React from "react";
+import "./Pagination.css";
+import Button from "../Form/Button/Button";
 export default function Pagination() {
   return (
-    <div class='courses-pagination'>
-      <ul class='courses__pagination-list'>
-        <li class='courses__pagination-item'>
-          <a href='#' class='courses__pagination-link'>
-            <i class='fas fa-long-arrow-alt-right courses__pagination-icon'></i>
-          </a>
+    <div className='courses-pagination'>
+      <ul className='courses__pagination-list'>
+        <li className='courses__pagination-item'>
+          <Button href='#' className='courses__pagination-link'>
+            <i className='fas fa-long-arrow-alt-right courses__pagination-icon'></i>
+          </Button>
         </li>
-        <li class='courses__pagination-item'>
-          <a href='#' class='courses__pagination-link'>
+        <li className='courses__pagination-item'>
+          <Button href='#' className='courses__pagination-link'>
             1
-          </a>
+          </Button>
         </li>
-        <li class='courses__pagination-item'>
-          <a href='#' class='courses__pagination-link'>
+        <li className='courses__pagination-item'>
+          <Button href='#' className='courses__pagination-link'>
             2
-          </a>
+          </Button>
         </li>
-        <li class='courses__pagination-item'>
-          <a
+        <li className='courses__pagination-item'>
+          <Button
             href='#'
-            class='courses__pagination-link courses__pagination-link--active'>
+            className='courses__pagination-link courses__pagination-link--active'>
             3
-          </a>
+          </Button>
         </li>
-        <li class='courses__pagination-item'>
-          <a href='#' class='courses__pagination-link'>
-            <i class='fas fa-long-arrow-alt-left courses__pagination-icon'></i>
-          </a>
+        <li className='courses__pagination-item'>
+          <Button href='#' className='courses__pagination-link'>
+            <i className='fas fa-long-arrow-alt-left courses__pagination-icon'></i>
+          </Button>
         </li>
       </ul>
     </div>

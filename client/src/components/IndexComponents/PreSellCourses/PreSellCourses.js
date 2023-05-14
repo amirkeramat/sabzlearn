@@ -1,13 +1,13 @@
-import React from 'react'
-import SectionHeader from '../../SectionHeader/SectionHeader'
+import React from "react";
+import SectionHeader from "../../SectionHeader/SectionHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
-import './PreSellCourses.css'
+import "./PreSellCourses.css";
 import CourseBox from "../../CourseBox/CourseBox";
 export default function PreSellCourses() {
   return (
-    <div class='presell'>
-      <div class='container'>
-        <div class='presell__header'>
+    <div className='presell'>
+      <div className='container'>
+        <div className='presell__header'>
           <SectionHeader title='دوره های در حال پیش فروش' />
         </div>
         <div className='presell__slider'>

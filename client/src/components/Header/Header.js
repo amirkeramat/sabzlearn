@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Topbar from "../Topbar/Topbar";
-import Landing from '../Landing/Landing'
+import Landing from "../Landing/Landing";
 import "./Header.css";
 
 export default function Header() {
   return (
-    <header class='header'>
+    <header className='header'>
       <Topbar />
       <Navbar />
       <Landing />

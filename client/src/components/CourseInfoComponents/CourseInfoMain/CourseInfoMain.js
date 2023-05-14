@@ -15,13 +15,13 @@ import TeacherDetail from "../TeacherDetail/TeacherDetail";
 import Accordion from "react-bootstrap/Accordion";
 export default function CourseInfoMain() {
   return (
-    <main class='main'>
-      <div class='container'>
-        <div class='row'>
+    <main className='main'>
+      <div className='container'>
+        <div className='row'>
           <div className='mainCourse-right col-8'>
             <div className='course'>
-              <div class='course-boxes'>
-                <div class='row'>
+              <div className='course-boxes'>
+                <div className='row'>
                   <CourseInfoBox
                     title='وضعیت دوره:'
                     subtitle='به اتمام رسیده'
@@ -61,11 +61,23 @@ export default function CourseInfoMain() {
                 <CourseIntroduction1 />
                 <CourseIntroduction2 />
                 <CourseIntroductionBtns />
-                <div class='introduction__topic'>
+                <div className='introduction__topic'>
                   <Accordion defaultActiveKey='0'>
-                    <TopicAccordion eventKey={1} title='معرفی دوره ها' body='چرا به این دوره نیاز داریم'/>
-                    <TopicAccordion eventKey={2} title='معرفی دوره ها' body='چرا به این دوره نیاز داریم'/>
-                    <TopicAccordion eventKey={3} title='معرفی دوره ها' body='چرا به این دوره نیاز داریم'/>
+                    <TopicAccordion
+                      eventKey={1}
+                      title='معرفی دوره ها'
+                      body='چرا به این دوره نیاز داریم'
+                    />
+                    <TopicAccordion
+                      eventKey={2}
+                      title='معرفی دوره ها'
+                      body='چرا به این دوره نیاز داریم'
+                    />
+                    <TopicAccordion
+                      eventKey={3}
+                      title='معرفی دوره ها'
+                      body='چرا به این دوره نیاز داریم'
+                    />
                   </Accordion>
                 </div>
                 <TeacherDetail />
@@ -73,20 +85,20 @@ export default function CourseInfoMain() {
             </div>
           </div>
           <div className='mainCourse-left col-4'>
-            <div class='courses-info'>
-              <div class='course-info'>
+            <div className='courses-info'>
+              <div className='course-info'>
                 <CourseInfoRegister />
               </div>
-              <div class='course-info'>
+              <div className='course-info'>
                 <CourseInfoTotal />
               </div>
-              <div class='course-info'>
+              <div className='course-info'>
                 <CourseInfoLink />
               </div>
-              <div class='course-info'>
+              <div className='course-info'>
                 <CourseInfoTopic />
               </div>
-              <div class='course-info'>
+              <div className='course-info'>
                 <CourseInfoRelatedCourses />
               </div>
             </div>

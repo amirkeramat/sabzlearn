@@ -1,21 +1,22 @@
 import React from "react";
 import "./ArticleComments.css";
+import Button from '../../Form/Button/Button'
 export default function ArticleComments() {
   return (
-    <div class='comments'>
-      <span class='comments__title'>دیدگاهتان را بنویسید</span>
-      <span class='comments__text'>
-        <a href='#'>با عنوان محمدامین سعیدی راد وارد شده اید.</a>
-        <a href='#'>خارج میشوید? </a>
+    <div className='comments'>
+      <span className='comments__title'>دیدگاهتان را بنویسید</span>
+      <span className='comments__text'>
+        <Button href='#'>با عنوان محمدامین سعیدی راد وارد شده اید.</Button>
+        <Button href='#'>خارج میشوید? </Button>
         بخش های موردنیاز علامت گذاری شده اند *
       </span>
-      <div class='comments_content'>
-        <span class='comments__content-title'>دیدگاه *</span>
-        <textarea class='comments__content-textarea'></textarea>
+      <div className='comments_content'>
+        <span className='comments__content-title'>دیدگاه *</span>
+        <textarea className='comments__content-textarea'></textarea>
       </div>
-      <button type='submit' class='comments__button'>
+      <Button type='submit' className='comments__button'>
         فرستادن دیدگاه
-      </button>
+      </Button>
     </div>
   );
 }

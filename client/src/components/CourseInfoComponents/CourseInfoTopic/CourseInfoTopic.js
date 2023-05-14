@@ -1,14 +1,15 @@
 import React from "react";
 import "./CourseInfoTopic.css";
+import Button from '../../Form/Button/Button'
 export default function CourseInfoTopic() {
   return (
     <div className='courseInfo__topic'>
-      <span class='course-info__topic-title ms-2 me-2'>سرفصل های دوره</span>
-      <span class='course-info__topic-text'>
+      <span className='course-info__topic-title ms-2 me-2'>سرفصل های دوره</span>
+      <span className='course-info__topic-text'>
         برای مشاهده و یا دانلود دوره روی کلمه
-        <a href='#' className=' text-primary ms-2 me-2'>
+        <Button href='#' className=' text-primary ms-2 me-2'>
           لینک
-        </a>
+        </Button>
         کلیک کنید
       </span>
     </div>

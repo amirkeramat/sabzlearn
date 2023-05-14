@@ -1,12 +1,12 @@
-import React from 'react'
-import './ArticleSection.css'
-export default function ArticleSection({title,desc,img}) {
+import React from "react";
+import "./ArticleSection.css";
+export default function ArticleSection({ title, desc, img }) {
   return (
-    <div class='article-section'>
-      <h2 class='article-section__title'>
+    <div className='article-section'>
+      <h2 className='article-section__title'>
         معرفی بهترین سایت ‌های آموزش جاوا اسکریپت:
       </h2>
-      <p class='paragraph article-section__text'>
+      <p className='paragraph article-section__text'>
         توجه داشته باشید که تمام وب سایت‌هایی که به عنوان بهترین سایت آموزش جاوا
         اسکریپت در ادامه معرفی می‌کنیم، بین‌المللی هستند و منابع موجود در آن‌ها
         به زبان انگلیسی است. در نتیجه شما باید یا تسلط متوسط و حداقلی به زبان
@@ -19,7 +19,7 @@ export default function ArticleSection({title,desc,img}) {
       <img
         src='/images/blog/4.png'
         alt='article body img'
-        class='article-section__img'
+        className='article-section__img'
       />
     </div>
   );

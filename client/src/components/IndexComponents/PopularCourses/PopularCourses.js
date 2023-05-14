@@ -2,15 +2,15 @@ import React from "react";
 import "./PopularCourses.css";
 import SectionHeader from "../../SectionHeader/SectionHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
-import CourseBox from '../../CourseBox/CourseBox'
+import CourseBox from "../../CourseBox/CourseBox";
 export default function PopularCourses() {
   return (
-    <div class='popular'>
-      <div class='container'>
-        <div class='popular__header'>
+    <div className='popular'>
+      <div className='container'>
+        <div className='popular__header'>
           <SectionHeader title='محبوب ترین دوره ها' />
         </div>
-        <div class='popular__slider'>
+        <div className='popular__slider'>
           <Swiper
             spaceBetween={1}
             slidesPerView={3}

@@ -1,11 +1,15 @@
-import React from 'react'
-import './CourseIntroductionBtns.css'
+import React from "react";
+import "./CourseIntroductionBtns.css";
+import Button from '../../Form/Button/Button'
 export default function CourseIntroductionBtns() {
   return (
-      <div class="introduction__btns">
-                  <a href="#" class="introduction__btns-item">دانلود همگانی ویدیوها</a>
-                  <a href="#" class="introduction__btns-item">دانلود همگانی پیوست‌ها</a>
-                </div>
-  )
+    <div className='introduction__btns'>
+      <Button href='#' className='introduction__btns-item'>
+        دانلود همگانی ویدیوها
+      </Button>
+      <Button href='#' className='introduction__btns-item'>
+        دانلود همگانی پیوست‌ها
+      </Button>
+    </div>
+  );
 }
-

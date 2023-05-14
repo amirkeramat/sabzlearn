@@ -1,10 +1,10 @@
-import React from 'react'
-import './CourseInfoRegister.css'
+import React from "react";
+import "./CourseInfoRegister.css";
 export default function CourseInfoRegister() {
   return (
-    <div class='course-info__register'>
-      <span class='course-info__register-title'>
-        <i class='fas fa-graduation-cap course-info__register-icon'></i>
+    <div className='course-info__register'>
+      <span className='course-info__register-title'>
+        <i className='fas fa-graduation-cap course-info__register-icon'></i>
         دانشجوی دوره هستید
       </span>
     </div>

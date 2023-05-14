@@ -21,17 +21,17 @@ export default function ArticleInfo() {
       <Navbar />
       <BreadCrumb
         links={[
-          { id: 1, title: "خانه", to: "category-info" },
-          { id: 2, title: "مقاله ها", to: "category-info/js" },
-          { id: 3, title: "مقایسه js  و  vu", to: "category-info/vu" },
+          { id: 1, title: "خانه", href: "" },
+          { id: 2, title: "مقاله ها", href: "article-info/js" },
+          { id: 3, title: "مقایسه js  و  vu", href: "article-info/vu" },
         ]}
       />
-      <main class='main'>
-        <div class='container'>
-          <div class='row'>
+      <main className='main'>
+        <div className='container'>
+          <div className='row'>
             <div className='col-8'>
-              <div class='article'>
-                <h1 class='article__title'>
+              <div className='article'>
+                <h1 className='article__title'>
                   معرفی بهترین سایت آموزش جاوا اسکریپت [ تجربه محور ] + آموزش
                   رایگان
                 </h1>
@@ -39,10 +39,10 @@ export default function ArticleInfo() {
                 <img
                   src='/images/blog/1.jpg'
                   alt='Article Cover'
-                  class='article__banner w-100'
+                  className='article__banner w-100'
                 />
                 <ArticleScore />
-                <p class='article__paragraph paragraph'>
+                <p className='article__paragraph paragraph'>
                   جاوا اسکریپت یکی از زبان‌های برنامه‌نویسی اصلی حوزه فرانت‌اند
                   است که به واسطه فریم ورک‌های آن می‌توان انواع وب سایت‌ها،
                   اپلیکیشن‌ها و وب اپلیکیشن‌ها را طراحی کرد. به طور کلی بعد از
@@ -60,13 +60,13 @@ export default function ArticleInfo() {
                 <img
                   src='/images/blog/2.jpg'
                   alt='Article Image'
-                  class='article__seconadary-banner'
+                  className='article__seconadary-banner'
                 />
                 <ArticleSection />
                 <ArticleSection />
                 <ArticleSection />
                 <ArticleSocialMedia />
-                <div class='suggestion-articles'>
+                <div className='suggestion-articles'>
                   <Swiper
                     spaceBetween={1}
                     slidesPerView={1}
@@ -87,11 +87,11 @@ export default function ArticleInfo() {
               </div>
             </div>
             <div className='col-4'>
-              <div class='courses-info'>
-                <div class='course-info'>
+              <div className='courses-info'>
+                <div className='course-info'>
                   <ArticleRatedCourses />
                 </div>
-                <div class='course-info'>
+                <div className='course-info'>
                   <FastLinks
                     title='دسترسی سریع'
                     links={[
@@ -103,7 +103,7 @@ export default function ArticleInfo() {
                     ]}
                   />
                 </div>
-                <div class='course-info'>
+                <div className='course-info'>
                   <FastLinks
                     title='مقاله های جدید'
                     links={[
@@ -117,7 +117,7 @@ export default function ArticleInfo() {
                     ]}
                   />
                 </div>
-                <div class='course-info'>
+                <div className='course-info'>
                   <FastLinks
                     title='دسته بندی مفالات'
                     links={[
@@ -129,7 +129,7 @@ export default function ArticleInfo() {
                     ]}
                   />
                 </div>
-                <div class='course-info'>
+                <div className='course-info'>
                   <FastLinks
                     title='دوره های جدید'
                     links={[

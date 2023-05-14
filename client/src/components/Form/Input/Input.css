@@ -1,0 +1,7 @@
+.valid{
+    border: 2px solid var(--primary-color) !important;
+}
+
+.notValid{
+    border: 2px solid red !important;
+}

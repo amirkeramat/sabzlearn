@@ -4,16 +4,16 @@ import "./AboutUs.css";
 import AboutUsBox from "../AboutUsBox/AboutUsBox";
 export default function AboutUs() {
   return (
-    <div class='about-us'>
-      <div class='container'>
-        <div class='about-us__header'>
+    <div className='about-us'>
+      <div className='container'>
+        <div className='about-us__header'>
           <SectionHeader
             title='ما چه کمکی بهتون میکنیم؟'
             desc='از اونجایی که آکادمی آموزشی سبزلرن یک آکادمی خصوصی هست'
           />
         </div>
-        <div class='container'>
-          <div class='row'>
+        <div className='container'>
+          <div className='row'>
             <AboutUsBox
               title='دوره های اختصاصی'
               desc='با پشتیبانی و کیفیت بالا ارائه میده !'

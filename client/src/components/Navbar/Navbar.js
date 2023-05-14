@@ -1,151 +1,154 @@
 import React from "react";
 
 import "./Navbar.css";
+import Button from "../Form/Button/Button";
 
 export default function Navbar() {
   return (
-    <div class="main-header">
-      <div class="container-fluid">
-        <div class="main-header__content">
-          <div class="main-header__right">
+    <div className='main-header'>
+      <div className='container-fluid'>
+        <div className='main-header__content'>
+          <div className='main-header__right'>
             <img
-              src="/images/logo/Logo.png"
-              class="main-header__logo"
-              alt="لوگوی سبزلرن"
+              src='/images/logo/Logo.png'
+              className='main-header__logo'
+              alt='لوگوی سبزلرن'
             />
 
-            <ul class="main-header__menu d-none d-lg-flex">
-              <li class="main-header__item">
-                <a href="#" class="main-header__link">
+            <ul className='main-header__menu d-none d-lg-flex'>
+              <li className='main-header__item'>
+                <Button href='#' className='main-header__link'>
                   صفحه اصلی
-                </a>
+                </Button>
               </li>
 
-              <li class="main-header__item">
-                <a href="#" class="main-header__link">
+              <li className='main-header__item'>
+                <Button href='#' className='main-header__link'>
                   فرانت اند
-                  <i class="fas fa-angle-down main-header__link-icon"></i>
-                  <ul class="main-header__dropdown">
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                  <i className='fas fa-angle-down main-header__link-icon'></i>
+                  <ul className='main-header__dropdown'>
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         آموزش Html
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         آموزش Css
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         آموزش جاوا اسکریپت
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         آموزش FlexBox
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         آموزش جامع ری‌اکت
-                      </a>
+                      </Button>
                     </li>
                   </ul>
-                </a>
+                </Button>
               </li>
-              <li class="main-header__item">
-                <a href="#" class="main-header__link">
+              <li className='main-header__item'>
+                <Button href='#' className='main-header__link'>
                   امنیت
-                  <i class="fas fa-angle-down main-header__link-icon"></i>
-                  <ul class="main-header__dropdown">
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                  <i className='fas fa-angle-down main-header__link-icon'></i>
+                  <ul className='main-header__dropdown'>
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         آموزش کالی لینوکس
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         آموزش پایتون سیاه
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         آموزش جاوا اسکریپت سیاه
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         آموزش شبکه
-                      </a>
+                      </Button>
                     </li>
                   </ul>
-                </a>
+                </Button>
               </li>
-              <li class="main-header__item">
-                <a href="#" class="main-header__link">
+              <li className='main-header__item'>
+                <Button href='#' className='main-header__link'>
                   مقالات
-                  <i class="fas fa-angle-down main-header__link-icon"></i>
-                  <ul class="main-header__dropdown">
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                  <i className='fas fa-angle-down main-header__link-icon'></i>
+                  <ul className='main-header__dropdown'>
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         توسعه وب
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         جاوا اسکریپت
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         فرانت اند
-                      </a>
+                      </Button>
                     </li>
                   </ul>
-                </a>
+                </Button>
               </li>
-              <li class="main-header__item">
-                <a href="#" class="main-header__link">
+              <li className='main-header__item'>
+                <Button href='#' className='main-header__link'>
                   پایتون
-                  <i class="fas fa-angle-down main-header__link-icon"></i>
-                  <ul class="main-header__dropdown">
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                  <i className='fas fa-angle-down main-header__link-icon'></i>
+                  <ul className='main-header__dropdown'>
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         دوره متخصص پایتون
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         دوره هوش مصنوعی با پایتون
-                      </a>
+                      </Button>
                     </li>
-                    <li class="main-header__dropdown-item">
-                      <a href="#" class="main-header__dropdown-link">
+                    <li className='main-header__dropdown-item'>
+                      <Button href='#' className='main-header__dropdown-link'>
                         دوره متخصص جنگو
-                      </a>
+                      </Button>
                     </li>
                   </ul>
-                </a>
+                </Button>
               </li>
-              <li class="main-header__item">
-                <a href="#" class="main-header__link">
+              <li className='main-header__item'>
+                <Button href='#' className='main-header__link'>
                   مهارت های نرم
-                </a>
+                </Button>
               </li>
             </ul>
           </div>
 
-          <div class="main-header__left">
-            <a href="#" class="main-header__search-btn">
-              <i class="fas fa-search main-header__search-icon"></i>
-            </a>
-            <a href="#" class="main-header__cart-btn">
-              <i class="fas fa-shopping-cart main-header__cart-icon"></i>
-            </a>
-            <a href="#" class="main-header__profile">
-              <span class="main-header__profile-text">محمدامین سعیدی راد</span>
-            </a>
+          <div className='main-header__left'>
+            <Button href='#' className='main-header__search-btn'>
+              <i className='fas fa-search main-header__search-icon'></i>
+            </Button>
+            <Button href='#' className='main-header__cart-btn'>
+              <i className='fas fa-shopping-cart main-header__cart-icon'></i>
+            </Button>
+            <Button href='#' className='main-header__profile'>
+              <span className='main-header__profile-text'>
+                محمدامین سعیدی راد
+              </span>
+            </Button>
           </div>
         </div>
       </div>

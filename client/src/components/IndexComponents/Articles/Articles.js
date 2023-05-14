@@ -4,16 +4,16 @@ import ArticleCard from "../ArticleCard/ArticleCard";
 import "./Articels.css";
 export default function Articles() {
   return (
-    <section class='articles'>
-      <div class='container'>
-        <div class='articles-header'>
+    <section className='articles'>
+      <div className='container'>
+        <div className='articles-header'>
           <SectionHeader
             title='جدیدترین مقاله ها'
             desc='پیش به سوی ارتقای دانش'
             btnTitle='تمامی مقاله ها'
           />
-          <div class='articles__content'>
-            <div class='row'>
+          <div className='articles__content'>
+            <div className='row'>
               <ArticleCard />
               <ArticleCard />
               <ArticleCard />

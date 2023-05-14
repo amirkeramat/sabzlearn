@@ -13,21 +13,17 @@ export default function Category() {
       <Topbar />
       <Navbar />
 
-      <section class='courses'>
-        <div class='container'>
+      <section className='courses'>
+        <div className='container'>
           <CategoryCoursesTopbar />
-          <div class='courses-content'>
-            <div class='container'>
-              <div class='row'>
-                <div class='col-4'>
-                  <CourseBox />
-                </div>
-                <div class='col-4'>
-                  <CourseBox />
-                </div>
-                <div class='col-4'>
-                  <CourseBox />
-                </div>
+          <div className='courses-content'>
+            <div className='container'>
+              <div className='row'>
+                <CourseBox />
+
+                <CourseBox />
+
+                <CourseBox />
               </div>
             </div>
           </div>

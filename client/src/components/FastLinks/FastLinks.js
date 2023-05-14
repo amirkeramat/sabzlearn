@@ -1,16 +1,17 @@
-import React from 'react'
-import './FastLinks.css'
-export default function ArticleFastLinks({title,links}) {
+import React from "react";
+import "./FastLinks.css";
+import Button from '.././Form/Button/Button'
+export default function ArticleFastLinks({ title, links }) {
   return (
     <>
-      <span class='course-info__courses-title'>{title}</span>
-      <ul class='sidebar-articles__list'>
+      <span className='course-info__courses-title'>{title}</span>
+      <ul className='sidebar-articles__list'>
         {links.map((linksItem, index) => (
-          <li class='sidebar-articles__item' key={index}>
-            <i class='fas fa-angle-left sidebar-articles__icon'></i>
-            <a href='#' class='sidebar-articles__link'>
+          <li className='sidebar-articles__item' key={index}>
+            <i className='fas fa-angle-left sidebar-articles__icon'></i>
+            <Button href='#' className='sidebar-articles__link'>
               {linksItem}
-            </a>
+            </Button>
           </li>
         ))}
       </ul>

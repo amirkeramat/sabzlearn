@@ -16,9 +16,9 @@ export default function CourseInfo() {
       </header>
       <BreadCrumb
         links={[
-          { id: 1, title: "خانه", to: "category-info" },
-          { id: 2, title: "مقاله ها", to: "category-info/js" },
-          { id: 3, title: "مقایسه js  و  vu", to: "category-info/vu" },
+          { id: 1, title: "خانه", href: "" },
+          { id: 2, title: "جزیات دوره", href: "courses" },
+          { id: 3, title: "مقایسه js  و  vu", href: "course-info/vu" },
         ]}
       />
       <CourseInfoHeader />
