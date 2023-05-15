@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import Topbar from "../../Components/Topbar/Topbar";
 import Input from "../../Components/Form/Input/Input";
-import "./Register.css";
 import Button from "../../Components/Form/Button/Button";
 import {
   requireValidator,
@@ -13,12 +12,14 @@ import {
   emailValidator,
   phoneValidator,
   equalValidator,
-  unequalValidator
+  unequalValidator,
 } from "../../Validator/rules";
 
 import { useForm } from "../../hooks/useForm";
-
+import AuthContext from "../../context/AuthContext";
+import "./Register.css";
 export default function Register() {
+  const authContext = useContext(AuthContext);
   const [formState, onInputHandler] = useForm(
     {
       name: {
@@ -48,9 +49,30 @@ export default function Register() {
     },
     false
   );
-  console.log(formState);
+  // console.log(formState);
+  console.log(authContext);
+
   const onClickHandler = (event) => {
     event.preventDefault();
+    const newUser = {
+      name: formState.inputs.name.value,
+      username: formState.inputs.username.value,
+      email: formState.inputs.email.value,
+      password: formState.inputs.password.value,
+      confirmPassword: formState.inputs.repassword.value,
+      phone: formState.inputs.phone.value,
+    };
+   
+    fetch("http://localhost:4000/v1/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        authContext.login(result.user,result.accessToken);
+      });
+
     console.log("register ");
   };
   return (
@@ -153,7 +175,6 @@ export default function Register() {
                   minValidator(8),
                   maxValidator(30),
                   unequalValidator(formState.inputs.username.value),
-                  
                 ]}
               />
               <i className='login-form__password-icon fa fa-lock-open'></i>

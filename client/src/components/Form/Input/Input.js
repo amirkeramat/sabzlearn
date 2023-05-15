@@ -48,6 +48,7 @@ export default function Input(props) {
           mainInput.isValid ? "valid" : "notValid"
         }`}
         onChange={onChangeHandler}
+        onBlur={onChangeHandler}
       />
     ) : (
       <textarea

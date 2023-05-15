@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useContext} from "react";
 
 import "./Navbar.css";
 import Button from "../Form/Button/Button";
-
+import AuthContext from "../../context/AuthContext";
 export default function Navbar() {
+  const authContext = useContext(AuthContext)
   return (
     <div className='main-header'>
       <div className='container-fluid'>
@@ -23,7 +24,9 @@ export default function Navbar() {
               </li>
 
               <li className='main-header__item'>
-                <Button to='/course-info/frontend' className='main-header__link'>
+                <Button
+                  to='/course-info/frontend'
+                  className='main-header__link'>
                   فرانت اند
                   <i className='fas fa-angle-down main-header__link-icon'></i>
                   <ul className='main-header__dropdown'>
@@ -144,11 +147,19 @@ export default function Navbar() {
             <Button href='#' className='main-header__cart-btn'>
               <i className='fas fa-shopping-cart main-header__cart-icon'></i>
             </Button>
-            <Button href='#' className='main-header__profile'>
-              <span className='main-header__profile-text'>
-                محمدامین سعیدی راد
-              </span>
-            </Button>
+            {authContext.isLoggedIn ? (
+              <Button to='/' className='main-header__profile'>
+                <span className='main-header__profile-text'>
+                  {authContext.userInfos.name}
+                </span>
+              </Button>
+            ) : (
+              <Button to='/register' className='main-header__profile'>
+                <span className='main-header__profile-text'>
+                  ورود / ثبت نام
+                </span>
+              </Button>
+            )}
           </div>
         </div>
       </div>
