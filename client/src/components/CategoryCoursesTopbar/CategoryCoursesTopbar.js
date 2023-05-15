@@ -42,7 +42,7 @@ export default function CategoryCoursesTopbar() {
 
       <div className='courses-top-bar__left'>
         <form action='#' className='courses-top-bar__form'>
-          <Input
+          <input
             element='input'
             type='text'
             className='courses-top-bar__input'

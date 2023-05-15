@@ -6,11 +6,53 @@ import Topbar from "../../Components/Topbar/Topbar";
 import Input from "../../Components/Form/Input/Input";
 import "./Register.css";
 import Button from "../../Components/Form/Button/Button";
+import {
+  requireValidator,
+  maxValidator,
+  minValidator,
+  emailValidator,
+  phoneValidator,
+  equalValidator,
+  unequalValidator
+} from "../../Validator/rules";
+
+import { useForm } from "../../hooks/useForm";
+
 export default function Register() {
-  const onClickHandler = (event)=>{
-    event.preventDefault()
-    console.log('register ');
-  }
+  const [formState, onInputHandler] = useForm(
+    {
+      name: {
+        value: "",
+        isValid: false,
+      },
+      username: {
+        value: "",
+        isValid: false,
+      },
+      email: {
+        value: "",
+        isValid: false,
+      },
+      password: {
+        value: "",
+        isValid: false,
+      },
+      repassword: {
+        value: "",
+        isValid: false,
+      },
+      phone: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
+  console.log(formState);
+  const onClickHandler = (event) => {
+    event.preventDefault();
+    console.log("register ");
+  };
   return (
     <>
       <Topbar />
@@ -34,31 +76,112 @@ export default function Register() {
             <div className='login-form__username'>
               <Input
                 element='input'
+                id='name'
+                className='login-form__username-input'
+                type='text'
+                placeholder='نام و نام خانوادگی'
+                onInputHandler={onInputHandler}
+                validations={[
+                  requireValidator(),
+                  minValidator(8),
+                  maxValidator(30),
+                ]}
+              />
+              <i className='login-form__username-icon fa fa-user'></i>
+            </div>
+            <div className='login-form__username'>
+              <Input
+                element='input'
+                id='phone'
+                className='login-form__username-input'
+                type='text'
+                placeholder='شماره تماس'
+                onInputHandler={onInputHandler}
+                validations={[
+                  requireValidator(),
+                  minValidator(11),
+                  maxValidator(11),
+                  phoneValidator(),
+                ]}
+              />
+              <i className='login-form__username-icon fa fa-user'></i>
+            </div>
+            <div className='login-form__username'>
+              <Input
+                element='input'
+                id='username'
                 className='login-form__username-input'
                 type='text'
                 placeholder='نام کاربری'
+                onInputHandler={onInputHandler}
+                validations={[
+                  requireValidator(),
+                  minValidator(8),
+                  maxValidator(30),
+                  unequalValidator(formState.inputs.password.value),
+                ]}
               />
               <i className='login-form__username-icon fa fa-user'></i>
             </div>
             <div className='login-form__password'>
               <Input
+                id='email'
                 element='input'
                 className='login-form__password-input'
                 type='text'
                 placeholder='آدرس ایمیل'
+                onInputHandler={onInputHandler}
+                validations={[
+                  requireValidator(),
+                  minValidator(8),
+                  maxValidator(30),
+                  emailValidator(),
+                ]}
               />
               <i className='login-form__password-icon fa fa-envelope'></i>
             </div>
             <div className='login-form__password'>
               <Input
+                id='password'
                 element='input'
                 className='login-form__password-input'
-                type='text'
+                type='password'
                 placeholder='رمز عبور'
+                onInputHandler={onInputHandler}
+                validations={[
+                  requireValidator(),
+                  minValidator(8),
+                  maxValidator(30),
+                  unequalValidator(formState.inputs.username.value),
+                  
+                ]}
               />
               <i className='login-form__password-icon fa fa-lock-open'></i>
             </div>
-            <Button className='login-form__btn' type='submit' onClick={onClickHandler} disabled={false}>
+            <div className='login-form__password'>
+              <Input
+                id='repassword'
+                element='input'
+                className='login-form__password-input'
+                type='password'
+                placeholder='تکرار رمز عبور'
+                onInputHandler={onInputHandler}
+                validations={[
+                  requireValidator(),
+                  equalValidator(formState.inputs.password.value),
+                ]}
+              />
+              <i className='login-form__password-icon fa fa-lock-open'></i>
+            </div>
+            <Button
+              className={`login-form__btn ${
+                formState.isFormValid
+                  ? "login-form__btn-success"
+                  : "login-form__btn-error"
+              }`}
+              type='submit'
+              onClick={onClickHandler}
+              disabled={!formState.isFormValid}>
               <i className='login-form__btn-icon fa fa-user-plus'></i>
               <span className='login-form__btn-text'>عضویت</span>
             </Button>
