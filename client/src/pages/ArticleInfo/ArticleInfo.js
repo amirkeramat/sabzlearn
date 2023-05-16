@@ -2,7 +2,7 @@ import React from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
-import BreadCrumb from "../../Components/BreadCrumb//BreadCrumb";
+import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import ArticlesHeader from "../../Components/ArticlesComponents/ArticlesHeader/ArticlesHeader";
 import ArticleScore from "../../Components/ArticlesComponents/ArticleScore/ArticleScore";
 import ArticleRead from "../../Components/ArticlesComponents/ArticleRead/ArticleRead";

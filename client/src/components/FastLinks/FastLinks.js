@@ -1,6 +1,6 @@
 import React from "react";
 import "./FastLinks.css";
-import Button from '.././Form/Button/Button'
+import Button from "../Form/Button/Button";
 export default function ArticleFastLinks({ title, links }) {
   return (
     <>
