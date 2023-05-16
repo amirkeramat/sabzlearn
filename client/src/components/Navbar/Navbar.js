@@ -1,10 +1,19 @@
-import React,{useContext} from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import "./Navbar.css";
 import Button from "../Form/Button/Button";
 import AuthContext from "../../context/AuthContext";
 export default function Navbar() {
-  const authContext = useContext(AuthContext)
+  const authContext = useContext(AuthContext);
+  const [allMenuItems, setAllMenuItems] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:4000/v1/menus")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setAllMenuItems(data);
+      });
+  }, []);
   return (
     <div className='main-header'>
       <div className='container-fluid'>
@@ -22,8 +31,32 @@ export default function Navbar() {
                   صفحه اصلی
                 </Button>
               </li>
-
-              <li className='main-header__item'>
+              {allMenuItems.map((menuItem) => (
+                <li key={menuItem._id} className='main-header__item'>
+                  <Button to={menuItem.href} className='main-header__link'>
+                    {menuItem.title}
+                    {menuItem.submenus.length ? (
+                      <>
+                        <i className='fas fa-angle-down main-header__link-icon'></i>
+                        <ul className='main-header__dropdown'>
+                          {menuItem.submenus.map((subMenu) => (
+                            <li
+                              key={subMenu._id}
+                              className='main-header__dropdown-item'>
+                              <Button
+                                to={subMenu.href}
+                                className='main-header__dropdown-link'>
+                                {subMenu.title}
+                              </Button>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : null}
+                  </Button>
+                </li>
+              ))}
+              {/* <li className='main-header__item'>
                 <Button
                   to='/course-info/frontend'
                   className='main-header__link'>
@@ -136,7 +169,7 @@ export default function Navbar() {
                 <Button href='#' className='main-header__link'>
                   مهارت های نرم
                 </Button>
-              </li>
+              </li> */}
             </ul>
           </div>
 

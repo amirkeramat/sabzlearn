@@ -1,30 +1,88 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import Topbar from "../../Components/Topbar/Topbar";
 import "./Login.css";
 import Input from "../../Components/Form/Input/Input";
 import Button from "../../Components/Form/Button/Button";
-import {requireValidator,maxValidator,minValidator,emailValidator} from '../../Validator/rules'
+import {
+  requireValidator,
+  maxValidator,
+  minValidator,
+} from "../../Validator/rules";
+import AuthContext from "../../context/AuthContext";
 import { useForm } from "../../hooks/useForm";
+import swal from "sweetalert";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Login() {
-  const [formState,onInputHandler]= useForm({
-    username:{
-      value:'',
-      isValid:false
+  const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
+  const [isGoogleRecaptcha, setIsGoogleRecaptcha] = useState(false);
+  const [formState, onInputHandler] = useForm(
+    {
+      username: {
+        value: "",
+        isValid: false,
+      },
+      password: {
+        value: "",
+        isValid: false,
+      },
     },
-    password:{
-      value:'',
-      isValid:false
-    },
-  },false)
-  console.log(formState);
-  const onClickHandler = (event)=>{
-    event.preventDefault()
-    console.log('form submit');
-  }
+    false
+  );
+  const userData = {
+    identifier: formState.inputs.username.value,
+    password: formState.inputs.password.value,
+  };
+
+  const onClickHandler = (event) => {
+    event.preventDefault();
+
+    fetch("http://localhost:4000/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
+        } else {
+          return res.json();
+        }
+      })
+      .then((result) => {
+        console.log(result);
+        authContext.login({}, result.accessToken);
+        swal({
+          title: "با موفقیت وارد شدید",
+          icon: "success",
+          button: "ورود به پنل کاربری",
+        }).then((value) => {
+          navigate("/");
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        swal({
+          title: "کاربری با مشخصات وارد شده وجود ندارد",
+          icon: "error",
+          button: "خروج",
+        });
+      });
+  };
+
+  const onChange = (value) => {
+    console.log("Captcha value:", value);
+    setIsGoogleRecaptcha(true);
+  };
+
   return (
     <>
       <Topbar />
@@ -54,7 +112,6 @@ export default function Login() {
                   requireValidator(),
                   minValidator(8),
                   maxValidator(30),
-                  emailValidator()
                 ]}
                 onInputHandler={onInputHandler}
               />
@@ -76,16 +133,22 @@ export default function Login() {
               />
               <i className='login-form__password-icon fa fa-lock-open'></i>
             </div>
+            <div className='login-form__username mt-2 d-flex justify-content-center'>
+              <ReCAPTCHA
+                sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+                onChange={onChange}
+              />
+            </div>
+
             <Button
               className={`login-form__btn ${
-                formState.isFormValid
+                formState.isFormValid && isGoogleRecaptcha
                   ? "login-form__btn-success"
                   : "login-form__btn-error"
               }`}
               type='submit'
               onClick={onClickHandler}
-              disabled={!formState.isFormValid}
-              >
+              disabled={!formState.isFormValid || !isGoogleRecaptcha}>
               <i className='login-form__btn-icon fas fa-sign-out-alt'></i>
               <span className='login-form__btn-text'>ورود</span>
             </Button>

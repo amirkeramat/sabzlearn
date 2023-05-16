@@ -176,3 +176,10 @@
     margin-right: 2rem;
     margin-top: 1rem;
 }
+
+/* swal styles */
+
+.swal-footer{
+    display: flex;
+    justify-content: center;
+}

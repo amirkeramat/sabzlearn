@@ -1,50 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Topbar.css";
 import Button from "../Form/Button/Button";
 
 export default function Topbar() {
+  const [allTopbarLinks, setAllTopbarLinks] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:4000/v1/menus/topbar")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllTopbarLinks(data);
+      });
+  }, []);
+  const getRandomItemsFromArray = (arr, randomCount) => {
+    const shuffled = [...arr].sort(()=>0.5 - Math.random());
+    return shuffled.slice(0, randomCount);
+  };
   return (
     <div className='top-bar position-relative'>
       <div className='container-fluid '>
         <div className='top-bar__content'>
           <div className={`top-bar__right`}>
             <ul className='top-bar__menu flex-column flex-md-row'>
-              <li className='top-bar__item'>
-                <Button href='#' className='top-bar__link'>
-                  آموزش Html
-                </Button>
-              </li>
-              <li className='top-bar__item'>
-                <Button href='#' className='top-bar__link'>
-                  آموزش Css
-                </Button>
-              </li>
-              <li className='top-bar__item'>
-                <Button href='#' className='top-bar__link'>
-                  آموزش جاوا اسکریپت
-                </Button>
-              </li>
-              <li className='top-bar__item'>
-                <Button href='#' className='top-bar__link'>
-                  آموزش بوت استرپ
-                </Button>
-              </li>
-              <li className='top-bar__item'>
-                <Button href='#' className='top-bar__link'>
-                  آموزش پایتون
-                </Button>
-              </li>
-              <li className='top-bar__item'>
-                <Button href='#' className='top-bar__link'>
-                  آموزش ری‌اکت
-                </Button>
-              </li>
-              <li className='top-bar__item'>
-                <Button href='#' className='top-bar__link'>
-                  20,000 تومان
-                </Button>
-              </li>
+              {getRandomItemsFromArray(allTopbarLinks, 5).map((link) => (
+                <li key={link._id} className='top-bar__item'>
+                  <Button to={link.href} className='top-bar__link'>
+                    {link.title}
+                  </Button>
+                </li>
+              ))}
             </ul>
           </div>
           <div className='top-bar__left'>
