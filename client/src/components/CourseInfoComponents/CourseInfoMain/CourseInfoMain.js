@@ -13,7 +13,20 @@ import CourseIntroductionBtns from "../CourseIntrodutionBtns/CourseIntroductionB
 import TopicAccordion from "../TopicAccordion/TopicAccordion";
 import TeacherDetail from "../TeacherDetail/TeacherDetail";
 import Accordion from "react-bootstrap/Accordion";
-export default function CourseInfoMain() {
+import Button from "../../Form/Button/Button";
+export default function CourseInfoMain(props) {
+  console.log(props);
+  const {
+    isComplete,
+    updatedAt,
+    status,
+    isUserRegisteredToThisCourse,
+    courseStudentsCount,
+    price,
+    comments,
+    support,
+    relatedCourses,
+  } = props;
   return (
     <main className='main'>
       <div className='container'>
@@ -24,7 +37,11 @@ export default function CourseInfoMain() {
                 <div className='row'>
                   <CourseInfoBox
                     title='وضعیت دوره:'
-                    subtitle='به اتمام رسیده'
+                    subtitle={
+                      isComplete === 0
+                        ? "در حال ضبط"
+                        : "دوره به اتمام رسیده است"
+                    }
                     icon='fas fa-graduation-cap'
                   />
                   <CourseInfoBox
@@ -34,12 +51,12 @@ export default function CourseInfoMain() {
                   />
                   <CourseInfoBox
                     title='آخرین بروزرسانی:'
-                    subtitle='1401/03/02'
+                    subtitle={updatedAt}
                     icon='fas fa-calendar-alt'
                   />
                   <CourseInfoBox
                     title='روش پشتیبانی'
-                    subtitle='آنلاین'
+                    subtitle={support}
                     icon='fas fa-user-alt'
                   />
                   <CourseInfoBox
@@ -87,10 +104,14 @@ export default function CourseInfoMain() {
           <div className='mainCourse-left col-4'>
             <div className='courses-info'>
               <div className='course-info'>
-                <CourseInfoRegister />
+                <CourseInfoRegister title={isUserRegisteredToThisCourse} />
               </div>
               <div className='course-info'>
-                <CourseInfoTotal />
+                <CourseInfoTotal
+                  student={courseStudentsCount}
+                  Comment={comments}
+                  views={"123"}
+                />
               </div>
               <div className='course-info'>
                 <CourseInfoLink />
@@ -99,7 +120,29 @@ export default function CourseInfoMain() {
                 <CourseInfoTopic />
               </div>
               <div className='course-info'>
-                <CourseInfoRelatedCourses />
+                <div className='courseInfo__relatedCourses'>
+                  <span className='course-info__courses-title'>
+                    دوره های مرتبط
+                  </span>
+                  <ul className='course-info__courses-list'>
+                    {relatedCourses.map((course) => (
+                      <li
+                        key={course._id}
+                        className='course-info__courses-list-item'>
+                        <Button href='#' className='course-info__courses-link'>
+                          <img
+                            src={`/images/courses/${course.cover}`}
+                            alt='Course Cover'
+                            className='course-info__courses-img'
+                          />
+                          <span className='course-info__courses-text'>
+                            {course.name}
+                          </span>
+                        </Button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
