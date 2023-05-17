@@ -4,7 +4,6 @@ import CourseInfoTotal from "../CourseInfoTotal/CourseInfoTotal";
 import "./CourseInfoMain.css";
 import CourseInfoLink from "../CourseInfoLink/CourseInfoLink";
 import CourseInfoTopic from "../CourseInfoTopic/CourseInfoTopic";
-import CourseInfoRelatedCourses from "../CourseInfoRelatedCourses/CourseInfoRelatedCourses";
 import CourseInfoBox from "../CourseInfoBox/CourseInfoBox";
 import CourseProgress from "../CourseProgress/CourseProgress";
 import CourseIntroduction1 from "../CourseIntoduction1/CourseIntroduction1";
