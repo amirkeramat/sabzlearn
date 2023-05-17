@@ -4,85 +4,10 @@ import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import Topbar from "../../Components/Topbar/Topbar";
 import "./Login.css";
-import Input from "../../Components/Form/Input/Input";
-import Button from "../../Components/Form/Button/Button";
-import {
-  requireValidator,
-  maxValidator,
-  minValidator,
-} from "../../Validator/rules";
-import AuthContext from "../../context/AuthContext";
-import { useForm } from "../../hooks/useForm";
-import swal from "sweetalert";
-import ReCAPTCHA from "react-google-recaptcha";
+import LoginForm from "../../Components/LoginForm/LoginForm";
 
 export default function Login() {
-  const navigate = useNavigate();
-  const authContext = useContext(AuthContext);
-  const [isGoogleRecaptcha, setIsGoogleRecaptcha] = useState(false);
-  const [formState, onInputHandler] = useForm(
-    {
-      username: {
-        value: "",
-        isValid: false,
-      },
-      password: {
-        value: "",
-        isValid: false,
-      },
-    },
-    false
-  );
-  const userData = {
-    identifier: formState.inputs.username.value,
-    password: formState.inputs.password.value,
-  };
-
-  const onClickHandler = (event) => {
-    event.preventDefault();
-
-    fetch("http://localhost:4000/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          return res.text().then((text) => {
-            throw new Error(text);
-          });
-        } else {
-          return res.json();
-        }
-      })
-      .then((result) => {
-        console.log(result);
-        authContext.login({}, result.accessToken);
-        swal({
-          title: "با موفقیت وارد شدید",
-          icon: "success",
-          button: "ورود به پنل کاربری",
-        }).then((value) => {
-          navigate("/");
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        swal({
-          title: "کاربری با مشخصات وارد شده وجود ندارد",
-          icon: "error",
-          button: "خروج",
-        });
-      });
-  };
-
-  const onChange = (value) => {
-    console.log("Captcha value:", value);
-    setIsGoogleRecaptcha(true);
-  };
-
+  
   return (
     <>
       <Topbar />
@@ -100,75 +25,7 @@ export default function Login() {
               ثبت نام
             </Link>
           </div>
-          <form action='#' className='login-form'>
-            <div className='login-form__username'>
-              <Input
-                element='input'
-                className='login-form__username-input'
-                id='username'
-                type='text'
-                placeholder='نام کاربری یا آدرس ایمیل'
-                validations={[
-                  requireValidator(),
-                  minValidator(8),
-                  maxValidator(30),
-                ]}
-                onInputHandler={onInputHandler}
-              />
-              <i className='login-form__username-icon fa fa-user'></i>
-            </div>
-            <div className='login-form__password'>
-              <Input
-                element='input'
-                className='login-form__password-input'
-                id='password'
-                type='text'
-                placeholder='رمز عبور'
-                validations={[
-                  requireValidator(),
-                  minValidator(8),
-                  maxValidator(18),
-                ]}
-                onInputHandler={onInputHandler}
-              />
-              <i className='login-form__password-icon fa fa-lock-open'></i>
-            </div>
-            <div className='login-form__username mt-2 d-flex justify-content-center'>
-              <ReCAPTCHA
-                sitekey='6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
-                onChange={onChange}
-              />
-            </div>
-
-            <Button
-              className={`login-form__btn ${
-                formState.isFormValid && isGoogleRecaptcha
-                  ? "login-form__btn-success"
-                  : "login-form__btn-error"
-              }`}
-              type='submit'
-              onClick={onClickHandler}
-              disabled={!formState.isFormValid || !isGoogleRecaptcha}>
-              <i className='login-form__btn-icon fas fa-sign-out-alt'></i>
-              <span className='login-form__btn-text'>ورود</span>
-            </Button>
-            <div className='login-form__password-setting'>
-              <label className='login-form__password-remember'>
-                <input
-                  className='login-form__password-checkbox'
-                  type='checkbox'
-                />
-                <span className='login-form__password-text'>
-                  مرا به خاطر داشته باش
-                </span>
-              </label>
-              <label className='login-form__password-forget'>
-                <a className='login-form__password-forget-link' href='#'>
-                  رمز عبور را فراموش کرده اید؟
-                </a>
-              </label>
-            </div>
-          </form>
+          <LoginForm/>
           <div className='login__des'>
             <span className='login__des-title'>سلام کاربر محترم:</span>
             <ul className='login__des-list'>

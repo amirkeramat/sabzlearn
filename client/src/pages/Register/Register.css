@@ -4,7 +4,19 @@
     position: relative;
     overflow: hidden;
 }
-
+.input-success{
+    border: 2px solid #2bce56 !important;
+}
+.input-error{
+    border: 2px solid red !important;
+    animation-name: shake;
+    animation-duration: 50ms;
+}
+@keyframes shake{
+    0%{transform: translateX(4px)}
+    50%{transform: translateX(-4px)}
+    100%{transform: translateX(4px)}
+}
 .login-register::before {
     content: "";
     position: absolute;
