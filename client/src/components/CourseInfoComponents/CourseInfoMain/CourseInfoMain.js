@@ -13,8 +13,7 @@ import TopicAccordion from "../TopicAccordion/TopicAccordion";
 import TeacherDetail from "../TeacherDetail/TeacherDetail";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "../../Form/Button/Button";
-export default function CourseInfoMain(props) {
-  console.log(props);
+export default function CourseInfoMain({ courseInfoData }) {
   const {
     isComplete,
     updatedAt,
@@ -25,7 +24,7 @@ export default function CourseInfoMain(props) {
     comments,
     support,
     relatedCourses,
-  } = props;
+  } = courseInfoData;
   return (
     <main className='main'>
       <div className='container'>

@@ -10,7 +10,7 @@ import ArticleSection from "../../Components/ArticlesComponents/ArticleSection/A
 import ArticleSocialMedia from "../../Components/ArticlesComponents/ArticleSocialMedia/ArticleSocialMedia";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ArticleSuggestion from "../../Components/ArticlesComponents/ArticleSuggestion/ArticleSuggestion";
-import ArticleComments from "../../Components/ArticlesComponents/ArticleComments/ArticleComments";
+import Comments from "../../Components/Comments/Comments";
 import "./ArticleInfo.css";
 import ArticleRatedCourses from "../../Components/ArticlesComponents/ArticleRatedCourses/ArticleRatedCourses";
 import FastLinks from "../../Components/FastLinks/FastLinks";
@@ -83,7 +83,7 @@ export default function ArticleInfo() {
                     </SwiperSlide>
                   </Swiper>
                 </div>
-                <ArticleComments />
+                <Comments />
               </div>
             </div>
             <div className='col-4'>

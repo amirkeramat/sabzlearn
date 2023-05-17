@@ -30,12 +30,14 @@ const formReducer = (state, action) => {
 };
 
 export const useForm = (initInputs, initFormIsValid) => {
+
   const [formState, dispatch] = useReducer(formReducer, {
     inputs: initInputs,
     isFormValid: initFormIsValid,
   });
 
   const onInputHandler =useCallback( (id, value, isValid) => {
+
     dispatch({
       type: "INPUT_CHANGE",
       value,

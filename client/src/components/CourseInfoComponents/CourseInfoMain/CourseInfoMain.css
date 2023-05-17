@@ -10,6 +10,9 @@
     box-shadow: 0 0 13px 1px rgba(70, 72, 77, 0.08);
     border: 1px solid #f2f2f2;
 }
+.course-boxes{
+    margin-top: 2rem;
+}
 
 .course-info__topic-title {
     display: block;
