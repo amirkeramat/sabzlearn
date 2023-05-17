@@ -4,7 +4,6 @@ import CourseInfoTotal from "../CourseInfoTotal/CourseInfoTotal";
 import "./CourseInfoMain.css";
 import CourseInfoLink from "../CourseInfoLink/CourseInfoLink";
 import CourseInfoTopic from "../CourseInfoTopic/CourseInfoTopic";
-import CourseInfoRelatedCourses from "../CourseInfoRelatedCourses/CourseInfoRelatedCourses";
 import CourseInfoBox from "../CourseInfoBox/CourseInfoBox";
 import CourseProgress from "../CourseProgress/CourseProgress";
 import CourseIntroduction1 from "../CourseIntoduction1/CourseIntroduction1";
@@ -14,8 +13,7 @@ import TopicAccordion from "../TopicAccordion/TopicAccordion";
 import TeacherDetail from "../TeacherDetail/TeacherDetail";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "../../Form/Button/Button";
-export default function CourseInfoMain(props) {
-  console.log(props);
+export default function CourseInfoMain({ courseInfoData }) {
   const {
     isComplete,
     updatedAt,
@@ -26,7 +24,7 @@ export default function CourseInfoMain(props) {
     comments,
     support,
     relatedCourses,
-  } = props;
+  } = courseInfoData;
   return (
     <main className='main'>
       <div className='container'>
