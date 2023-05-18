@@ -6,6 +6,7 @@ import AuthContext from "../../context/AuthContext";
 export default function Navbar() {
   const authContext = useContext(AuthContext);
   const [allMenuItems, setAllMenuItems] = useState([]);
+  const {isLoggedIn,token,userInfos} = authContext
   useEffect(() => {
     fetch("http://localhost:4000/v1/menus")
       .then((res) => res.json())
@@ -65,10 +66,10 @@ export default function Navbar() {
             <Button href='#' className='main-header__cart-btn'>
               <i className='fas fa-shopping-cart main-header__cart-icon'></i>
             </Button>
-            {(authContext.isLoggedIn && authContext.token !== '') ? (
+            {(isLoggedIn && token) ? (
               <Button to='/' className='main-header__profile'>
                 <span className='main-header__profile-text'>
-                  {authContext.userInfos.name}
+                  {userInfos.name}
                 </span>
               </Button>
             ) : (

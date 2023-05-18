@@ -37,7 +37,7 @@ export default function App() {
           setUserInfos(userData);
         });
     }
-  }, [login]);
+  }, [token]);
   return (
     <AuthContext.Provider
       value={{ isLoggedIn, token, userInfos, login, logout }}>

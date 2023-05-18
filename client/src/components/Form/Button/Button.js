@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 export default function Button(props) {
   if (props.to) {
     return (
-      <Link to={props.to} className={props.className}>
+      <NavLink to={props.to} className={props.className}>
         {props.children}
-      </Link>
+      </NavLink>
     );
   } else if (props.href) {
     return (

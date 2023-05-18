@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Footer from "../../Components/Footer/Footer";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -16,24 +16,30 @@ import CourseInfoTotal from "../../Components/CourseInfoComponents/CourseInfoTot
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import CourseInfoLink from "../../Components/CourseInfoComponents/CourseInfoLink/CourseInfoLink";
 import CourseInfoTopic from "../../Components/CourseInfoComponents/CourseInfoTopic/CourseInfoTopic";
-import Comments from '../../Components/Comments/Comments'
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "../../Components/Form/Button/Button";
-
+import swal from "sweetalert";
+import CommentsTextArea from "../../Components/CommentsTextArea/CommentsTextArea";
+import AuthContext from "../../context/AuthContext";
 export default function CourseInfo() {
+  const {userInfos,isLoggedIn} = useContext(AuthContext)
   const [courseInfoData, setCourseInfoData] = useState({});
   const [categoryData, setCategoryData] = useState({});
   const [relatedCourses, setRelatedCourses] = useState([]);
-  const [updatedAt,setUpdatedAt] = useState('')
+  const [sessions, setSessions] = useState([]);
+  const [updatedAt, setUpdatedAt] = useState("");
+  const [comments, setComments] = useState([]);
   const { courseName } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
-    const userToken = JSON.parse(localStorage.getItem("user")).token;
-
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
     fetch(`http://localhost:4000/v1/courses/${courseName}`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${userToken}`,
+        Authorization: `Bearer ${
+          localStorageData === null ? null : localStorageData.token
+        }`,
       },
     })
       .then((res) => {
@@ -49,11 +55,11 @@ export default function CourseInfo() {
         setCourseInfoData(courseData);
         setCategoryData(courseData.categoryID);
         setUpdatedAt(courseData.updatedAt);
+        setSessions(courseData.sessions);
+        setComments(courseData.comments);
         console.log(courseData);
       })
-      .catch((err) => {
-        alert(err.message);
-      });
+      .catch((err) => {});
 
     fetch(`http://localhost:4000/v1/courses/related/${courseName}`, {
       method: "GET",
@@ -72,9 +78,16 @@ export default function CourseInfo() {
         setRelatedCourses(data);
       })
       .catch((err) => {
-        alert(err);
+        swal({
+          title: "دوره مورد نظر یافت نشد",
+          icon: "error",
+          button: "رفتن به تمامی دوره ها",
+        }).then((value) => {
+          navigate("/courses");
+        });
       });
-  }, []);
+  }, [courseName]);
+
   return (
     <>
       <header>
@@ -151,25 +164,27 @@ export default function CourseInfo() {
                   <CourseIntroductionBtns />
                   <div className='introduction__topic'>
                     <Accordion defaultActiveKey='0'>
-                      <TopicAccordion
-                        eventKey={1}
-                        title='معرفی دوره ها'
-                        body='چرا به این دوره نیاز داریم'
-                      />
-                      <TopicAccordion
-                        eventKey={2}
-                        title='معرفی دوره ها'
-                        body='چرا به این دوره نیاز داریم'
-                      />
-                      <TopicAccordion
-                        eventKey={3}
-                        title='معرفی دوره ها'
-                        body='چرا به این دوره نیاز داریم'
-                      />
+                      {sessions.length ? (
+                        sessions.map((session) => (
+                          <TopicAccordion
+                            eventKey={session._id}
+                            title={session.title}
+                            body={session.title}
+                            time={session.time}
+                          />
+                        ))
+                      ) : (
+                        <TopicAccordion
+                          eventKey={1}
+                          title='دوره در حال ضبط میباشد'
+                          body='دوره در حال ضبط میباشد'
+                        />
+                      )}
                     </Accordion>
                   </div>
                   <TeacherDetail />
-                  <Comments />
+                  <CommentsTextArea isLoggedIn={isLoggedIn} userInfos={userInfos} comments={comments} />
+                  {/* <Comments /> */}
                 </div>
               </div>
             </div>

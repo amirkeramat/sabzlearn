@@ -22,10 +22,10 @@ export default function LoginForm() {
     resolver: yupResolver(loginSchema),
     mode: "all",
   });
-   const onChange = (value) => {
-     console.log("Captcha value:", value);
-     setIsGoogleRecaptcha(true);
-   };
+  //  const onChange = (value) => {
+  //    console.log("Captcha value:", value);
+  //    setIsGoogleRecaptcha(true);
+  //  };
    const onError = (err)=>{
 console.log(err);
    }
