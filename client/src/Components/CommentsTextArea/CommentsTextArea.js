@@ -106,15 +106,7 @@ export default function CommentsTextArea({ comments, userInfos, isLoggedIn }) {
             </span>
           </div>
           <div className='comments__respond'>
-            <div className='comments__score'>
-              <span className='comments__score-title'>امتیاز شما</span>
-              <div className='comments__score-input'>
-                <span className='comments__score-input-text'>
-                  امتیاز خود را انتخاب کنید
-                </span>
-                <i className='fas fa-angle-down	 comments__input-icon'></i>
-              </div>
-            </div>
+          
             <Comments/>
             {/* <div className='comments__respond-content'>
               <div className='comments__respond-title'>دیدگاه شما *</div>

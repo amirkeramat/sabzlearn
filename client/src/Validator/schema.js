@@ -21,4 +21,11 @@ const loginSchema = yup.object().shape({
   password: yup.string().min(8).max(20).required("password is required"),
 });
 
-export { registerSchema, loginSchema };
+const commentSchema = yup.object().shape({
+  comment: yup.string().required("باکس مورد نظر را خالی نگذارید"),
+  score: yup.string().required('انتخاب امتیاز ضروری است')
+});
+
+
+
+export { registerSchema, loginSchema, commentSchema };
