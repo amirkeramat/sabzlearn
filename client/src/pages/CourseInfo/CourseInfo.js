@@ -25,7 +25,7 @@ import AuthContext from "../../context/AuthContext";
 export default function CourseInfo() {
   const authContext = useContext(AuthContext);
   const [courseInfoData, setCourseInfoData] = useState({});
-  const [categoryData, setCategoryData] = useState({});
+  // const [categoryData, setCategoryData] = useState({});
   const [relatedCourses, setRelatedCourses] = useState([]);
   const [sessions, setSessions] = useState([]);
   const [updatedAt, setUpdatedAt] = useState("");
@@ -53,10 +53,11 @@ export default function CourseInfo() {
       })
       .then((courseData) => {
         setCourseInfoData(courseData);
-        setCategoryData(courseData.categoryID);
+        // setCategoryData(courseData.categoryID);
         setUpdatedAt(courseData.updatedAt);
         setSessions(courseData.sessions);
-        setCommentsData(courseData.comments);
+        setCommentsData(courseData.comments)
+        console.log(courseData);
       })
       .catch((err) => {});
 
@@ -179,8 +180,7 @@ export default function CourseInfo() {
                   <TeacherDetail />
                   <CommentsTextArea
                     isLoggedIn={authContext.isLoggedIn}
-                    userInfos={authContext.userInfos}
-                    comments={commentsData}
+                    courseInfoData={courseInfoData}
                   />
                 </div>
               </div>

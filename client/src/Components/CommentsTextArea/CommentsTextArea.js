@@ -4,8 +4,7 @@ import Comments from "../../Components/Comments/Comments";
 import "./CommentsTextArea.css";
 import Button from "../Form/Button/Button";
 
-export default function CommentsTextArea({ comments, userInfos, isLoggedIn }) {
-  console.log(comments.length);
+export default function CommentsTextArea({ courseInfoData, isLoggedIn }) {
   return (
     <div className='comments'>
       <div className='comments__header'>
@@ -15,22 +14,23 @@ export default function CommentsTextArea({ comments, userInfos, isLoggedIn }) {
         <span className='comments__header-title'>نظرات</span>
       </div>
       <div className='comments__content'>
-        {comments.length === 0 ?(
+        {courseInfoData.comments.length === 0 && (
           <div className='alert alert-warning'>
             هنوز کامنتی برای این دوره ثبت نشده
           </div>
-        ) : (
+        )}
+        {courseInfoData.comments.length !== 0 && (
           <>
-            {comments.map((comment) => (
+            {courseInfoData.comments.map((comment) => (
               <div key={comment._id} className='comments__item'>
                 <div className='comments__question'>
                   <div className='comments__question-header'>
                     <div className='comments__question-header-right'>
                       <span className='comments__question-name comment-name'>
-                        {comment.creator}
+                        {comment.creator.name}
                       </span>
                       <span className='comments__question-status comment-status'>
-                        {/* {comment.creator.role === "ADMIN" ? "مدیر" : "کاربر"} */}
+                        {comment.creator.role === "ADMIN" ? "مدیر" : "کاربر"}
                       </span>
                       <span className='comments__question-date comment-date'>
                         {comment.createdAt.slice(0, 10)}
