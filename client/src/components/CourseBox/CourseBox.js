@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import CircleSpinner from "../CircleSpinner/CircleSpinner";
 import "./CourseBox.css";
 import Button from "../Form/Button/Button";
-export default function CourseBox({title,price,teacher,student,cover,link,rate}) {
+export default function CourseBox({
+  title,
+  price,
+  teacher,
+  student,
+  cover,
+  link,
+  rate,
+}) {
   const [isImgShow, setImgShow] = useState(false);
-  const localPrice = Number(price).toLocaleString()
+  const localPrice = Number(price).toLocaleString();
   const onImageLoader = () => setImgShow(true);
   return (
     <div className='course-box col-4'>
@@ -30,7 +38,7 @@ export default function CourseBox({title,price,teacher,student,cover,link,rate})
             </Button>
           </div>
           <div className='course-box__rating'>
-            {Array.apply("", Array(rate)).map((item,index) => (
+            {Array.apply("", Array(rate)).map((item, index) => (
               <img
                 key={index + 1}
                 src='/images/svgs/star_fill.svg'
@@ -67,7 +75,9 @@ export default function CourseBox({title,price,teacher,student,cover,link,rate})
             <i className='fas fa-users course-box__users-icon'></i>
             <span className='course-box__users-text'>{student}</span>
           </div>
-          <span className='course-box__price'>{localPrice}</span>
+          <span className='course-box__price'>
+            {price === 0 ? "رایگان" : localPrice}
+          </span>
         </div>
       </div>
 

@@ -83,7 +83,7 @@ export default function CourseInfo() {
           icon: "error",
           button: "رفتن به تمامی دوره ها",
         }).then((value) => {
-          navigate("/courses");
+          navigate("/courses/1");
         });
       });
   }, [courseName]);

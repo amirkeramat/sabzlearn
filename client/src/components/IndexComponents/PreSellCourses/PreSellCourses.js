@@ -3,12 +3,14 @@ import SectionHeader from "../../SectionHeader/SectionHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./PreSellCourses.css";
 import CourseBox from "../../CourseBox/CourseBox";
+import 'swiper/css'
+import "swiper/css/pagination"
 export default function PreSellCourses() {
-  const [preSellProducts, setPreSellProducts] = useState([]);
+  const [preSellCourses, setPreSellCourses] = useState([]);
   useEffect(()=>{
     fetch("http://localhost:4000/v1/courses/presell").then(res=>res.json()).then(data=>{
       console.log(data);
-      setPreSellProducts(data)
+      setPreSellCourses(data);
     })
   },[])
   return (
@@ -21,11 +23,14 @@ export default function PreSellCourses() {
           <Swiper
             spaceBetween={1}
             slidesPerView={3}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}>
-            {preSellProducts.length &&
-              preSellProducts.map((product) => (
-                <SwiperSlide>
+            pagination={{
+              clickable:true,
+            }}
+            className="mySwipes"
+            >
+            {preSellCourses.length &&
+              preSellCourses.map((product) => (
+                <SwiperSlide key={product._id}>
                   <CourseBox
                     title={product.name}
                     cover={product.cover}
@@ -33,28 +38,10 @@ export default function PreSellCourses() {
                     price={product.price}
                     student={product.creator}
                     link={product.shortName}
+                    rate={product.courseAverageScore}
                   />
                 </SwiperSlide>
               ))}
-
-            {/* <SwiperSlide>
-              <CourseBox />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CourseBox />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CourseBox />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CourseBox />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CourseBox />
-            </SwiperSlide>
-            <SwiperSlide>
-              <CourseBox />
-            </SwiperSlide> */}
           </Swiper>
         </div>
       </div>

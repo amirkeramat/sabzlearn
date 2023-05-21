@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SectionHeader from "../../SectionHeader/SectionHeader";
 import ArticleCard from "../ArticleCard/ArticleCard";
-import "./Articels.css";
+import "./Articles.css";
 export default function Articles() {
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:4000/v1/articles")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setArticles(data);
+      });
+  }, []);
   return (
     <section className='articles'>
       <div className='container'>
@@ -11,12 +20,20 @@ export default function Articles() {
             title='جدیدترین مقاله ها'
             desc='پیش به سوی ارتقای دانش'
             btnTitle='تمامی مقاله ها'
+            btnHref='all-articles/1'
           />
           <div className='articles__content'>
             <div className='row'>
-              <ArticleCard />
-              <ArticleCard />
-              <ArticleCard />
+              {articles.slice(0, 3).map((article) => (
+                <ArticleCard
+                  key={article._id}
+                  title={article.title}
+                  desc={article.description}
+                  cover={article.cover}
+                  link={article.shortName}
+                  animated={true}
+                />
+              ))}
             </div>
           </div>
         </div>
