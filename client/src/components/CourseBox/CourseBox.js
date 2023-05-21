@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CircleSpinner from "../CircleSpinner/CircleSpinner";
 import "./CourseBox.css";
 import Button from "../Form/Button/Button";
-export default function CourseBox() {
+export default function CourseBox({title,price,teacher,student,cover,link}) {
   const [isImgShow, setImgShow] = useState(false);
 
   const onImageLoader = () => setImgShow(true);
@@ -19,14 +19,14 @@ export default function CourseBox() {
       </Button>
       <div className='course-box__main'>
         <Button href='#' className='course-box__title'>
-          دوره پروژه محور متخصص جنگو
+          {title}
         </Button>
 
         <div className='course-box__rating-teacher'>
           <div className='course-box__teacher'>
             <i className='fas fa-chalkboard-teacher course-box__teacher-icon'></i>
             <Button href='#' className='course-box__teacher-link'>
-              رضا دولتی
+              {teacher}
             </Button>
           </div>
           <div className='course-box__rating'>
@@ -61,14 +61,14 @@ export default function CourseBox() {
         <div className='course-box__status'>
           <div className='course-box__users'>
             <i className='fas fa-users course-box__users-icon'></i>
-            <span className='course-box__users-text'>500</span>
+            <span className='course-box__users-text'>{student}</span>
           </div>
-          <span className='course-box__price'>1,000,000</span>
+          <span className='course-box__price'>{price}</span>
         </div>
       </div>
 
       <div className='course-box__footer'>
-        <Button href='#' className='course-box__footer-link'>
+        <Button to={`/course-info/${link}`} className='course-box__footer-link'>
           مشاهده اطلاعات
           <i className='fas fa-arrow-left course-box__footer-icon'></i>
         </Button>

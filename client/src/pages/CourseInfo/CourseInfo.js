@@ -23,13 +23,13 @@ import swal from "sweetalert";
 import CommentsTextArea from "../../Components/CommentsTextArea/CommentsTextArea";
 import AuthContext from "../../context/AuthContext";
 export default function CourseInfo() {
-  const {userInfos,isLoggedIn} = useContext(AuthContext)
+  const authContext = useContext(AuthContext);
   const [courseInfoData, setCourseInfoData] = useState({});
   const [categoryData, setCategoryData] = useState({});
   const [relatedCourses, setRelatedCourses] = useState([]);
   const [sessions, setSessions] = useState([]);
   const [updatedAt, setUpdatedAt] = useState("");
-  const [comments, setComments] = useState([]);
+  const [commentsData, setCommentsData] = useState([]);
   const { courseName } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
@@ -56,8 +56,7 @@ export default function CourseInfo() {
         setCategoryData(courseData.categoryID);
         setUpdatedAt(courseData.updatedAt);
         setSessions(courseData.sessions);
-        setComments(courseData.comments);
-        console.log(courseData);
+        setCommentsData(courseData.comments);
       })
       .catch((err) => {});
 
@@ -106,12 +105,7 @@ export default function CourseInfo() {
         ]}
       />
       ‍‍‍‍‍‍‍‍
-      <CourseInfoHeader
-        title={courseInfoData.name}
-        desc={courseInfoData.description}
-        link={categoryData.title}
-        cover={courseInfoData.cover}
-      />
+      <CourseInfoHeader {...courseInfoData} />
       <main className='main'>
         <div className='container'>
           <div className='row'>
@@ -183,8 +177,11 @@ export default function CourseInfo() {
                     </Accordion>
                   </div>
                   <TeacherDetail />
-                  <CommentsTextArea isLoggedIn={isLoggedIn} userInfos={userInfos} comments={comments} />
-                  {/* <Comments /> */}
+                  <CommentsTextArea
+                    isLoggedIn={authContext.isLoggedIn}
+                    userInfos={authContext.userInfos}
+                    comments={commentsData}
+                  />
                 </div>
               </div>
             </div>

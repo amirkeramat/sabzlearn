@@ -5,6 +5,7 @@ import "./CommentsTextArea.css";
 import Button from "../Form/Button/Button";
 
 export default function CommentsTextArea({ comments, userInfos, isLoggedIn }) {
+  console.log(comments.length);
   return (
     <div className='comments'>
       <div className='comments__header'>
@@ -14,44 +15,42 @@ export default function CommentsTextArea({ comments, userInfos, isLoggedIn }) {
         <span className='comments__header-title'>نظرات</span>
       </div>
       <div className='comments__content'>
-        {comments.length === 0 ? (
+        {comments.length === 0 ?(
           <div className='alert alert-warning'>
             هنوز کامنتی برای این دوره ثبت نشده
           </div>
         ) : (
           <>
             {comments.map((comment) => (
-              <>
-                <div className='comments__item'>
-                  <div className='comments__question'>
-                    <div className='comments__question-header'>
-                      <div className='comments__question-header-right'>
-                        <span className='comments__question-name comment-name'>
-                          {comment.creator}
-                        </span>
-                        <span className='comments__question-status comment-status'>
-                          {/* {comment.creator.role === "ADMIN" ? "مدیر" : "کاربر"} */}
-                        </span>
-                        <span className='comments__question-date comment-date'>
-                          {comment.createdAt.slice(0, 10)}
-                        </span>
-                      </div>
-                      <div className='comments__question-header-left'>
-                        <a
-                          className='comments__question-header-link comment-link'
-                          href='#'>
-                          پاسخ
-                        </a>
-                      </div>
+              <div key={comment._id} className='comments__item'>
+                <div className='comments__question'>
+                  <div className='comments__question-header'>
+                    <div className='comments__question-header-right'>
+                      <span className='comments__question-name comment-name'>
+                        {comment.creator}
+                      </span>
+                      <span className='comments__question-status comment-status'>
+                        {/* {comment.creator.role === "ADMIN" ? "مدیر" : "کاربر"} */}
+                      </span>
+                      <span className='comments__question-date comment-date'>
+                        {comment.createdAt.slice(0, 10)}
+                      </span>
                     </div>
-                    <div className='comments__question-text'>
-                      <p className='comments__question-paragraph comment-paragraph'>
-                        {comment.body}
-                      </p>
+                    <div className='comments__question-header-left'>
+                      <a
+                        className='comments__question-header-link comment-link'
+                        href='#'>
+                        پاسخ
+                      </a>
                     </div>
                   </div>
+                  <div className='comments__question-text'>
+                    <p className='comments__question-paragraph comment-paragraph'>
+                      {comment.body}
+                    </p>
+                  </div>
                 </div>
-              </>
+              </div>
             ))}
             <div className='comments__pagantion'>
               <ul className='comments__pagantion-list'>
@@ -106,15 +105,7 @@ export default function CommentsTextArea({ comments, userInfos, isLoggedIn }) {
             </span>
           </div>
           <div className='comments__respond'>
-          
-            <Comments/>
-            {/* <div className='comments__respond-content'>
-              <div className='comments__respond-title'>دیدگاه شما *</div>
-              <textarea className='comments__score-input-respond'></textarea>
-            </div>
-            <button type='submit' className='comments__respond-btn'>
-              ارسال
-            </button> */}
+            <Comments />
           </div>
         </>
       ) : (
