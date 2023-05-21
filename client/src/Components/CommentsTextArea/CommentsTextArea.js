@@ -4,7 +4,7 @@ import Comments from "../../Components/Comments/Comments";
 import "./CommentsTextArea.css";
 import Button from "../Form/Button/Button";
 
-export default function CommentsTextArea({ courseInfoData, isLoggedIn }) {
+export default function CommentsTextArea({ commentsData, isLoggedIn }) {
   return (
     <div className='comments'>
       <div className='comments__header'>
@@ -14,14 +14,14 @@ export default function CommentsTextArea({ courseInfoData, isLoggedIn }) {
         <span className='comments__header-title'>نظرات</span>
       </div>
       <div className='comments__content'>
-        {courseInfoData.comments.length === 0 && (
+        {commentsData.length === 0 && (
           <div className='alert alert-warning'>
             هنوز کامنتی برای این دوره ثبت نشده
           </div>
         )}
-        {courseInfoData.comments.length !== 0 && (
+        {commentsData.length !== 0 && (
           <>
-            {courseInfoData.comments.map((comment) => (
+            {commentsData.map((comment) => (
               <div key={comment._id} className='comments__item'>
                 <div className='comments__question'>
                   <div className='comments__question-header'>
@@ -50,6 +50,14 @@ export default function CommentsTextArea({ courseInfoData, isLoggedIn }) {
                     </p>
                   </div>
                 </div>
+                {comment.answerContent !== null && (
+                  <div className='comments__question-text'>
+                    <h6>جواب:</h6>
+                    <p className='comments__question-paragraph comment-paragraph'>
+                      {comment.answerContent.body}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
             <div className='comments__pagantion'>

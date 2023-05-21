@@ -162,6 +162,7 @@ export default function CourseInfo() {
                       {sessions.length ? (
                         sessions.map((session) => (
                           <TopicAccordion
+                            key={session._id}
                             eventKey={session._id}
                             title={session.title}
                             body={session.title}
@@ -180,7 +181,7 @@ export default function CourseInfo() {
                   <TeacherDetail />
                   <CommentsTextArea
                     isLoggedIn={authContext.isLoggedIn}
-                    courseInfoData={courseInfoData}
+                    commentsData={commentsData}
                   />
                 </div>
               </div>
