@@ -33,7 +33,7 @@ export default function Navbar() {
               </li>
               {allMenuItems.map((menuItem) => (
                 <li key={menuItem._id} className='main-header__item'>
-                  <Button to={menuItem.href} className='main-header__link'>
+                  <Button to={`/category-info/${menuItem.href}/1`} className='main-header__link'>
                     {menuItem.title}
                     {menuItem.submenus.length ? (
                       <>
@@ -44,7 +44,7 @@ export default function Navbar() {
                               key={subMenu._id}
                               className='main-header__dropdown-item'>
                               <Button
-                                to={subMenu.href}
+                                to={`${subMenu.href}`}
                                 className='main-header__dropdown-link'>
                                 {subMenu.title}
                               </Button>

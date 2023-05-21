@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Comments from "../../Components/Comments/Comments";
-
+import Pagination from '../../Components/Pgination/Pagination'
 import "./CommentsTextArea.css";
 import Button from "../Form/Button/Button";
 
 export default function CommentsTextArea({ commentsData, isLoggedIn }) {
+  const [showCourse,setShowCourse] = useState([])
   return (
     <div className='comments'>
       <div className='comments__header'>
@@ -60,32 +61,11 @@ export default function CommentsTextArea({ commentsData, isLoggedIn }) {
                 )}
               </div>
             ))}
-            <div className='comments__pagantion'>
-              <ul className='comments__pagantion-list'>
-                <li className='comments__pagantion-item'>
-                  <a href='#' className='comments__pagantion-link'>
-                    <i className='fas fa-long-arrow-alt-right comments__pagantion-icon'></i>
-                  </a>
-                </li>
-                <li className='comments__pagantion-item'>
-                  <a href='#' className='comments__pagantion-link'>
-                    1
-                  </a>
-                </li>
-                <li className='comments__pagantion-item'>
-                  <a href='#' className='comments__pagantion-link'>
-                    2
-                  </a>
-                </li>
-                <li className='comments__pagantion-item'>
-                  <a
-                    href='#'
-                    className='comments__pagantion-link comments__pagantion-link--active'>
-                    3
-                  </a>
-                </li>
-              </ul>
-            </div>
+            {/* <Pagination
+              items={commentsData}
+              itemCount={3}
+              setShowCourse={setShowCourse}
+            /> */}
           </>
         )}
       </div>
