@@ -93,3 +93,27 @@
     margin-right: 0.5rem;
     font-size: 1.9rem;
 }
+
+
+/* course row styles */
+
+
+.course-row {
+    display: flex;
+    align-items: center;
+}
+
+.course-row   .course-box__img ,.course-row .course-box__title-link{
+  height: 100%;
+}
+
+.course-row .course-box-info-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.course-row .course-box-info-container .course-box-desc h6{
+    color: var(--primary-color);}
+.course-row .course-box-info-container .course-box__main{
+   width: 100%;
+}

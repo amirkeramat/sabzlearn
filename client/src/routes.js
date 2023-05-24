@@ -6,6 +6,7 @@ import Courses from "./pages/Courses/Courses";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import AllArticles from "./pages/AllArticles/AllArticles"
+import Search from "./pages/Search/Search";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/course-info/:courseName", element: <CourseInfo /> },
@@ -15,6 +16,7 @@ const routes = [
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/all-articles/:pageNumber", element: <AllArticles /> },
+  { path: "/search/:searchValue", element: <Search /> },
 ];
 
 export default routes;

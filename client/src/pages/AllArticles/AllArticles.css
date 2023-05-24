@@ -1,0 +1,14 @@
+.alert-button {
+    padding: 10px 20px;
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+}
+
+.alert-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+}

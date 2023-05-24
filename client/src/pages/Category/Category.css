@@ -7,7 +7,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 2.2rem;
-    margin-top: 100px;
     box-shadow: 0 0 13px 1px rgba(70, 72, 77, 0.08);
 }
 
@@ -113,8 +112,12 @@
 .courses-top-bar__search-icon {
     position: absolute;
     left: 1rem;
-    top: 1rem;
+    top: 0.5rem;
     color: #7d7e7f;
     font-size: 1.8rem;
     cursor: pointer;
+    background-color: white;
+    border: none;
+    display: flex;
+    align-items: center;
 }

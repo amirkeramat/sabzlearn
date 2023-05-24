@@ -34,6 +34,7 @@ export default function LastCourses() {
                     student={product.creator}
                     link={product.shortName}
                     rate={product.courseAverageScore}
+                    layout={'column'}
                   />
                 ))}
             </div>

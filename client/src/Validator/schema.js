@@ -26,6 +26,8 @@ const commentSchema = yup.object().shape({
   score: yup.string().required('انتخاب امتیاز ضروری است')
 });
 
+const searchSchema = yup.object().shape({
+  searchValue:yup.string().required('مقداری را وارد نمایید')
+})
 
-
-export { registerSchema, loginSchema, commentSchema };
+export { registerSchema, loginSchema, commentSchema , searchSchema };

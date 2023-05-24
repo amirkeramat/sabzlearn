@@ -5,17 +5,22 @@ import Footer from "../../Components/Footer/Footer";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import Pagination from "../../Components/Pgination/Pagination";
 import ArticleCard from "../../Components/IndexComponents/ArticleCard/ArticleCard";
-
+import Sortbar from "../../Components/Sortbar/Sortbar";
+import Button from "../../Components/Form/Button/Button";
+import './AllArticles.css'
 export default function AllArticles() {
-      const [coursesData, setCoursesData] = useState([]);
-      const [showCourse, setShowCourse] = useState([]);
-      useEffect(() => {
-        fetch("http://localhost:4000/v1/courses")
-          .then((res) => res.json())
-          .then((data) => {
-            setCoursesData(data);
-          });
-      }, []);
+  const [articlesData, setArticlesData] = useState([]);
+  const [showCourse, setShowCourse] = useState([]);
+  const [orderedData, setOrderData] = useState([]);
+  const [layoutData, setLayoutData] = useState("column");
+  useEffect(() => {
+    fetch("http://localhost:4000/v1/courses")
+      .then((res) => res.json())
+      .then((data) => {
+        setArticlesData(data);
+        setOrderData(data);
+      });
+  }, []);
   return (
     <>
       <Topbar />
@@ -23,80 +28,48 @@ export default function AllArticles() {
       <BreadCrumb
         links={[
           { id: 1, title: "خانه", href: "" },
-          { id: 2, title: "تمامی مقالات", href: "all-articles" },
+          { id: 2, title: "تمامی مقالات", href: "all-articles/1" },
         ]}
       />
       <section className='courses'>
         <div className='container'>
-          <div className='courses-top-bar'>
-            <div className='courses-top-bar__right'>
-              <div className='courses-top-bar__row-btn courses-top-bar__icon--active'>
-                <i className='fas fa-border-all courses-top-bar__icon'></i>
-              </div>
-              <div className='courses-top-bar__column-btn'>
-                <i className='fas fa-align-left courses-top-bar__icon'></i>
-              </div>
-
-              <div className='courses-top-bar__selection'>
-                <span className='courses-top-bar__selection-title'>
-                  مرتب سازی پیش فرض
-                  <i className='fas fa-angle-down courses-top-bar__selection-icon'></i>
-                </span>
-                <ul className='courses-top-bar__selection-list'>
-                  <li className='courses-top-bar__selection-item courses-top-bar__selection-item--active'>
-                    مرتب سازی پیش فرض
-                  </li>
-                  <li className='courses-top-bar__selection-item'>
-                    مربت سازی بر اساس محبوبیت
-                  </li>
-                  <li className='courses-top-bar__selection-item'>
-                    مربت سازی بر اساس امتیاز
-                  </li>
-                  <li className='courses-top-bar__selection-item'>
-                    مربت سازی بر اساس آخرین
-                  </li>
-                  <li className='courses-top-bar__selection-item'>
-                    مربت سازی بر اساس ارزان ترین
-                  </li>
-                  <li className='courses-top-bar__selection-item'>
-                    مربت سازی بر اساس گران ترین
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className='courses-top-bar__left'>
-              <form action='#' className='courses-top-bar__form'>
-                <input
-                  element='input'
-                  type='text'
-                  className='courses-top-bar__input'
-                  placeholder='جستجوی دوره ...'
-                />
-                <i className='fas fa-search courses-top-bar__search-icon'></i>
-              </form>
-            </div>
-          </div>{" "}
+          <Sortbar
+            setOrderedData={setOrderData}
+            allData={articlesData}
+            setLayoutData={setLayoutData}
+            page={"article"}
+          />
           <div className='courses-content'>
             <div className='container'>
               <div className='row'>
-                {showCourse.map((course) => (
-                  <ArticleCard
-                    key={course._id}
-                    title={course.name}
-                    price={course.price}
-                    teacher={course.creator}
-                    student={course.registers}
-                    link={course.shortName}
-                    rate={course.courseAverageScore}
-                    animated={false}
-                  />
-                ))}
+                {showCourse.length ? (
+                  <>
+                    {showCourse.map((article) => (
+                      <ArticleCard
+                        key={article._id}
+                        title={article.name}
+                        link={article.shortName}
+                        animated={false}
+                      />
+                    ))}
+                  </>
+                ) : (
+                  <div className='courses-content'>
+                    <div className='container'>
+                      <div className='alert alert-warning d-flex justify-content-between align-items-center'>
+                        <h2>مقالاتی برای شما پیدا نشد</h2>
+                        <Button className='alert-button' onClick={() => setOrderData(articlesData)}>
+                          بازگشت
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
           <Pagination
-            items={coursesData}
+            items={orderedData}
             itemCount={3}
             pathName={`/all-articles`}
             setShowCourse={setShowCourse}

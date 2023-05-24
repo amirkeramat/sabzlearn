@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,memo } from "react";
 
 import "./Topbar.css";
 import Button from "../Form/Button/Button";
 
-export default function Topbar() {
+export default  memo(function  Topbar() {
   const [allTopbarLinks, setAllTopbarLinks] = useState([]);
   useEffect(() => {
     fetch("http://localhost:4000/v1/menus/topbar")
@@ -49,4 +49,4 @@ export default function Topbar() {
       </div>
     </div>
   );
-}
+})

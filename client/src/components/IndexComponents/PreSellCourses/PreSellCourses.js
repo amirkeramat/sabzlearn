@@ -39,6 +39,7 @@ export default function PreSellCourses() {
                     student={product.creator}
                     link={product.shortName}
                     rate={product.courseAverageScore}
+                    layout={'column'}
                   />
                 </SwiperSlide>
               ))}

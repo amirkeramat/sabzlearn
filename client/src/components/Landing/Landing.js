@@ -4,7 +4,18 @@ import Typewriter from "typewriter-effect";
 import LandingCounter from "../LandingCounter/LandingCounter";
 import Input from "../Form/Input/Input";
 import Button from "../Form/Button/Button";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 export default function Landing() {
+  const navigate = useNavigate()
+  const { register, handleSubmit } = useForm();
+  const onSubmitHandler = (value)=>{
+    console.log(value);
+    if(value.searchValue !== ''){
+      navigate(`/search/${value.searchValue}`)
+    }
+
+  }
   return (
     <section className='landing'>
       <div className='container'>
@@ -24,17 +35,20 @@ export default function Landing() {
         <h2 className='landing__subtitle'>
           با آکادمی سبزلرن، برنامه نویسی رو با خیال راحت یاد بگیر و پیشرفت کن.
         </h2>
-        <div className='landing__searchbar'>
+        <form
+          onSubmit={handleSubmit(onSubmitHandler)}
+          className='landing__searchbar'>
           <input
             element='input'
             type='text'
             className='landing__searchbar-input'
             placeholder='چه چیزی دوست داری یاد بگیری ..'
+            {...register("searchValue")}
           />
           <Button className='landing__searchbar-btn' type='submit'>
             <i className='fas fa-search landing__searchbar-icon'></i>
           </Button>
-        </div>
+        </form>
         <div className='landing-status'>
           <div className='landing-status__item'>
             <svg
