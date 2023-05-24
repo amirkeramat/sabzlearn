@@ -2,38 +2,32 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Button from "../../Components/Form/Button/Button";
-import { registerSchema } from "../../Validator/schema";
+import { contactSchema } from "../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import AuthContext from "../../context/AuthContext";
 import swal from "sweetalert";
-import "./RegisterForm.css";
-export default function RegisterForm() {
-  const authContext = useContext(AuthContext);
+import "./ContactForm.css";
+export default function ContactForm() {
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(registerSchema),
+    resolver: yupResolver(contactSchema),
     mode: "all",
   });
   const onSubmit = (data) => {
     console.log(data);
-    const newUser = {
+    const newContact = {
       name: data.fullName,
-      username: data.username,
       email: data.email,
-      password: data.password,
-      confirmPassword: data.confirmPassword,
       phone: data.phone,
+      body: data.message,
     };
-    console.log(newUser);
-    fetch("http://localhost:4000/v1/auth/register", {
+    fetch("http://localhost:4000/v1/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newUser),
+      body: JSON.stringify(newContact),
     })
       .then((res) => {
         if (!res.ok) {
@@ -45,19 +39,18 @@ export default function RegisterForm() {
         }
       })
       .then((result) => {
-        authContext.login(result.user, result.accessToken);
         swal({
-          title: "با موفقیت وارد شدید",
+          title: "پیام شما با موفقیت ثبت شد در اسرع وقت پیگیری میشود",
           icon: "success",
-          button: "ورود به پنل کاربری",
+          button: "حله",
         }).then((value) => {
-          navigate("/");
+          navigate("/contact");
         });
       })
       .catch((err) => {
         console.log(err);
         swal({
-          title: "نام کاربری یا ایمیل در سایت وجود دارد",
+          title: "مشکلی پیش امده فیلد های ضروری را با دقت پر کنید با تشکر",
           icon: "error",
           button: "خروج",
         });
@@ -78,6 +71,17 @@ export default function RegisterForm() {
         <p className='error-box'>{errors.fullName?.message}</p>
         <i className='login-form__username-icon fa fa-user'></i>
       </div>
+      <div className='login-form__password'>
+        <input
+          className='login-form__password-input'
+          type='text'
+          placeholder='آدرس ایمیل'
+          {...register("email")}
+        />
+        <p className='error-box'>{errors.email?.message}</p>
+
+        <i className='login-form__password-icon fa fa-envelope'></i>
+      </div>
       <div className='login-form__username'>
         <input
           className='login-form__username-input'
@@ -90,76 +94,39 @@ export default function RegisterForm() {
         <i className='login-form__username-icon fa fa-user'></i>
       </div>
       <div className='login-form__username'>
-        <input
+        <textarea
           className='login-form__username-input'
-          type='text'
-          placeholder='نام کاربری'
-          {...register("username")}
+          placeholder='نظر خود را با ما در میان بگذارید'
+          {...register("message")}
         />
-        <p className='error-box'>{errors.username?.message}</p>
+        <p className='error-box'>{errors.message?.message}</p>
 
         <i className='login-form__username-icon fa fa-user'></i>
       </div>
-      <div className='login-form__password'>
-        <input
-          className='login-form__password-input'
-          type='text'
-          placeholder='آدرس ایمیل'
-          {...register("email")}
-        />
-        <p className='error-box'>{errors.email?.message}</p>
 
-        <i className='login-form__password-icon fa fa-envelope'></i>
-      </div>
-      <div className='login-form__password'>
-        <input
-          className='login-form__password-input'
-          type='password'
-          placeholder='رمز عبور'
-          {...register("password")}
-        />
-        <p className='error-box'>{errors.password?.message}</p>
-
-        <i className='login-form__password-icon fa fa-lock-open'></i>
-      </div>
-      <div className='login-form__password'>
-        <input
-          className='login-form__password-input'
-          type='password'
-          placeholder='تکرار رمز عبور'
-          {...register("confirmPassword")}
-        />
-        <p className='error-box'>{errors.confirmPassword?.message}</p>
-
-        <i className='login-form__password-icon fa fa-lock-open'></i>
-      </div>
       <Button
         className={`login-form__btn 
                     ${
                       !errors.fullName?.message &&
                       !errors.email?.message &&
                       !errors.phone?.message &&
-                      !errors.username?.message &&
-                      !errors.password?.message &&
-                      !errors.confirmPassword?.message
+                      !errors.message?.message
                         ? "login-form__btn-success"
                         : "login-form__btn-error"
                     }
                  
               }`}
         disabled={
-          !errors.fullName?.message &&
+         ( !errors.fullName?.message &&
           !errors.email?.message &&
           !errors.phone?.message &&
-          !errors.username?.message &&
-          !errors.password?.message &&
-          !errors.confirmPassword?.message
+          !errors.message?.message)
             ? false
             : true
         }
         type='submit'>
         <i className='login-form__btn-icon fa fa-user-plus'></i>
-        <span className='login-form__btn-text'>عضویت</span>
+        <span className='login-form__btn-text'>ثبت</span>
       </Button>
     </form>
   );

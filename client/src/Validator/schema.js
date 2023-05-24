@@ -30,4 +30,22 @@ const searchSchema = yup.object().shape({
   searchValue:yup.string().required('مقداری را وارد نمایید')
 })
 
-export { registerSchema, loginSchema, commentSchema , searchSchema };
+
+const contactSchema = yup.object().shape({
+  fullName: yup.string().required("Name is required").min(8).max(20),
+  email: yup.string().email().required("password is required"),
+  phone: yup
+    .string()
+    .matches(phoneNumberRegex, "not a valid phone number")
+    .required("phone number is required"),
+    message:yup.string().required('باکس را خالی نگذارید').min(10)
+});
+
+
+export {
+  registerSchema,
+  loginSchema,
+  commentSchema,
+  searchSchema,
+  contactSchema,
+};

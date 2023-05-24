@@ -1,9 +1,9 @@
-import React, { useContext ,useState} from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../Components/Form/Button/Button";
-import {loginSchema} from "../../Validator/schema";
+import { loginSchema } from "../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AuthContext from "../../context/AuthContext";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -26,15 +26,15 @@ export default function LoginForm() {
   //    console.log("Captcha value:", value);
   //    setIsGoogleRecaptcha(true);
   //  };
-   const onError = (err)=>{
-console.log(err);
-   }
+  const onError = (err) => {
+    console.log(err);
+  };
   const onSubmit = (data) => {
     const userData = {
       identifier: data.username,
       password: data.password,
     };
-console.log(userData);
+    console.log(userData);
     fetch("http://localhost:4000/v1/auth/login", {
       method: "POST",
       headers: {
@@ -73,7 +73,7 @@ console.log(userData);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit,onError)} className='login-form'>
+    <form onSubmit={handleSubmit(onSubmit, onError)} className='login-form'>
       <div className='login-form__username'>
         <input
           className='login-form__username-input'
@@ -105,10 +105,16 @@ console.log(userData);
       </div>
       <Button
         className={`login-form__btn 
-                
-                  ? "login-form__btn-success"
-                  : "login-form__btn-error"
+                    ${
+                      !errors.username?.message && !errors.password?.message
+                        ? "login-form__btn-success"
+                        : "login-form__btn-error"
+                    }
+                 
               }`}
+        disabled={
+          !errors.username?.message && !errors.password?.message ? false : true
+        }
         type='submit'>
         <i className='login-form__btn-icon fa fa-user-plus'></i>
         <span className='login-form__btn-text'>ورود</span>

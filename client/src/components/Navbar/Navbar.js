@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, memo } from "react";
 
 import "./Navbar.css";
 import Button from "../Form/Button/Button";
 import AuthContext from "../../context/AuthContext";
-export default function Navbar() {
+export default memo(function Navbar() {
   const authContext = useContext(AuthContext);
   const [allMenuItems, setAllMenuItems] = useState([]);
-  const {isLoggedIn,token,userInfos} = authContext
+  const { isLoggedIn, token, userInfos } = authContext;
   useEffect(() => {
     fetch("http://localhost:4000/v1/menus")
       .then((res) => res.json())
@@ -33,7 +33,9 @@ export default function Navbar() {
               </li>
               {allMenuItems.map((menuItem) => (
                 <li key={menuItem._id} className='main-header__item'>
-                  <Button to={`/category-info/${menuItem.href}/1`} className='main-header__link'>
+                  <Button
+                    to={`/category-info/${menuItem.href}/1`}
+                    className='main-header__link'>
                     {menuItem.title}
                     {menuItem.submenus.length ? (
                       <>
@@ -66,7 +68,7 @@ export default function Navbar() {
             <Button href='#' className='main-header__cart-btn'>
               <i className='fas fa-shopping-cart main-header__cart-icon'></i>
             </Button>
-            {(isLoggedIn && token) ? (
+            {isLoggedIn && token ? (
               <Button to='/' className='main-header__profile'>
                 <span className='main-header__profile-text'>
                   {userInfos.name}
@@ -84,4 +86,4 @@ export default function Navbar() {
       </div>
     </div>
   );
-}
+});

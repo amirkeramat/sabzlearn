@@ -6,21 +6,22 @@ import CourseBox from "../../Components/CourseBox/CourseBox";
 import Pagination from "../../Components/Pgination/Pagination";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import Sortbar from "../../Components/Sortbar/Sortbar";
+import Button from "../../Components/Form/Button/Button";
 export default function Courses() {
   const [coursesData, setCoursesData] = useState([]);
   const [showCourse, setShowCourse] = useState([]);
   const [orderedCourses, setOrderedCourses] = useState([]);
-  const [layoutData,setLayoutData] = useState('column')
+  const [layoutData, setLayoutData] = useState("column");
   useEffect(() => {
     fetch("http://localhost:4000/v1/courses")
       .then((res) => res.json())
       .then((data) => {
         setCoursesData(data);
-        setOrderedCourses(data)
+        setOrderedCourses(data);
       });
   }, []);
   return (
-    <div>
+    <>
       <Topbar />
       <Navbar />
       <BreadCrumb
@@ -35,27 +36,41 @@ export default function Courses() {
             setOrderedData={setOrderedCourses}
             allData={coursesData}
             setLayoutData={setLayoutData}
-            page={'course'}
+            page={"course"}
           />
           <div className='courses-content'>
             <div className='container'>
               <div className='row'>
-                {showCourse.map((course) => (
-                  <CourseBox
-                    key={course._id}
-                    title={course.name}
-                    price={course.price}
-                    teacher='امیر کرامت'
-                    student={course.registers}
-                    link={course.shortName}
-                    rate={course.courseAverageScore}
-                    layout={layoutData}
-                    desc={course.description}
-                  />
-                ))}
+                {showCourse.length ? (
+                  <>
+                    {showCourse.map((course) => (
+                      <CourseBox
+                        key={course._id}
+                        title={course.name}
+                        price={course.price}
+                        teacher='امیر کرامت'
+                        student={course.registers}
+                        link={course.shortName}
+                        rate={course.courseAverageScore}
+                        layout={layoutData}
+                        desc={course.description}
+                      />
+                    ))}
+                  </>
+                ) : (
+                  <div className='alert alert-warning d-flex justify-content-between align-items-center'>
+                    <h2>دوره ای یافت نشد</h2>
+                    <Button
+                      className='alert-button'
+                      onClick={() => setOrderedCourses(coursesData)}>
+                      بازگشت
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
+
           <Pagination
             items={orderedCourses}
             itemCount={3}
@@ -66,6 +81,6 @@ export default function Courses() {
       </section>
 
       <Footer />
-    </div>
+    </>
   );
 }

@@ -11,9 +11,9 @@ export default function SearchBox({setData,allData}) {
        mode: "onSubmit",
      });
        const onSubmit = (value) => {
-         console.log(value.searchValue);
           const newData = allData.filter(data=>data.name.toLowerCase().includes(value.searchValue.toLowerCase()))
           setData(newData)
+          value.searchValue = ''
        };
   return (
     <form

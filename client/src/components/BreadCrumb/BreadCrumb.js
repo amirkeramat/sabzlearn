@@ -1,8 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import "./BreadCrumb.css";
-import { Link } from "react-router-dom";
 import Button from "../Form/Button/Button";
-export default function BreadCrumb({ links }) {
+export default memo(function BreadCrumb({ links }) {
   return (
     <section className='breadcrumb'>
       <div className='container'>
@@ -26,4 +25,4 @@ export default function BreadCrumb({ links }) {
       </div>
     </section>
   );
-}
+});

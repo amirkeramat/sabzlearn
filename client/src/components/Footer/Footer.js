@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import "./Footer.css";
 import FooterWidget from "../FooterWidget/FooterWidget";
-export default function Footer() {
+export default memo(function Footer() {
   return (
     <footer className='footer'>
       <div className='container'>
@@ -45,4 +45,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+});
