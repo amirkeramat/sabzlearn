@@ -1,6 +1,6 @@
 import React from "react";
 import "./ArticlesHeader.css";
-import Button from '../../Form/Button/Button'
+import Button from "../../Form/Button/Button";
 export default function ArticlesHeader() {
   return (
     <div className='article__header'>

@@ -7,7 +7,7 @@ import Pagination from "../../Components/Pgination/Pagination";
 import ArticleCard from "../../Components/IndexComponents/ArticleCard/ArticleCard";
 import Sortbar from "../../Components/Sortbar/Sortbar";
 import Button from "../../Components/Form/Button/Button";
-import './AllArticles.css'
+import "./AllArticles.css";
 export default function AllArticles() {
   const [articlesData, setArticlesData] = useState([]);
   const [showCourse, setShowCourse] = useState([]);
@@ -58,7 +58,9 @@ export default function AllArticles() {
                     <div className='container'>
                       <div className='alert alert-warning d-flex justify-content-between align-items-center'>
                         <h2>مقالاتی برای شما پیدا نشد</h2>
-                        <Button className='alert-button' onClick={() => setOrderData(articlesData)}>
+                        <Button
+                          className='alert-button'
+                          onClick={() => setOrderData(articlesData)}>
                           بازگشت
                         </Button>
                       </div>

@@ -5,9 +5,13 @@ import ArticleInfo from "./pages/ArticleInfo/ArticleInfo";
 import Courses from "./pages/Courses/Courses";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import AllArticles from "./pages/AllArticles/AllArticles"
+import AllArticles from "./pages/AllArticles/AllArticles";
 import Search from "./pages/Search/Search";
 import Contact from "./pages/Contact/Contact";
+import AdminPanel from "./pages/AdminPanel/AdminPanel";
+import AdminUsers from "./Components/AdminPanel/AdminUsers/AdminUsers";
+import AdminCourses from "./Components/AdminPanel/AdminCourses/AdminCourses";
+import AdminArticles from "./Components/AdminPanel/AdminArticles/AdminArticles";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/course-info/:courseName", element: <CourseInfo /> },
@@ -19,6 +23,24 @@ const routes = [
   { path: "/all-articles/:pageNumber", element: <AllArticles /> },
   { path: "/search/:searchValue", element: <Search /> },
   { path: "/contact", element: <Contact /> },
+  {
+    path: "/p-admin",
+    element: <AdminPanel />,
+    children: [
+      {
+        path: "users",
+        element: <AdminUsers />,
+      },
+      {
+        path: "articles",
+        element: <AdminArticles />,
+      },
+      {
+        path: "courses",
+        element: <AdminCourses />,
+      },
+    ],
+  },
 ];
 
 export default routes;

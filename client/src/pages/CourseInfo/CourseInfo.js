@@ -56,7 +56,7 @@ export default function CourseInfo() {
         // setCategoryData(courseData.categoryID);
         setUpdatedAt(courseData.updatedAt);
         setSessions(courseData.sessions);
-        setCommentsData(courseData.comments)
+        setCommentsData(courseData.comments);
         console.log(courseData);
       })
       .catch((err) => {});

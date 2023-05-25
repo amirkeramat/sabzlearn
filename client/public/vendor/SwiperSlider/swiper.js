@@ -177,7 +177,7 @@
   }
   d.fn = n.prototype;
   const c = {
-    addClass: function () {
+    addclass: function () {
       for (var e = arguments.length, t = new Array(e), s = 0; s < e; s++)
         t[s] = arguments[s];
       const a = l(t.map((e) => e.split(" ")));
@@ -188,7 +188,7 @@
         this
       );
     },
-    removeClass: function () {
+    removeclass: function () {
       for (var e = arguments.length, t = new Array(e), s = 0; s < e; s++)
         t[s] = arguments[s];
       const a = l(t.map((e) => e.split(" ")));
@@ -199,7 +199,7 @@
         this
       );
     },
-    hasClass: function () {
+    hasclass: function () {
       for (var e = arguments.length, t = new Array(e), s = 0; s < e; s++)
         t[s] = arguments[s];
       const a = l(t.map((e) => e.split(" ")));
@@ -208,7 +208,7 @@
           .length > 0
       );
     },
-    toggleClass: function () {
+    toggleclass: function () {
       for (var e = arguments.length, t = new Array(e), s = 0; s < e; s++)
         t[s] = arguments[s];
       const a = l(t.map((e) => e.split(" ")));
@@ -968,7 +968,7 @@
         { $wrapperEl: i, size: r, rtlTranslate: n, wrongRTL: l } = e,
         o = e.virtual && a.virtual.enabled,
         d = o ? e.virtual.slides.length : e.slides.length,
-        c = i.children(`.${e.params.slideClass}`),
+        c = i.children(`.${e.params.slideclass}`),
         p = o ? e.virtual.slides.length : c.length;
       let u = [];
       const h = [],
@@ -1145,11 +1145,11 @@
         a.watchSlidesProgress && e.updateSlidesOffset(),
         !(o || a.cssMode || ("slide" !== a.effect && "fade" !== a.effect)))
       ) {
-        const t = `${a.containerModifierClass}backface-hidden`,
-          s = e.$el.hasClass(t);
+        const t = `${a.containerModifierclass}backface-hidden`,
+          s = e.$el.hasclass(t);
         p <= a.maxBackfaceHiddenSlides
-          ? s || e.$el.addClass(t)
-          : s && e.$el.removeClass(t);
+          ? s || e.$el.addclass(t)
+          : s && e.$el.removeclass(t);
       }
     },
     updateAutoHeight: function (e) {
@@ -1204,7 +1204,7 @@
       void 0 === a[0].swiperSlideOffset && t.updateSlidesOffset();
       let n = -e;
       i && (n = e),
-        a.removeClass(s.slideVisibleClass),
+        a.removeclass(s.slideVisibleclass),
         (t.visibleSlidesIndexes = []),
         (t.visibleSlides = []);
       for (let e = 0; e < a.length; e += 1) {
@@ -1224,7 +1224,7 @@
           (p <= 0 && u >= t.size)) &&
           (t.visibleSlides.push(l),
           t.visibleSlidesIndexes.push(e),
-          a.eq(e).addClass(s.slideVisibleClass)),
+          a.eq(e).addclass(s.slideVisibleclass)),
           (l.progress = i ? -d : d),
           (l.originalProgress = i ? -c : c);
       }
@@ -1252,7 +1252,7 @@
         ((l && !r) || (o && !n)) && t.emit("fromEdge"),
         t.emit("progress", i);
     },
-    updateSlidesClasses: function () {
+    updateSlidesclasses: function () {
       const e = this,
         {
           slides: t,
@@ -1263,73 +1263,73 @@
         } = e,
         n = e.virtual && s.virtual.enabled;
       let l;
-      t.removeClass(
-        `${s.slideActiveClass} ${s.slideNextClass} ${s.slidePrevClass} ${s.slideDuplicateActiveClass} ${s.slideDuplicateNextClass} ${s.slideDuplicatePrevClass}`
+      t.removeclass(
+        `${s.slideActiveclass} ${s.slideNextclass} ${s.slidePrevclass} ${s.slideDuplicateActiveclass} ${s.slideDuplicateNextclass} ${s.slideDuplicatePrevclass}`
       ),
         (l = n
           ? e.$wrapperEl.find(
-              `.${s.slideClass}[data-swiper-slide-index="${i}"]`
+              `.${s.slideclass}[data-swiper-slide-index="${i}"]`
             )
           : t.eq(i)),
-        l.addClass(s.slideActiveClass),
+        l.addclass(s.slideActiveclass),
         s.loop &&
-          (l.hasClass(s.slideDuplicateClass)
+          (l.hasclass(s.slideDuplicateclass)
             ? a
                 .children(
-                  `.${s.slideClass}:not(.${s.slideDuplicateClass})[data-swiper-slide-index="${r}"]`
+                  `.${s.slideclass}:not(.${s.slideDuplicateclass})[data-swiper-slide-index="${r}"]`
                 )
-                .addClass(s.slideDuplicateActiveClass)
+                .addclass(s.slideDuplicateActiveclass)
             : a
                 .children(
-                  `.${s.slideClass}.${s.slideDuplicateClass}[data-swiper-slide-index="${r}"]`
+                  `.${s.slideclass}.${s.slideDuplicateclass}[data-swiper-slide-index="${r}"]`
                 )
-                .addClass(s.slideDuplicateActiveClass));
-      let o = l.nextAll(`.${s.slideClass}`).eq(0).addClass(s.slideNextClass);
-      s.loop && 0 === o.length && ((o = t.eq(0)), o.addClass(s.slideNextClass));
-      let d = l.prevAll(`.${s.slideClass}`).eq(0).addClass(s.slidePrevClass);
+                .addclass(s.slideDuplicateActiveclass));
+      let o = l.nextAll(`.${s.slideclass}`).eq(0).addclass(s.slideNextclass);
+      s.loop && 0 === o.length && ((o = t.eq(0)), o.addclass(s.slideNextclass));
+      let d = l.prevAll(`.${s.slideclass}`).eq(0).addclass(s.slidePrevclass);
       s.loop &&
         0 === d.length &&
-        ((d = t.eq(-1)), d.addClass(s.slidePrevClass)),
+        ((d = t.eq(-1)), d.addclass(s.slidePrevclass)),
         s.loop &&
-          (o.hasClass(s.slideDuplicateClass)
+          (o.hasclass(s.slideDuplicateclass)
             ? a
                 .children(
-                  `.${s.slideClass}:not(.${
-                    s.slideDuplicateClass
+                  `.${s.slideclass}:not(.${
+                    s.slideDuplicateclass
                   })[data-swiper-slide-index="${o.attr(
                     "data-swiper-slide-index"
                   )}"]`
                 )
-                .addClass(s.slideDuplicateNextClass)
+                .addclass(s.slideDuplicateNextclass)
             : a
                 .children(
-                  `.${s.slideClass}.${
-                    s.slideDuplicateClass
+                  `.${s.slideclass}.${
+                    s.slideDuplicateclass
                   }[data-swiper-slide-index="${o.attr(
                     "data-swiper-slide-index"
                   )}"]`
                 )
-                .addClass(s.slideDuplicateNextClass),
-          d.hasClass(s.slideDuplicateClass)
+                .addclass(s.slideDuplicateNextclass),
+          d.hasclass(s.slideDuplicateclass)
             ? a
                 .children(
-                  `.${s.slideClass}:not(.${
-                    s.slideDuplicateClass
+                  `.${s.slideclass}:not(.${
+                    s.slideDuplicateclass
                   })[data-swiper-slide-index="${d.attr(
                     "data-swiper-slide-index"
                   )}"]`
                 )
-                .addClass(s.slideDuplicatePrevClass)
+                .addclass(s.slideDuplicatePrevclass)
             : a
                 .children(
-                  `.${s.slideClass}.${
-                    s.slideDuplicateClass
+                  `.${s.slideclass}.${
+                    s.slideDuplicateclass
                   }[data-swiper-slide-index="${d.attr(
                     "data-swiper-slide-index"
                   )}"]`
                 )
-                .addClass(s.slideDuplicatePrevClass)),
-        e.emitSlidesClasses();
+                .addclass(s.slideDuplicatePrevclass)),
+        e.emitSlidesclasses();
     },
     updateActiveIndex: function (e) {
       const t = this,
@@ -1378,7 +1378,7 @@
     updateClickedSlide: function (e) {
       const t = this,
         s = t.params,
-        a = d(e).closest(`.${s.slideClass}`)[0];
+        a = d(e).closest(`.${s.slideclass}`)[0];
       let i,
         r = !1;
       if (a)
@@ -1600,7 +1600,7 @@
         return (
           r.updateActiveIndex(n),
           l.autoHeight && r.updateAutoHeight(),
-          r.updateSlidesClasses(),
+          r.updateSlidesclasses(),
           "slide" !== l.effect && r.setTranslate(v),
           "reset" !== b && (r.transitionStart(s, b), r.transitionEnd(s, b)),
           !1
@@ -1632,7 +1632,7 @@
         r.setTransition(t),
         r.setTranslate(v),
         r.updateActiveIndex(n),
-        r.updateSlidesClasses(),
+        r.updateSlidesclasses(),
         r.emit("beforeTransitionStart", t, a),
         r.transitionStart(s, b),
         0 === t
@@ -1800,7 +1800,7 @@
               ? (e.loopFix(),
                 (r = s
                   .children(
-                    `.${t.slideClass}[data-swiper-slide-index="${i}"]:not(.${t.slideDuplicateClass})`
+                    `.${t.slideclass}[data-swiper-slide-index="${i}"]:not(.${t.slideDuplicateclass})`
                   )
                   .eq(0)
                   .index()),
@@ -1812,7 +1812,7 @@
             ? (e.loopFix(),
               (r = s
                 .children(
-                  `.${t.slideClass}[data-swiper-slide-index="${i}"]:not(.${t.slideDuplicateClass})`
+                  `.${t.slideclass}[data-swiper-slide-index="${i}"]:not(.${t.slideDuplicateclass})`
                 )
                 .eq(0)
                 .index()),
@@ -1829,18 +1829,18 @@
         t = a(),
         { params: s, $wrapperEl: i } = e,
         r = i.children().length > 0 ? d(i.children()[0].parentNode) : i;
-      r.children(`.${s.slideClass}.${s.slideDuplicateClass}`).remove();
-      let n = r.children(`.${s.slideClass}`);
+      r.children(`.${s.slideclass}.${s.slideDuplicateclass}`).remove();
+      let n = r.children(`.${s.slideclass}`);
       if (s.loopFillGroupWithBlank) {
         const e = s.slidesPerGroup - (n.length % s.slidesPerGroup);
         if (e !== s.slidesPerGroup) {
           for (let a = 0; a < e; a += 1) {
-            const e = d(t.createElement("div")).addClass(
-              `${s.slideClass} ${s.slideBlankClass}`
+            const e = d(t.createElement("div")).addclass(
+              `${s.slideclass} ${s.slideBlankclass}`
             );
             r.append(e);
           }
-          n = r.children(`.${s.slideClass}`);
+          n = r.children(`.${s.slideclass}`);
         }
       }
       "auto" !== s.slidesPerView ||
@@ -1860,9 +1860,9 @@
           a.attr("data-swiper-slide-index", s);
       });
       for (let e = 0; e < o.length; e += 1)
-        r.append(d(o[e].cloneNode(!0)).addClass(s.slideDuplicateClass));
+        r.append(d(o[e].cloneNode(!0)).addclass(s.slideDuplicateclass));
       for (let e = l.length - 1; e >= 0; e -= 1)
-        r.prepend(d(l[e].cloneNode(!0)).addClass(s.slideDuplicateClass));
+        r.prepend(d(l[e].cloneNode(!0)).addclass(s.slideDuplicateclass));
     },
     loopFix: function () {
       const e = this;
@@ -1896,7 +1896,7 @@
       const { $wrapperEl: e, params: t, slides: s } = this;
       e
         .children(
-          `.${t.slideClass}.${t.slideDuplicateClass},.${t.slideClass}.${t.slideBlankClass}`
+          `.${t.slideclass}.${t.slideDuplicateclass},.${t.slideclass}.${t.slideBlankclass}`
         )
         .remove(),
         s.removeAttr("data-swiper-slide-index");
@@ -1923,8 +1923,8 @@
       return;
     if (!n.isTouchEvent && "button" in p && p.button > 0) return;
     if (n.isTouched && n.isMoved) return;
-    !!l.noSwipingClass &&
-      "" !== l.noSwipingClass &&
+    !!l.noSwipingclass &&
+      "" !== l.noSwipingclass &&
       p.target &&
       p.target.shadowRoot &&
       e.path &&
@@ -1932,7 +1932,7 @@
       (h = d(e.path[0]));
     const m = l.noSwipingSelector
         ? l.noSwipingSelector
-        : `.${l.noSwipingClass}`,
+        : `.${l.noSwipingclass}`,
       f = !(!p.target || !p.target.shadowRoot);
     if (
       l.noSwiping &&
@@ -2151,7 +2151,7 @@
       !r.cssMode &&
       (((r.freeMode && r.freeMode.enabled && s.freeMode) ||
         r.watchSlidesProgress) &&
-        (s.updateActiveIndex(), s.updateSlidesClasses()),
+        (s.updateActiveIndex(), s.updateSlidesclasses()),
       s.params.freeMode &&
         r.freeMode.enabled &&
         s.freeMode &&
@@ -2274,7 +2274,7 @@
       (e.allowSlidePrev = !0),
       e.updateSize(),
       e.updateSlides(),
-      e.updateSlidesClasses(),
+      e.updateSlidesclasses(),
       ("auto" === t.slidesPerView || t.slidesPerView > 1) &&
       e.isEnd &&
       !e.isBeginning &&
@@ -2306,7 +2306,7 @@
         : (e.translate = -t.scrollTop),
       0 === e.translate && (e.translate = 0),
       e.updateActiveIndex(),
-      e.updateSlidesClasses();
+      e.updateSlidesclasses();
     const r = e.maxTranslate() - e.minTranslate();
     (i = 0 === r ? 0 : (e.translate - e.minTranslate()) / r),
       i !== e.progress && e.updateProgress(s ? -e.translate : e.translate),
@@ -2377,7 +2377,7 @@
   };
   const Y = (e, t) => e.grid && t.grid && t.grid.rows > 1;
   var R = {
-    addClasses: function () {
+    addclasses: function () {
       const e = this,
         { classNames: t, params: s, rtl: a, $el: i, device: r, support: n } = e,
         l = (function (e, t) {
@@ -2411,13 +2411,13 @@
             { centered: s.cssMode && s.centeredSlides },
             { "watch-progress": s.watchSlidesProgress },
           ],
-          s.containerModifierClass
+          s.containerModifierclass
         );
-      t.push(...l), i.addClass([...t].join(" ")), e.emitContainerClasses();
+      t.push(...l), i.addclass([...t].join(" ")), e.emitContainerclasses();
     },
-    removeClasses: function () {
+    removeclasses: function () {
       const { $el: e, classNames: t } = this;
-      e.removeClass(t.join(" ")), this.emitContainerClasses();
+      e.removeclass(t.join(" ")), this.emitContainerclasses();
     },
   };
   var W = {
@@ -2493,24 +2493,24 @@
     allowSlideNext: !0,
     swipeHandler: null,
     noSwiping: !0,
-    noSwipingClass: "swiper-no-swiping",
+    noSwipingclass: "swiper-no-swiping",
     noSwipingSelector: null,
     passiveListeners: !0,
     maxBackfaceHiddenSlides: 10,
-    containerModifierClass: "swiper-",
-    slideClass: "swiper-slide",
-    slideBlankClass: "swiper-slide-invisible-blank",
-    slideActiveClass: "swiper-slide-active",
-    slideDuplicateActiveClass: "swiper-slide-duplicate-active",
-    slideVisibleClass: "swiper-slide-visible",
-    slideDuplicateClass: "swiper-slide-duplicate",
-    slideNextClass: "swiper-slide-next",
-    slideDuplicateNextClass: "swiper-slide-duplicate-next",
-    slidePrevClass: "swiper-slide-prev",
-    slideDuplicatePrevClass: "swiper-slide-duplicate-prev",
-    wrapperClass: "swiper-wrapper",
+    containerModifierclass: "swiper-",
+    slideclass: "swiper-slide",
+    slideBlankclass: "swiper-slide-invisible-blank",
+    slideActiveclass: "swiper-slide-active",
+    slideDuplicateActiveclass: "swiper-slide-duplicate-active",
+    slideVisibleclass: "swiper-slide-visible",
+    slideDuplicateclass: "swiper-slide-duplicate",
+    slideNextclass: "swiper-slide-next",
+    slideDuplicateNextclass: "swiper-slide-duplicate-next",
+    slidePrevclass: "swiper-slide-prev",
+    slideDuplicatePrevclass: "swiper-slide-duplicate-prev",
+    wrapperclass: "swiper-wrapper",
     runCallbacksOnInit: !0,
-    _emitClasses: !1,
+    _emitclasses: !1,
   };
   function j(e, t) {
     return function (s) {
@@ -2606,17 +2606,17 @@
             c = Y(e, o),
             p = i.enabled;
           d && !c
-            ? (r.removeClass(
-                `${i.containerModifierClass}grid ${i.containerModifierClass}grid-column`
+            ? (r.removeclass(
+                `${i.containerModifierclass}grid ${i.containerModifierclass}grid-column`
               ),
-              e.emitContainerClasses())
+              e.emitContainerclasses())
             : !d &&
               c &&
-              (r.addClass(`${i.containerModifierClass}grid`),
+              (r.addclass(`${i.containerModifierclass}grid`),
               ((o.grid.fill && "column" === o.grid.fill) ||
                 (!o.grid.fill && "column" === i.grid.fill)) &&
-                r.addClass(`${i.containerModifierClass}grid-column`),
-              e.emitContainerClasses()),
+                r.addclass(`${i.containerModifierclass}grid-column`),
+              e.emitContainerclasses()),
             ["navigation", "pagination", "scrollbar"].forEach((t) => {
               const s = i[t] && i[t].enabled,
                 a = o[t] && o[t].enabled;
@@ -2870,21 +2870,21 @@
         i = (s.maxTranslate() - a) * e + a;
       s.translateTo(i, void 0 === t ? 0 : t),
         s.updateActiveIndex(),
-        s.updateSlidesClasses();
+        s.updateSlidesclasses();
     }
-    emitContainerClasses() {
+    emitContainerclasses() {
       const e = this;
-      if (!e.params._emitClasses || !e.el) return;
+      if (!e.params._emitclasses || !e.el) return;
       const t = e.el.className
         .split(" ")
         .filter(
           (t) =>
             0 === t.indexOf("swiper") ||
-            0 === t.indexOf(e.params.containerModifierClass)
+            0 === t.indexOf(e.params.containerModifierclass)
         );
-      e.emit("_containerClasses", t.join(" "));
+      e.emit("_containerclasses", t.join(" "));
     }
-    getSlideClasses(e) {
+    getSlideclasses(e) {
       const t = this;
       return t.destroyed
         ? ""
@@ -2893,19 +2893,19 @@
             .filter(
               (e) =>
                 0 === e.indexOf("swiper-slide") ||
-                0 === e.indexOf(t.params.slideClass)
+                0 === e.indexOf(t.params.slideclass)
             )
             .join(" ");
     }
-    emitSlidesClasses() {
+    emitSlidesclasses() {
       const e = this;
-      if (!e.params._emitClasses || !e.el) return;
+      if (!e.params._emitclasses || !e.el) return;
       const t = [];
       e.slides.each((s) => {
-        const a = e.getSlideClasses(s);
-        t.push({ slideEl: s, classNames: a }), e.emit("_slideClass", s, a);
+        const a = e.getSlideclasses(s);
+        t.push({ slideEl: s, classNames: a }), e.emit("_slideclass", s, a);
       }),
-        e.emit("_slideClasses", t);
+        e.emit("_slideclasses", t);
     }
     slidesPerViewDynamic(e, t) {
       void 0 === e && (e = "current"), void 0 === t && (t = !1);
@@ -2946,14 +2946,14 @@
       function a() {
         const t = e.rtlTranslate ? -1 * e.translate : e.translate,
           s = Math.min(Math.max(t, e.maxTranslate()), e.minTranslate());
-        e.setTranslate(s), e.updateActiveIndex(), e.updateSlidesClasses();
+        e.setTranslate(s), e.updateActiveIndex(), e.updateSlidesclasses();
       }
       let i;
       s.breakpoints && e.setBreakpoint(),
         e.updateSize(),
         e.updateSlides(),
         e.updateProgress(),
-        e.updateSlidesClasses(),
+        e.updateSlidesclasses(),
         e.params.freeMode && e.params.freeMode.enabled
           ? (a(), e.params.autoHeight && e.updateAutoHeight())
           : ((i =
@@ -2976,9 +2976,9 @@
         e === a ||
           ("horizontal" !== e && "vertical" !== e) ||
           (s.$el
-            .removeClass(`${s.params.containerModifierClass}${a}`)
-            .addClass(`${s.params.containerModifierClass}${e}`),
-          s.emitContainerClasses(),
+            .removeclass(`${s.params.containerModifierclass}${a}`)
+            .addclass(`${s.params.containerModifierclass}${e}`),
+          s.emitContainerclasses(),
           (s.params.direction = e),
           s.slides.each((t) => {
             "vertical" === e ? (t.style.width = "") : (t.style.height = "");
@@ -2995,9 +2995,9 @@
         ((t.rtl = "rtl" === e),
         (t.rtlTranslate = "horizontal" === t.params.direction && t.rtl),
         t.rtl
-          ? (t.$el.addClass(`${t.params.containerModifierClass}rtl`),
+          ? (t.$el.addclass(`${t.params.containerModifierclass}rtl`),
             (t.el.dir = "rtl"))
-          : (t.$el.removeClass(`${t.params.containerModifierClass}rtl`),
+          : (t.$el.removeclass(`${t.params.containerModifierclass}rtl`),
             (t.el.dir = "ltr")),
         t.update());
     }
@@ -3008,7 +3008,7 @@
       if (!(e = s[0])) return !1;
       e.swiper = t;
       const i = () =>
-        `.${(t.params.wrapperClass || "").trim().split(" ").join(".")}`;
+        `.${(t.params.wrapperclass || "").trim().split(" ").join(".")}`;
       let r = (() => {
         if (e && e.shadowRoot && e.shadowRoot.querySelector) {
           const t = d(e.shadowRoot.querySelector(i()));
@@ -3019,9 +3019,9 @@
       if (0 === r.length && t.params.createElements) {
         const e = a().createElement("div");
         (r = d(e)),
-          (e.className = t.params.wrapperClass),
+          (e.className = t.params.wrapperclass),
           s.append(e),
-          s.children(`.${t.params.slideClass}`).each((e) => {
+          s.children(`.${t.params.slideclass}`).each((e) => {
             r.append(e);
           });
       }
@@ -3048,7 +3048,7 @@
         !1 === t.mount(e) ||
           (t.emit("beforeInit"),
           t.params.breakpoints && t.setBreakpoint(),
-          t.addClasses(),
+          t.addclasses(),
           t.params.loop && t.loopCreate(),
           t.updateSize(),
           t.updateSlides(),
@@ -3089,18 +3089,18 @@
           s.detachEvents(),
           a.loop && s.loopDestroy(),
           t &&
-            (s.removeClasses(),
+            (s.removeclasses(),
             i.removeAttr("style"),
             r.removeAttr("style"),
             n &&
               n.length &&
               n
-                .removeClass(
+                .removeclass(
                   [
-                    a.slideVisibleClass,
-                    a.slideActiveClass,
-                    a.slideNextClass,
-                    a.slidePrevClass,
+                    a.slideVisibleclass,
+                    a.slideActiveclass,
+                    a.slideNextclass,
+                    a.slidePrevclass,
                   ].join(" ")
                 )
                 .removeAttr("style")
@@ -3199,7 +3199,7 @@
     i.loop &&
       ((n -= s.loopedSlides),
       s.loopDestroy(),
-      (s.slides = a.children(`.${i.slideClass}`)));
+      (s.slides = a.children(`.${i.slideclass}`)));
     const l = s.slides.length;
     if (e <= 0) return void s.prependSlide(t);
     if (e >= l) return void s.appendSlide(t);
@@ -3225,7 +3225,7 @@
     s.loop &&
       ((r -= t.loopedSlides),
       t.loopDestroy(),
-      (t.slides = a.children(`.${s.slideClass}`)));
+      (t.slides = a.children(`.${s.slideclass}`)));
     let n,
       l = r;
     if ("object" == typeof e && "length" in e) {
@@ -3258,8 +3258,8 @@
     let c;
     a("beforeInit", () => {
       if (s.params.effect !== t) return;
-      s.classNames.push(`${s.params.containerModifierClass}${t}`),
-        l && l() && s.classNames.push(`${s.params.containerModifierClass}3d`);
+      s.classNames.push(`${s.params.containerModifierclass}${t}`),
+        l && l() && s.classNames.push(`${s.params.containerModifierclass}3d`);
       const e = n ? n() : {};
       Object.assign(s.params, e), Object.assign(s.originalParams, e);
     }),
@@ -3292,12 +3292,10 @@
   }
   function se(e, t) {
     return e.transformEl
-      ? t
-          .find(e.transformEl)
-          .css({
-            "backface-visibility": "hidden",
-            "-webkit-backface-visibility": "hidden",
-          })
+      ? t.find(e.transformEl).css({
+          "backface-visibility": "hidden",
+          "-webkit-backface-visibility": "hidden",
+        })
       : t;
   }
   function ae(e) {
@@ -3432,7 +3430,7 @@
         const i = a.renderSlide
           ? d(a.renderSlide.call(s, e, t))
           : d(
-              `<div className="${s.params.slideClass}" data-swiper-slide-index="${t}">${e}</div>`
+              `<div className="${s.params.slideclass}" data-swiper-slide-index="${t}">${e}</div>`
             );
         return (
           i.attr("data-swiper-slide-index") ||
@@ -3462,7 +3460,7 @@
         function y() {
           s.updateSlides(),
             s.updateProgress(),
-            s.updateSlidesClasses(),
+            s.updateSlidesclasses(),
             s.lazy && s.params.lazy.enabled && s.lazy.load(),
             r("virtualUpdate");
         }
@@ -3498,12 +3496,12 @@
           );
         const E = [],
           C = [];
-        if (e) s.$wrapperEl.find(`.${s.params.slideClass}`).remove();
+        if (e) s.$wrapperEl.find(`.${s.params.slideclass}`).remove();
         else
           for (let e = d; e <= c; e += 1)
             (e < w || e > b) &&
               s.$wrapperEl
-                .find(`.${s.params.slideClass}[data-swiper-slide-index="${e}"]`)
+                .find(`.${s.params.slideclass}[data-swiper-slide-index="${e}"]`)
                 .remove();
         for (let t = 0; t < p.length; t += 1)
           t >= w &&
@@ -3543,7 +3541,7 @@
         i("beforeInit", () => {
           s.params.virtual.enabled &&
             ((s.virtual.slides = s.params.virtual.slides),
-            s.classNames.push(`${s.params.containerModifierClass}virtual`),
+            s.classNames.push(`${s.params.containerModifierclass}virtual`),
             (s.params.watchSlidesProgress = !0),
             (s.originalParams.watchSlidesProgress = !0),
             s.params.initialSlide || l());
@@ -3662,8 +3660,8 @@
           ) {
             let e = !1;
             if (
-              t.$el.parents(`.${t.params.slideClass}`).length > 0 &&
-              0 === t.$el.parents(`.${t.params.slideActiveClass}`).length
+              t.$el.parents(`.${t.params.slideclass}`).length > 0 &&
+              0 === t.$el.parents(`.${t.params.slideActiveclass}`).length
             )
               return;
             const a = t.$el,
@@ -3849,9 +3847,9 @@
               t.setTranslate(n),
               t.updateProgress(),
               t.updateActiveIndex(),
-              t.updateSlidesClasses(),
+              t.updateSlidesclasses(),
               ((!d && t.isBeginning) || (!u && t.isEnd)) &&
-                t.updateSlidesClasses(),
+                t.updateSlidesclasses(),
               t.params.freeMode.sticky)
             ) {
               clearTimeout(l), (l = void 0), h.length >= 15 && h.shift();
@@ -3968,11 +3966,11 @@
         const a = t.params.navigation;
         e &&
           e.length > 0 &&
-          (e[s ? "addClass" : "removeClass"](a.disabledClass),
+          (e[s ? "addclass" : "removeclass"](a.disabledclass),
           e[0] && "BUTTON" === e[0].tagName && (e[0].disabled = s),
           t.params.watchOverflow &&
             t.enabled &&
-            e[t.isLocked ? "addClass" : "removeClass"](a.lockClass));
+            e[t.isLocked ? "addclass" : "removeclass"](a.lockclass));
       }
       function l() {
         if (t.params.loop) return;
@@ -4013,27 +4011,27 @@
             prevEl: a && a[0],
           }),
           t.enabled ||
-            (s && s.addClass(e.lockClass), a && a.addClass(e.lockClass));
+            (s && s.addclass(e.lockclass), a && a.addclass(e.lockclass));
       }
       function u() {
         const { $nextEl: e, $prevEl: s } = t.navigation;
         e &&
           e.length &&
-          (e.off("click", c), e.removeClass(t.params.navigation.disabledClass)),
+          (e.off("click", c), e.removeclass(t.params.navigation.disabledclass)),
           s &&
             s.length &&
             (s.off("click", o),
-            s.removeClass(t.params.navigation.disabledClass));
+            s.removeclass(t.params.navigation.disabledclass));
       }
       s({
         navigation: {
           nextEl: null,
           prevEl: null,
           hideOnClick: !1,
-          disabledClass: "swiper-button-disabled",
-          hiddenClass: "swiper-button-hidden",
-          lockClass: "swiper-button-lock",
-          navigationDisabledClass: "swiper-navigation-disabled",
+          disabledclass: "swiper-button-disabled",
+          hiddenclass: "swiper-button-hidden",
+          lockclass: "swiper-button-lock",
+          navigationDisabledclass: "swiper-navigation-disabled",
         },
       }),
         (t.navigation = {
@@ -4054,12 +4052,12 @@
         a("enable disable", () => {
           const { $nextEl: e, $prevEl: s } = t.navigation;
           e &&
-            e[t.enabled ? "removeClass" : "addClass"](
-              t.params.navigation.lockClass
+            e[t.enabled ? "removeclass" : "addclass"](
+              t.params.navigation.lockclass
             ),
             s &&
-              s[t.enabled ? "removeClass" : "addClass"](
-                t.params.navigation.lockClass
+              s[t.enabled ? "removeclass" : "addclass"](
+                t.params.navigation.lockclass
               );
         }),
         a("click", (e, s) => {
@@ -4075,19 +4073,19 @@
               return;
             let e;
             a
-              ? (e = a.hasClass(t.params.navigation.hiddenClass))
-              : r && (e = r.hasClass(t.params.navigation.hiddenClass)),
+              ? (e = a.hasclass(t.params.navigation.hiddenclass))
+              : r && (e = r.hasclass(t.params.navigation.hiddenclass)),
               i(!0 === e ? "navigationShow" : "navigationHide"),
-              a && a.toggleClass(t.params.navigation.hiddenClass),
-              r && r.toggleClass(t.params.navigation.hiddenClass);
+              a && a.toggleclass(t.params.navigation.hiddenclass),
+              r && r.toggleclass(t.params.navigation.hiddenclass);
           }
         });
       const h = () => {
-        t.$el.addClass(t.params.navigation.navigationDisabledClass), u();
+        t.$el.addclass(t.params.navigation.navigationDisabledclass), u();
       };
       Object.assign(t.navigation, {
         enable: () => {
-          t.$el.removeClass(t.params.navigation.navigationDisabledClass),
+          t.$el.removeclass(t.params.navigation.navigationDisabledclass),
             p(),
             l();
         },
@@ -4117,19 +4115,19 @@
           dynamicMainBullets: 1,
           formatFractionCurrent: (e) => e,
           formatFractionTotal: (e) => e,
-          bulletClass: `${r}-bullet`,
-          bulletActiveClass: `${r}-bullet-active`,
-          modifierClass: `${r}-`,
-          currentClass: `${r}-current`,
-          totalClass: `${r}-total`,
-          hiddenClass: `${r}-hidden`,
-          progressbarFillClass: `${r}-progressbar-fill`,
-          progressbarOppositeClass: `${r}-progressbar-opposite`,
-          clickableClass: `${r}-clickable`,
-          lockClass: `${r}-lock`,
-          horizontalClass: `${r}-horizontal`,
-          verticalClass: `${r}-vertical`,
-          paginationDisabledClass: `${r}-disabled`,
+          bulletclass: `${r}-bullet`,
+          bulletActiveclass: `${r}-bullet-active`,
+          modifierclass: `${r}-`,
+          currentclass: `${r}-current`,
+          totalclass: `${r}-total`,
+          hiddenclass: `${r}-hidden`,
+          progressbarFillclass: `${r}-progressbar-fill`,
+          progressbarOppositeclass: `${r}-progressbar-opposite`,
+          clickableclass: `${r}-clickable`,
+          lockclass: `${r}-lock`,
+          horizontalclass: `${r}-horizontal`,
+          verticalclass: `${r}-vertical`,
+          paginationDisabledclass: `${r}-disabled`,
         },
       }),
         (t.pagination = { el: null, $el: null, bullets: [] });
@@ -4143,8 +4141,8 @@
         );
       }
       function c(e, s) {
-        const { bulletActiveClass: a } = t.params.pagination;
-        e[s]().addClass(`${a}-${s}`)[s]().addClass(`${a}-${s}-${s}`);
+        const { bulletActiveclass: a } = t.params.pagination;
+        e[s]().addclass(`${a}-${s}`)[s]().addclass(`${a}-${s}-${s}`);
       }
       function p() {
         const e = t.rtl,
@@ -4192,9 +4190,9 @@
               (i = Math.max(p - l, 0)),
               (o = i + (Math.min(a.length, s.dynamicMainBullets) - 1)),
               (u = (o + i) / 2)),
-            a.removeClass(
+            a.removeclass(
               ["", "-next", "-next-next", "-prev", "-prev-prev", "-main"]
-                .map((e) => `${s.bulletActiveClass}${e}`)
+                .map((e) => `${s.bulletActiveclass}${e}`)
                 .join(" ")
             ),
             r.length > 1)
@@ -4202,28 +4200,28 @@
             a.each((e) => {
               const t = d(e),
                 a = t.index();
-              a === p && t.addClass(s.bulletActiveClass),
+              a === p && t.addclass(s.bulletActiveclass),
                 s.dynamicBullets &&
                   (a >= i &&
                     a <= o &&
-                    t.addClass(`${s.bulletActiveClass}-main`),
+                    t.addclass(`${s.bulletActiveclass}-main`),
                   a === i && c(t, "prev"),
                   a === o && c(t, "next"));
             });
           else {
             const e = a.eq(p),
               r = e.index();
-            if ((e.addClass(s.bulletActiveClass), s.dynamicBullets)) {
+            if ((e.addclass(s.bulletActiveclass), s.dynamicBullets)) {
               const e = a.eq(i),
                 n = a.eq(o);
               for (let e = i; e <= o; e += 1)
-                a.eq(e).addClass(`${s.bulletActiveClass}-main`);
+                a.eq(e).addclass(`${s.bulletActiveclass}-main`);
               if (t.params.loop)
                 if (r >= a.length) {
                   for (let e = s.dynamicMainBullets; e >= 0; e -= 1)
-                    a.eq(a.length - e).addClass(`${s.bulletActiveClass}-main`);
-                  a.eq(a.length - s.dynamicMainBullets - 1).addClass(
-                    `${s.bulletActiveClass}-prev`
+                    a.eq(a.length - e).addclass(`${s.bulletActiveclass}-main`);
+                  a.eq(a.length - s.dynamicMainBullets - 1).addclass(
+                    `${s.bulletActiveclass}-prev`
                   );
                 } else c(e, "prev"), c(n, "next");
               else c(e, "prev"), c(n, "next");
@@ -4238,8 +4236,8 @@
         }
         if (
           ("fraction" === s.type &&
-            (r.find(U(s.currentClass)).text(s.formatFractionCurrent(p + 1)),
-            r.find(U(s.totalClass)).text(s.formatFractionTotal(u))),
+            (r.find(U(s.currentclass)).text(s.formatFractionCurrent(p + 1)),
+            r.find(U(s.totalclass)).text(s.formatFractionTotal(u))),
           "progressbar" === s.type)
         ) {
           let e;
@@ -4255,7 +4253,7 @@
             n = 1;
           "horizontal" === e ? (i = a) : (n = a),
             r
-              .find(U(s.progressbarFillClass))
+              .find(U(s.progressbarFillclass))
               .transform(`translate3d(0,0,0) scaleX(${i}) scaleY(${n})`)
               .transition(t.params.speed);
         }
@@ -4264,7 +4262,7 @@
           : i("paginationUpdate", r[0]),
           t.params.watchOverflow &&
             t.enabled &&
-            r[t.isLocked ? "addClass" : "removeClass"](s.lockClass);
+            r[t.isLocked ? "addclass" : "removeclass"](s.lockclass);
       }
       function u() {
         const e = t.params.pagination;
@@ -4286,19 +4284,19 @@
             (i = s);
           for (let s = 0; s < i; s += 1)
             e.renderBullet
-              ? (r += e.renderBullet.call(t, s, e.bulletClass))
-              : (r += `<${e.bulletElement} className="${e.bulletClass}"></${e.bulletElement}>`);
-          a.html(r), (t.pagination.bullets = a.find(U(e.bulletClass)));
+              ? (r += e.renderBullet.call(t, s, e.bulletclass))
+              : (r += `<${e.bulletElement} className="${e.bulletclass}"></${e.bulletElement}>`);
+          a.html(r), (t.pagination.bullets = a.find(U(e.bulletclass)));
         }
         "fraction" === e.type &&
           ((r = e.renderFraction
-            ? e.renderFraction.call(t, e.currentClass, e.totalClass)
-            : `<span className="${e.currentClass}"></span> / <span className="${e.totalClass}"></span>`),
+            ? e.renderFraction.call(t, e.currentclass, e.totalclass)
+            : `<span className="${e.currentclass}"></span> / <span className="${e.totalclass}"></span>`),
           a.html(r)),
           "progressbar" === e.type &&
             ((r = e.renderProgressbar
-              ? e.renderProgressbar.call(t, e.progressbarFillClass)
-              : `<span className="${e.progressbarFillClass}"></span>`),
+              ? e.renderProgressbar.call(t, e.progressbarFillclass)
+              : `<span className="${e.progressbarFillclass}"></span>`),
             a.html(r)),
           "custom" !== e.type && i("paginationRender", t.pagination.$el[0]);
       }
@@ -4319,37 +4317,37 @@
             ((s = t.$el.find(e.el)),
             s.length > 1 &&
               (s = s.filter((e) => d(e).parents(".swiper")[0] === t.el))),
-          "bullets" === e.type && e.clickable && s.addClass(e.clickableClass),
-          s.addClass(e.modifierClass + e.type),
-          s.addClass(t.isHorizontal() ? e.horizontalClass : e.verticalClass),
+          "bullets" === e.type && e.clickable && s.addclass(e.clickableclass),
+          s.addclass(e.modifierclass + e.type),
+          s.addclass(t.isHorizontal() ? e.horizontalclass : e.verticalclass),
           "bullets" === e.type &&
             e.dynamicBullets &&
-            (s.addClass(`${e.modifierClass}${e.type}-dynamic`),
+            (s.addclass(`${e.modifierclass}${e.type}-dynamic`),
             (l = 0),
             e.dynamicMainBullets < 1 && (e.dynamicMainBullets = 1)),
           "progressbar" === e.type &&
             e.progressbarOpposite &&
-            s.addClass(e.progressbarOppositeClass),
+            s.addclass(e.progressbarOppositeclass),
           e.clickable &&
-            s.on("click", U(e.bulletClass), function (e) {
+            s.on("click", U(e.bulletclass), function (e) {
               e.preventDefault();
               let s = d(this).index() * t.params.slidesPerGroup;
               t.params.loop && (s += t.loopedSlides), t.slideTo(s);
             }),
           Object.assign(t.pagination, { $el: s, el: s[0] }),
-          t.enabled || s.addClass(e.lockClass));
+          t.enabled || s.addclass(e.lockclass));
       }
       function m() {
         const e = t.params.pagination;
         if (o()) return;
         const s = t.pagination.$el;
-        s.removeClass(e.hiddenClass),
-          s.removeClass(e.modifierClass + e.type),
-          s.removeClass(t.isHorizontal() ? e.horizontalClass : e.verticalClass),
+        s.removeclass(e.hiddenclass),
+          s.removeclass(e.modifierclass + e.type),
+          s.removeclass(t.isHorizontal() ? e.horizontalclass : e.verticalclass),
           t.pagination.bullets &&
-            t.pagination.bullets.removeClass &&
-            t.pagination.bullets.removeClass(e.bulletActiveClass),
-          e.clickable && s.off("click", U(e.bulletClass));
+            t.pagination.bullets.removeclass &&
+            t.pagination.bullets.removeclass(e.bulletActiveclass),
+          e.clickable && s.off("click", U(e.bulletclass));
       }
       a("init", () => {
         !1 === t.params.pagination.enabled ? f() : (h(), u(), p());
@@ -4372,8 +4370,8 @@
         a("enable disable", () => {
           const { $el: e } = t.pagination;
           e &&
-            e[t.enabled ? "removeClass" : "addClass"](
-              t.params.pagination.lockClass
+            e[t.enabled ? "removeclass" : "addclass"](
+              t.params.pagination.lockclass
             );
         }),
         a("lock unlock", () => {
@@ -4387,7 +4385,7 @@
             t.params.pagination.hideOnClick &&
             r &&
             r.length > 0 &&
-            !d(a).hasClass(t.params.pagination.bulletClass)
+            !d(a).hasclass(t.params.pagination.bulletclass)
           ) {
             if (
               t.navigation &&
@@ -4395,25 +4393,25 @@
                 (t.navigation.prevEl && a === t.navigation.prevEl))
             )
               return;
-            const e = r.hasClass(t.params.pagination.hiddenClass);
+            const e = r.hasclass(t.params.pagination.hiddenclass);
             i(!0 === e ? "paginationShow" : "paginationHide"),
-              r.toggleClass(t.params.pagination.hiddenClass);
+              r.toggleclass(t.params.pagination.hiddenclass);
           }
         });
       const f = () => {
-        t.$el.addClass(t.params.pagination.paginationDisabledClass),
+        t.$el.addclass(t.params.pagination.paginationDisabledclass),
           t.pagination.$el &&
-            t.pagination.$el.addClass(
-              t.params.pagination.paginationDisabledClass
+            t.pagination.$el.addclass(
+              t.params.pagination.paginationDisabledclass
             ),
           m();
       };
       Object.assign(t.pagination, {
         enable: () => {
-          t.$el.removeClass(t.params.pagination.paginationDisabledClass),
+          t.$el.removeclass(t.params.pagination.paginationDisabledclass),
             t.pagination.$el &&
-              t.pagination.$el.removeClass(
-                t.params.pagination.paginationDisabledClass
+              t.pagination.$el.removeclass(
+                t.params.pagination.paginationDisabledclass
               ),
             h(),
             u(),
@@ -4484,8 +4482,8 @@
           t.params.scrollbar.hide && (a[0].style.opacity = 0),
           t.params.watchOverflow &&
             t.enabled &&
-            e.$el[t.isLocked ? "addClass" : "removeClass"](
-              t.params.scrollbar.lockClass
+            e.$el[t.isLocked ? "addclass" : "removeclass"](
+              t.params.scrollbar.lockclass
             );
       }
       function w(e) {
@@ -4512,7 +4510,7 @@
         t.updateProgress(n),
           t.setTranslate(n),
           t.updateActiveIndex(),
-          t.updateSlidesClasses();
+          t.updateSlidesclasses();
       }
       function x(e) {
         const s = t.params.scrollbar,
@@ -4605,23 +4603,23 @@
           i.length > 1 &&
           1 === s.find(a.el).length &&
           (i = s.find(a.el)),
-          i.addClass(t.isHorizontal() ? a.horizontalClass : a.verticalClass);
-        let r = i.find(`.${t.params.scrollbar.dragClass}`);
+          i.addclass(t.isHorizontal() ? a.horizontalclass : a.verticalclass);
+        let r = i.find(`.${t.params.scrollbar.dragclass}`);
         0 === r.length &&
-          ((r = d(`<div className="${t.params.scrollbar.dragClass}"></div>`)),
+          ((r = d(`<div className="${t.params.scrollbar.dragclass}"></div>`)),
           i.append(r)),
           Object.assign(e, { $el: i, el: i[0], $dragEl: r, dragEl: r[0] }),
           a.draggable && t.params.scrollbar.el && t.scrollbar.el && C("on"),
           i &&
-            i[t.enabled ? "removeClass" : "addClass"](
-              t.params.scrollbar.lockClass
+            i[t.enabled ? "removeclass" : "addclass"](
+              t.params.scrollbar.lockclass
             );
       }
       function $() {
         const e = t.params.scrollbar,
           s = t.scrollbar.$el;
         s &&
-          s.removeClass(t.isHorizontal() ? e.horizontalClass : e.verticalClass),
+          s.removeclass(t.isHorizontal() ? e.horizontalclass : e.verticalclass),
           t.params.scrollbar.el && t.scrollbar.el && C("off");
       }
       s({
@@ -4631,11 +4629,11 @@
           hide: !1,
           draggable: !1,
           snapOnRelease: !0,
-          lockClass: "swiper-scrollbar-lock",
-          dragClass: "swiper-scrollbar-drag",
-          scrollbarDisabledClass: "swiper-scrollbar-disabled",
-          horizontalClass: "swiper-scrollbar-horizontal",
-          verticalClass: "swiper-scrollbar-vertical",
+          lockclass: "swiper-scrollbar-lock",
+          dragclass: "swiper-scrollbar-drag",
+          scrollbarDisabledclass: "swiper-scrollbar-disabled",
+          horizontalclass: "swiper-scrollbar-horizontal",
+          verticalclass: "swiper-scrollbar-vertical",
         },
       }),
         (t.scrollbar = { el: null, dragEl: null, $el: null, $dragEl: null }),
@@ -4658,25 +4656,25 @@
         i("enable disable", () => {
           const { $el: e } = t.scrollbar;
           e &&
-            e[t.enabled ? "removeClass" : "addClass"](
-              t.params.scrollbar.lockClass
+            e[t.enabled ? "removeclass" : "addclass"](
+              t.params.scrollbar.lockclass
             );
         }),
         i("destroy", () => {
           $();
         });
       const S = () => {
-        t.$el.addClass(t.params.scrollbar.scrollbarDisabledClass),
+        t.$el.addclass(t.params.scrollbar.scrollbarDisabledclass),
           t.scrollbar.$el &&
-            t.scrollbar.$el.addClass(t.params.scrollbar.scrollbarDisabledClass),
+            t.scrollbar.$el.addclass(t.params.scrollbar.scrollbarDisabledclass),
           $();
       };
       Object.assign(t.scrollbar, {
         enable: () => {
-          t.$el.removeClass(t.params.scrollbar.scrollbarDisabledClass),
+          t.$el.removeclass(t.params.scrollbar.scrollbarDisabledclass),
             t.scrollbar.$el &&
-              t.scrollbar.$el.removeClass(
-                t.params.scrollbar.scrollbarDisabledClass
+              t.scrollbar.$el.removeclass(
+                t.params.scrollbar.scrollbarDisabledclass
               ),
             T(),
             v(),
@@ -4784,8 +4782,8 @@
           maxRatio: 3,
           minRatio: 1,
           toggle: !0,
-          containerClass: "swiper-zoom-container",
-          zoomedSlideClass: "swiper-slide-zoomed",
+          containerclass: "swiper-zoom-container",
+          zoomedSlideclass: "swiper-slide-zoomed",
         },
       }),
         (t.zoom = { enabled: !1 });
@@ -4846,14 +4844,14 @@
           (o = !0), (m.scaleStart = w(e));
         }
         (m.$slideEl && m.$slideEl.length) ||
-        ((m.$slideEl = d(e.target).closest(`.${t.params.slideClass}`)),
+        ((m.$slideEl = d(e.target).closest(`.${t.params.slideclass}`)),
         0 === m.$slideEl.length && (m.$slideEl = t.slides.eq(t.activeIndex)),
         (m.$imageEl = m.$slideEl
-          .find(`.${a.containerClass}`)
+          .find(`.${a.containerclass}`)
           .eq(0)
           .find("picture, img, svg, canvas, .swiper-zoom-target")
           .eq(0)),
-        (m.$imageWrapEl = m.$imageEl.parent(`.${a.containerClass}`)),
+        (m.$imageWrapEl = m.$imageEl.parent(`.${a.containerclass}`)),
         (m.maxRatio = m.$imageWrapEl.attr("data-swiper-zoom") || a.maxRatio),
         0 !== m.$imageWrapEl.length)
           ? (m.$imageEl && m.$imageEl.transition(0), (u = !0))
@@ -5002,19 +5000,19 @@
           (m.$slideEl ||
             (e &&
               e.target &&
-              (m.$slideEl = d(e.target).closest(`.${t.params.slideClass}`)),
+              (m.$slideEl = d(e.target).closest(`.${t.params.slideclass}`)),
             m.$slideEl ||
               (t.params.virtual && t.params.virtual.enabled && t.virtual
                 ? (m.$slideEl = t.$wrapperEl.children(
-                    `.${t.params.slideActiveClass}`
+                    `.${t.params.slideActiveclass}`
                   ))
                 : (m.$slideEl = t.slides.eq(t.activeIndex))),
             (m.$imageEl = m.$slideEl
-              .find(`.${a.containerClass}`)
+              .find(`.${a.containerclass}`)
               .eq(0)
               .find("picture, img, svg, canvas, .swiper-zoom-target")
               .eq(0)),
-            (m.$imageWrapEl = m.$imageEl.parent(`.${a.containerClass}`))),
+            (m.$imageWrapEl = m.$imageEl.parent(`.${a.containerclass}`))),
           !m.$imageEl ||
             0 === m.$imageEl.length ||
             !m.$imageWrapEl ||
@@ -5025,7 +5023,7 @@
         t.params.cssMode &&
           ((t.wrapperEl.style.overflow = "hidden"),
           (t.wrapperEl.style.touchAction = "none")),
-          m.$slideEl.addClass(`${a.zoomedSlideClass}`),
+          m.$slideEl.addclass(`${a.zoomedSlideclass}`),
           void 0 === f.touchesStart.x && e
             ? ((i =
                 "touchend" === e.type ? e.changedTouches[0].pageX : e.pageX),
@@ -5068,15 +5066,15 @@
         m.$slideEl ||
           (t.params.virtual && t.params.virtual.enabled && t.virtual
             ? (m.$slideEl = t.$wrapperEl.children(
-                `.${t.params.slideActiveClass}`
+                `.${t.params.slideActiveclass}`
               ))
             : (m.$slideEl = t.slides.eq(t.activeIndex)),
           (m.$imageEl = m.$slideEl
-            .find(`.${s.containerClass}`)
+            .find(`.${s.containerclass}`)
             .eq(0)
             .find("picture, img, svg, canvas, .swiper-zoom-target")
             .eq(0)),
-          (m.$imageWrapEl = m.$imageEl.parent(`.${s.containerClass}`))),
+          (m.$imageWrapEl = m.$imageEl.parent(`.${s.containerclass}`))),
           m.$imageEl &&
             0 !== m.$imageEl.length &&
             m.$imageWrapEl &&
@@ -5088,7 +5086,7 @@
             (p = 1),
             m.$imageWrapEl.transition(300).transform("translate3d(0,0,0)"),
             m.$imageEl.transition(300).transform("translate3d(0,0,0) scale(1)"),
-            m.$slideEl.removeClass(`${s.zoomedSlideClass}`),
+            m.$slideEl.removeclass(`${s.zoomedSlideclass}`),
             (m.$slideEl = void 0));
       }
       function S(e) {
@@ -5110,7 +5108,7 @@
         };
       }
       function P() {
-        return `.${t.params.slideClass}`;
+        return `.${t.params.slideclass}`;
       }
       function k(e) {
         const { passiveListener: s } = M(),
@@ -5143,7 +5141,7 @@
               t.$wrapperEl.on(t.touchEvents.cancel, r, y, a)),
           t.$wrapperEl.on(
             t.touchEvents.move,
-            `.${t.params.zoom.containerClass}`,
+            `.${t.params.zoom.containerclass}`,
             E,
             i
           );
@@ -5166,7 +5164,7 @@
               t.$wrapperEl.off(t.touchEvents.cancel, r, y, a)),
           t.$wrapperEl.off(
             t.touchEvents.move,
-            `.${t.params.zoom.containerClass}`,
+            `.${t.params.zoom.containerclass}`,
             E,
             i
           );
@@ -5269,10 +5267,10 @@
           loadPrevNextAmount: 1,
           loadOnTransitionStart: !1,
           scrollingElement: "",
-          elementClass: "swiper-lazy",
-          loadingClass: "swiper-lazy-loading",
-          loadedClass: "swiper-lazy-loaded",
-          preloaderClass: "swiper-lazy-preloader",
+          elementclass: "swiper-lazy",
+          loadingclass: "swiper-lazy-loading",
+          loadedclass: "swiper-lazy-loaded",
+          preloaderclass: "swiper-lazy-preloader",
         },
       }),
         (t.lazy = {});
@@ -5286,20 +5284,20 @@
         const r =
             t.virtual && t.params.virtual.enabled
               ? t.$wrapperEl.children(
-                  `.${t.params.slideClass}[data-swiper-slide-index="${e}"]`
+                  `.${t.params.slideclass}[data-swiper-slide-index="${e}"]`
                 )
               : t.slides.eq(e),
           n = r.find(
-            `.${a.elementClass}:not(.${a.loadedClass}):not(.${a.loadingClass})`
+            `.${a.elementclass}:not(.${a.loadedclass}):not(.${a.loadingclass})`
           );
-        !r.hasClass(a.elementClass) ||
-          r.hasClass(a.loadedClass) ||
-          r.hasClass(a.loadingClass) ||
+        !r.hasclass(a.elementclass) ||
+          r.hasclass(a.loadedclass) ||
+          r.hasclass(a.loadingclass) ||
           n.push(r[0]),
           0 !== n.length &&
             n.each((e) => {
               const n = d(e);
-              n.addClass(a.loadingClass);
+              n.addclass(a.loadingclass);
               const l = n.attr("data-background"),
                 c = n.attr("data-src"),
                 p = n.attr("data-srcset"),
@@ -5322,16 +5320,16 @@
                               t.removeAttr("data-srcset"));
                           }),
                         c && (n.attr("src", c), n.removeAttr("data-src"))),
-                    n.addClass(a.loadedClass).removeClass(a.loadingClass),
-                    r.find(`.${a.preloaderClass}`).remove(),
+                    n.addclass(a.loadedclass).removeclass(a.loadingclass),
+                    r.find(`.${a.preloaderclass}`).remove(),
                     t.params.loop && s)
                   ) {
                     const e = r.attr("data-swiper-slide-index");
-                    if (r.hasClass(t.params.slideDuplicateClass)) {
+                    if (r.hasclass(t.params.slideDuplicateclass)) {
                       o(
                         t.$wrapperEl
                           .children(
-                            `[data-swiper-slide-index="${e}"]:not(.${t.params.slideDuplicateClass})`
+                            `[data-swiper-slide-index="${e}"]:not(.${t.params.slideDuplicateclass})`
                           )
                           .index(),
                         !1
@@ -5340,7 +5338,7 @@
                       o(
                         t.$wrapperEl
                           .children(
-                            `.${t.params.slideDuplicateClass}[data-swiper-slide-index="${e}"]`
+                            `.${t.params.slideDuplicateclass}[data-swiper-slide-index="${e}"]`
                           )
                           .index(),
                         !1
@@ -5362,7 +5360,7 @@
         function p(t) {
           if (r) {
             if (
-              e.children(`.${s.slideClass}[data-swiper-slide-index="${t}"]`)
+              e.children(`.${s.slideclass}[data-swiper-slide-index="${t}"]`)
                 .length
             )
               return !0;
@@ -5375,7 +5373,7 @@
         if (
           ("auto" === c && (c = 0), l || (l = !0), t.params.watchSlidesProgress)
         )
-          e.children(`.${s.slideVisibleClass}`).each((e) => {
+          e.children(`.${s.slideVisibleclass}`).each((e) => {
             o(r ? d(e).attr("data-swiper-slide-index") : d(e).index());
           });
         else if (c > 1) for (let e = i; e < i + c; e += 1) p(e) && o(e);
@@ -5389,9 +5387,9 @@
             for (let e = i + t; e < s; e += 1) p(e) && o(e);
             for (let e = r; e < i; e += 1) p(e) && o(e);
           } else {
-            const t = e.children(`.${s.slideNextClass}`);
+            const t = e.children(`.${s.slideNextclass}`);
             t.length > 0 && o(u(t));
-            const a = e.children(`.${s.slidePrevClass}`);
+            const a = e.children(`.${s.slidePrevclass}`);
             a.length > 0 && o(u(a));
           }
       }
@@ -5471,8 +5469,8 @@
         a("destroy", () => {
           t.$el &&
             t.$el
-              .find(`.${t.params.lazy.loadingClass}`)
-              .removeClass(t.params.lazy.loadingClass);
+              .find(`.${t.params.lazy.loadingclass}`)
+              .removeclass(t.params.lazy.loadingclass);
         }),
         Object.assign(t.lazy, { load: c, loadInSlide: o });
     },
@@ -5553,7 +5551,7 @@
                 e.updateProgress(n),
                 e.setTranslate(n, t),
                 e.updateActiveIndex(),
-                e.updateSlidesClasses();
+                e.updateSlidesclasses();
             }
             if (Array.isArray(a))
               for (let e = 0; e < a.length; e += 1)
@@ -5592,7 +5590,7 @@
       s({
         a11y: {
           enabled: !0,
-          notificationClass: "swiper-notification",
+          notificationclass: "swiper-notification",
           prevSlideMessage: "Previous slide",
           nextSlideMessage: "Next slide",
           firstSlideMessage: "This is the first slide",
@@ -5647,7 +5645,7 @@
             ((t.isBeginning && !t.params.loop) || t.slidePrev(),
             t.isBeginning ? r(s.firstSlideMessage) : r(s.prevSlideMessage)),
           t.pagination &&
-            a.is(U(t.params.pagination.bulletClass)) &&
+            a.is(U(t.params.pagination.bulletclass)) &&
             a[0].click();
       }
       function f() {
@@ -5667,7 +5665,7 @@
             })(e, t);
         },
         w = (e) => {
-          const s = e.target.closest(`.${t.params.slideClass}`);
+          const s = e.target.closest(`.${t.params.slideclass}`);
           if (!s || !t.slides.includes(s)) return;
           const a = t.slides.indexOf(s) === t.activeIndex,
             i =
@@ -5683,7 +5681,7 @@
             e.slideRole && o(d(t.slides), e.slideRole);
           const s = t.params.loop
             ? t.slides.filter(
-                (e) => !e.classList.contains(t.params.slideDuplicateClass)
+                (e) => !e.classList.contains(t.params.slideDuplicateclass)
               ).length
             : t.slides.length;
           e.slideLabelMessage &&
@@ -5738,14 +5736,14 @@
             g() &&
               t.pagination.$el.on(
                 "keydown",
-                U(t.params.pagination.bulletClass),
+                U(t.params.pagination.bulletclass),
                 m
               ),
             t.$el.on("focus", w, !0);
         };
       a("beforeInit", () => {
         i = d(
-          `<span className="${t.params.a11y.notificationClass}" aria-live="assertive" aria-atomic="true"></span>`
+          `<span className="${t.params.a11y.notificationclass}" aria-live="assertive" aria-atomic="true"></span>`
         );
       }),
         a("afterInit", () => {
@@ -5786,7 +5784,7 @@
                           a.index() + 1
                         )
                       ))),
-                    a.is(`.${t.params.pagination.bulletActiveClass}`)
+                    a.is(`.${t.params.pagination.bulletActiveclass}`)
                       ? a.attr("aria-current", "true")
                       : a.removeAttr("aria-current");
                 });
@@ -5808,7 +5806,7 @@
                 g() &&
                   t.pagination.$el.off(
                     "keydown",
-                    U(t.params.pagination.bulletClass),
+                    U(t.params.pagination.bulletclass),
                     m
                   ),
                 t.$el.off("focus", w, !0);
@@ -5872,7 +5870,7 @@
               const r = t.slides.eq(i);
               if (
                 l(r.attr("data-history")) === s &&
-                !r.hasClass(t.params.slideDuplicateClass)
+                !r.hasclass(t.params.slideDuplicateclass)
               ) {
                 const s = r.index();
                 t.slideTo(s, e, a);
@@ -5928,7 +5926,7 @@
           const e = o.location.hash.replace("#", "");
           if (e !== t.slides.eq(t.activeIndex).attr("data-hash")) {
             const s = t.$wrapperEl
-              .children(`.${t.params.slideClass}[data-hash="${e}"]`)
+              .children(`.${t.params.slideclass}[data-hash="${e}"]`)
               .index();
             if (void 0 === s) return;
             t.slideTo(s);
@@ -5969,7 +5967,7 @@
                 const i = t.slides.eq(a);
                 if (
                   (i.attr("data-hash") || i.attr("data-history")) === e &&
-                  !i.hasClass(t.params.slideDuplicateClass)
+                  !i.hasclass(t.params.slideDuplicateclass)
                 ) {
                   const e = i.index();
                   t.slideTo(e, s, t.params.runCallbacksOnInit, !0);
@@ -6139,8 +6137,8 @@
           swiper: null,
           multipleActiveThumbs: !0,
           autoScrollOffset: 0,
-          slideThumbActiveClass: "swiper-slide-thumb-active",
-          thumbsContainerClass: "swiper-thumbs",
+          slideThumbActiveclass: "swiper-slide-thumb-active",
+          thumbsContainerclass: "swiper-thumbs",
         },
       });
       let i = !1,
@@ -6150,7 +6148,7 @@
         if (!e || e.destroyed) return;
         const s = e.clickedIndex,
           a = e.clickedSlide;
-        if (a && d(a).hasClass(t.params.thumbs.slideThumbActiveClass)) return;
+        if (a && d(a).hasclass(t.params.thumbs.slideThumbActiveclass)) return;
         if (null == s) return;
         let i;
         if (
@@ -6160,7 +6158,7 @@
           t.params.loop)
         ) {
           let e = t.activeIndex;
-          t.slides.eq(e).hasClass(t.params.slideDuplicateClass) &&
+          t.slides.eq(e).hasclass(t.params.slideDuplicateclass) &&
             (t.loopFix(),
             (t._clientLeft = t.$wrapperEl[0].clientLeft),
             (e = t.activeIndex));
@@ -6203,7 +6201,7 @@
             (r = !0);
         }
         return (
-          t.thumbs.swiper.$el.addClass(t.params.thumbs.thumbsContainerClass),
+          t.thumbs.swiper.$el.addclass(t.params.thumbs.thumbsContainerclass),
           t.thumbs.swiper.on("tap", n),
           !0
         );
@@ -6216,23 +6214,23 @@
             ? s.slidesPerViewDynamic()
             : s.params.slidesPerView;
         let i = 1;
-        const r = t.params.thumbs.slideThumbActiveClass;
+        const r = t.params.thumbs.slideThumbActiveclass;
         if (
           (t.params.slidesPerView > 1 &&
             !t.params.centeredSlides &&
             (i = t.params.slidesPerView),
           t.params.thumbs.multipleActiveThumbs || (i = 1),
           (i = Math.floor(i)),
-          s.slides.removeClass(r),
+          s.slides.removeclass(r),
           s.params.loop || (s.params.virtual && s.params.virtual.enabled))
         )
           for (let e = 0; e < i; e += 1)
             s.$wrapperEl
               .children(`[data-swiper-slide-index="${t.realIndex + e}"]`)
-              .addClass(r);
+              .addclass(r);
         else
           for (let e = 0; e < i; e += 1)
-            s.slides.eq(t.realIndex + e).addClass(r);
+            s.slides.eq(t.realIndex + e).addclass(r);
         const n = t.params.thumbs.autoScrollOffset,
           l = n && !s.params.loop;
         if (t.realIndex !== s.realIndex || l) {
@@ -6240,7 +6238,7 @@
             r,
             o = s.activeIndex;
           if (s.params.loop) {
-            s.slides.eq(o).hasClass(s.params.slideDuplicateClass) &&
+            s.slides.eq(o).hasclass(s.params.slideDuplicateclass) &&
               (s.loopFix(),
               (s._clientLeft = s.$wrapperEl[0].clientLeft),
               (o = s.activeIndex));
@@ -6460,7 +6458,7 @@
                         })))
                     : t.updateProgress(c),
                     t.updateActiveIndex(),
-                    t.updateSlidesClasses();
+                    t.updateSlidesclasses();
                 } else {
                   if (r.freeMode.sticky) return void t.slideToClosest();
                   r.freeMode && a("_freeModeNoMomentumRelease");
@@ -6468,7 +6466,7 @@
                 (!r.freeMode.momentum || c >= r.longSwipesMs) &&
                   (t.updateProgress(),
                   t.updateActiveIndex(),
-                  t.updateSlidesClasses());
+                  t.updateSlidesclasses());
               }
             },
           },

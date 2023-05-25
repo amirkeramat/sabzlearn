@@ -117,10 +117,10 @@ export default function ContactForm() {
                  
               }`}
         disabled={
-         ( !errors.fullName?.message &&
+          !errors.fullName?.message &&
           !errors.email?.message &&
           !errors.phone?.message &&
-          !errors.message?.message)
+          !errors.message?.message
             ? false
             : true
         }

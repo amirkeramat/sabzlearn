@@ -1,20 +1,19 @@
-import React from 'react'
+import React from "react";
 import { useForm } from "react-hook-form";
 import { searchSchema } from "../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-export default function SearchBox({setData,allData}) {
-     const {
-       register,
-       handleSubmit,
-     } = useForm({
-       resolver: yupResolver(searchSchema),
-       mode: "onSubmit",
-     });
-       const onSubmit = (value) => {
-          const newData = allData.filter(data=>data.name.toLowerCase().includes(value.searchValue.toLowerCase()))
-          setData(newData)
-          value.searchValue = ''
-       };
+export default function SearchBox({ setData, allData }) {
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(searchSchema),
+    mode: "onSubmit",
+  });
+  const onSubmit = (value) => {
+    const newData = allData.filter((data) =>
+      data.name.toLowerCase().includes(value.searchValue.toLowerCase())
+    );
+    setData(newData);
+    value.searchValue = "";
+  };
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

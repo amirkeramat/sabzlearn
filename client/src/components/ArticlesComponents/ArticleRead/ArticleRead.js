@@ -1,6 +1,6 @@
 import React from "react";
 import "./ArticleRead.css";
-import Button from '../../Form/Button/Button'
+import Button from "../../Form/Button/Button";
 export default function ArticleRead() {
   return (
     <div className='article-read'>

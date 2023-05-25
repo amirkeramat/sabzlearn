@@ -2,7 +2,7 @@ import React from "react";
 import "./Input.css";
 
 export default function Input(props) {
-    const element =
+  const element =
     props.element === "input" ? (
       <input
         type={props.type}

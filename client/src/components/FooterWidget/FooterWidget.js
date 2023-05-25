@@ -6,12 +6,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { newsLetterSchema } from "../../Validator/schema";
 import swal from "sweetalert";
 export default function FooterWidget({ title, desc, links, grid, form }) {
-  const { register, handleSubmit,reset } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(newsLetterSchema),
     mode: "all",
   });
   const formSubmitHandler = (value) => {
-    
     const userEmail = {
       email: value.email,
     };
@@ -34,7 +33,7 @@ export default function FooterWidget({ title, desc, links, grid, form }) {
           icon: "success",
           button: "خروج",
         });
-        reset()
+        reset();
       }
     });
   };

@@ -29,7 +29,7 @@ export default function Comments() {
     fetch("http://localhost:4000/v1/comments", {
       method: "POST",
       headers: {
-        "Content-Type":"application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${authContext.token}`,
       },
       body: JSON.stringify({

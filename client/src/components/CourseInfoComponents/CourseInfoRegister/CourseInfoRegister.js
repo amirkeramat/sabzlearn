@@ -1,7 +1,7 @@
 import React from "react";
 import "./CourseInfoRegister.css";
 import Button from "../../Form/Button/Button";
-export default function CourseInfoRegister({title}) {
+export default function CourseInfoRegister({ title }) {
   return (
     <div className='course-info__register'>
       <span className='course-info__register-title'>

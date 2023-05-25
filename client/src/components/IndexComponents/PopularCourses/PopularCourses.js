@@ -40,7 +40,7 @@ export default function PopularCourses() {
                     student={product.creator}
                     link={product.shortName}
                     rate={product.courseAverageScore}
-                    layout={'column'}
+                    layout={"column"}
                   />
                 </SwiperSlide>
               ))}

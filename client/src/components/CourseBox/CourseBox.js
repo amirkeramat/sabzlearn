@@ -18,7 +18,9 @@ export default function CourseBox({
   const onImageLoader = () => setImgShow(true);
   return (
     <div
-      className={`course-box   ${layout === "column" ? "col-4" : "course-row"}`}>
+      className={`course-box   ${
+        layout === "column" ? "col-4" : "course-row"
+      }`}>
       <Button to={`/course-info/${link}`} className='course-box__title-link'>
         <img
           src='/images/courses/fareelancer.png'

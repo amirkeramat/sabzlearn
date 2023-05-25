@@ -1,6 +1,6 @@
 import React from "react";
 import "./ArticleSocialMedia.css";
-import Button from '../../Form/Button/Button'
+import Button from "../../Form/Button/Button";
 export default function ArticleSocialMedia() {
   return (
     <div className='article-social-media'>

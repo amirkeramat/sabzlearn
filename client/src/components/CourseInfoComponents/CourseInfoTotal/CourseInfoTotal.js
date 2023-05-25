@@ -1,6 +1,6 @@
 import React from "react";
 import "./CourseInfoTotal.css";
-export default function CourseInfoTotal({student,comments,views}) {
+export default function CourseInfoTotal({ student, comments, views }) {
   return (
     <div className='course-info__total'>
       <div className='course-info__top'>
@@ -13,7 +13,9 @@ export default function CourseInfoTotal({student,comments,views}) {
       <div className='course-info__bottom'>
         <div className='course-info__total-comment'>
           <i className='far fa-comments course-info__total-comment-icon'></i>
-          <span className='course-info__total-comment-text'>{comments} دیدگاه</span>
+          <span className='course-info__total-comment-text'>
+            {comments} دیدگاه
+          </span>
         </div>
         <div className='course-info__total-view'>
           <i className='far fa-eye course-info__total-view-icon'></i>

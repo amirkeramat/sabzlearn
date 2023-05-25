@@ -1,9 +1,9 @@
-import React, { useEffect, useState ,memo } from "react";
+import React, { useEffect, useState, memo } from "react";
 
 import "./Topbar.css";
 import Button from "../Form/Button/Button";
 
-export default  memo(function  Topbar() {
+export default memo(function Topbar() {
   const [allTopbarLinks, setAllTopbarLinks] = useState([]);
   useEffect(() => {
     fetch("http://localhost:4000/v1/menus/topbar")
@@ -13,7 +13,7 @@ export default  memo(function  Topbar() {
       });
   }, []);
   const getRandomItemsFromArray = (arr, randomCount) => {
-    const shuffled = [...arr].sort(()=>0.5 - Math.random());
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, randomCount);
   };
   return (
@@ -49,4 +49,4 @@ export default  memo(function  Topbar() {
       </div>
     </div>
   );
-})
+});

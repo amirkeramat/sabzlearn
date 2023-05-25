@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Comments from "../../Components/Comments/Comments";
-import Pagination from '../../Components/Pgination/Pagination'
+import Pagination from "../../Components/Pgination/Pagination";
 import "./CommentsTextArea.css";
 import Button from "../Form/Button/Button";
 
 export default function CommentsTextArea({ commentsData, isLoggedIn }) {
-  const [showCourse,setShowCourse] = useState([])
+  const [showCourse, setShowCourse] = useState([]);
   return (
     <div className='comments'>
       <div className='comments__header'>

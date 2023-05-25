@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Sortbar.css";
 import SearchBox from "../searchBox/SearchBox";
-export default function Sortbar({ setOrderedData, allData, orderedCourses,setLayoutData,page }) {
+export default function Sortbar({
+  setOrderedData,
+  allData,
+  orderedCourses,
+  setLayoutData,
+  page,
+}) {
   const [status, setStatus] = useState("default");
   const [orderShow, setOrderShow] = useState("مرتب سازی پیش فرض");
   const [layout, setLayout] = useState("column");
@@ -10,7 +16,7 @@ export default function Sortbar({ setOrderedData, allData, orderedCourses,setLay
     setStatus(status);
   };
 
-  const CourseOrder = ()=> {
+  const CourseOrder = () => {
     return (
       <ul className='courses-top-bar__selection-list'>
         <li
@@ -50,9 +56,9 @@ export default function Sortbar({ setOrderedData, allData, orderedCourses,setLay
         </li>
       </ul>
     );
-  }
+  };
 
-  const ArticleOrder = ()=>{
+  const ArticleOrder = () => {
     return (
       <ul className='courses-top-bar__selection-list'>
         <li
@@ -72,11 +78,7 @@ export default function Sortbar({ setOrderedData, allData, orderedCourses,setLay
         </li>
       </ul>
     );
-  }
-
-
-
-
+  };
 
   useEffect(() => {
     switch (status) {

@@ -7,15 +7,14 @@ import Button from "../Form/Button/Button";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 export default function Landing() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-  const onSubmitHandler = (value)=>{
+  const onSubmitHandler = (value) => {
     console.log(value);
-    if(value.searchValue !== ''){
-      navigate(`/search/${value.searchValue}`)
+    if (value.searchValue !== "") {
+      navigate(`/search/${value.searchValue}`);
     }
-
-  }
+  };
   return (
     <section className='landing'>
       <div className='container'>

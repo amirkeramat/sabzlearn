@@ -10,8 +10,8 @@ import { useParams } from "react-router-dom";
 export default function Search() {
   const [coursesData, setCoursesData] = useState([]);
   const [articlesData, setArticlesData] = useState([]);
-  const [orderedData,setOrderedData] = useState([])
-  const [layoutData,setLayoutData] = useState('column')
+  const [orderedData, setOrderedData] = useState([]);
+  const [layoutData, setLayoutData] = useState("column");
   const params = useParams();
   useEffect(() => {
     fetch(`http://localhost:4000/v1/search/${params.searchValue}`)

@@ -1,6 +1,6 @@
 import React from "react";
 import "./CourseInfoHeader.css";
-import Button from '../../Form/Button/Button'
+import Button from "../../Form/Button/Button";
 export default function CourseInfoHeader(props) {
   return (
     <section className='course-info'>

@@ -1,6 +1,6 @@
 import React from "react";
 import "./ArticleSuggestion.css";
-import Button from '../../Form/Button/Button'
+import Button from "../../Form/Button/Button";
 export default function ArticleSuggestion() {
   return (
     <div className='suggestion-articles__right suggestion-articles__content'>

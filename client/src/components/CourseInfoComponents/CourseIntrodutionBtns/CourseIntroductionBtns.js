@@ -1,6 +1,6 @@
 import React from "react";
 import "./CourseIntroductionBtns.css";
-import Button from '../../Form/Button/Button'
+import Button from "../../Form/Button/Button";
 export default function CourseIntroductionBtns() {
   return (
     <div className='introduction__btns'>

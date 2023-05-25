@@ -1,6 +1,6 @@
 import React from "react";
 import "./CourseInfoTopic.css";
-import Button from '../../Form/Button/Button'
+import Button from "../../Form/Button/Button";
 export default function CourseInfoTopic() {
   return (
     <div className='courseInfo__topic'>

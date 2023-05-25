@@ -55,7 +55,7 @@ export default function Category() {
               allData={coursesData}
               setLayoutData={setLayoutData}
               orderedCourses={orderedCourses}
-              page={'course'}
+              page={"course"}
             />
           ) : null}
 
