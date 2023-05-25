@@ -58,3 +58,13 @@
     color: var(--dark-color);
     font-weight: bold;
 }
+
+
+.footer-form-btn{
+    color: var(--primary-color);
+        border: 2px solid var(--primary-color);
+        font-size: 1.4rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        transition: all 400ms ease;
+}

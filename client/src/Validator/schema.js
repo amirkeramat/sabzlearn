@@ -42,10 +42,15 @@ const contactSchema = yup.object().shape({
 });
 
 
+const newsLetterSchema = yup.object().shape({
+  email:yup.string().required('ایمیل خود را وارد نمایید').email("ایمیل صحیح نیست")
+})
+
 export {
   registerSchema,
   loginSchema,
   commentSchema,
   searchSchema,
   contactSchema,
+  newsLetterSchema,
 };

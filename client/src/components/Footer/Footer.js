@@ -34,6 +34,7 @@ export default memo(function Footer() {
                 "آموزش پایتون",
               ]}
               grid={true}
+              form={true}
             />
           </div>
         </div>
