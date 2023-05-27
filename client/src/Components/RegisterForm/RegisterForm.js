@@ -39,20 +39,21 @@ export default function RegisterForm() {
         if (!res.ok) {
           if (res.status === 409) {
             swal({
-              title: "کاربری با ایمیل ثبت شده است وارد شوید",
+              title:
+                "کاربری با نام کارببری یا ایمیل وارد شده ثبت شده است وارد شوید",
               icon: "error",
               button: "ورود به سایت",
             }).then(() => {
               navigate("/login");
             });
-          }else if(res.status === 403){
-             swal({
-               title: "شما از سایت بن شده اید و نمیتوانید ثبت نام انجام دهید با پشتیبانی ارتباط بگیرید",
-               icon: "error",
-               button: "ارتباط با ما",
-             }).then(() => {
-               navigate("/contact");
-             });
+          } else if (res.status === 403) {
+            swal({
+              title: "این شماره تماس مسدود شده است به پشتیبانی پیام دهید",
+              icon: "error",
+              button: "ارتباط با ما",
+            }).then(() => {
+              navigate("/contact");
+            });
           }
         } else {
           return res.json();
