@@ -642,3 +642,16 @@ ul {
 .active-modal-notfication .home-notification-modal {
     display: block !important;
 }
+
+
+.add-user-btn{
+    width: 100%;
+        border: none;
+        border-radius: 3px;
+        padding: 1.2rem 0;
+        margin-top: 0.8rem;
+        display: flex;
+        align-items: center;
+        background-color: #2bce56;
+        position: relative;
+}
