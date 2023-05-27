@@ -14,6 +14,7 @@ export default function Comments() {
   const param = useParams();
   const logOutHandler = () => {
     authContext.logout();
+    // authContext.isLoggedIn(false)
     navigate("/login");
   };
   const {

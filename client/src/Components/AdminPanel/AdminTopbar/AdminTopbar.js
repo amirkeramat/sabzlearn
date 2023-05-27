@@ -1,36 +1,28 @@
 import React, { memo, useEffect, useState } from "react";
 import "./AdminTopbar.css";
 import Button from "../../Form/Button/Button";
-export default memo(function AdminTopbar() {
-  const [userData, setUserData] = useState([]);
-  useEffect(() => {
-    let localStorageData = JSON.parse(localStorage.getItem("user"));
-    fetch("http://localhost:4000/v1/auth/me", {
-      headers: {
-        Authorization: `Bearer ${localStorageData.token}`,
-      },
-    })
-      .then((res) => {
-        if (!res.ok) {
-          return res.text().then((text) => {
-            throw new Error(text);
-          });
-        } else {
-          return res.json();
-        }
-      })
-      .then((data) => {
-        console.log(data);
-        setUserData(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+export default memo(function AdminTopbar({
+  adminData,
+  adminNotifications,
+  seeNotification,
+}) {
+  const [showNotif, setShowNotfi] = useState(false);
+  const showNotifHandler = () => {
+    setShowNotfi(true);
+  };
+  const hideNotifHandler = () => {
+    setShowNotfi(false);
+  };
+  const seeNotif = (notifId) => {
+    seeNotification(notifId);
+  };
   return (
     <div className='container-fluid'>
       <div className='container'>
-        <div className='home-header'>
+        <div
+          className={`home-header ${
+            showNotif && "active-modal-notfication"
+          }  `}>
           <div className='home-right'>
             <div className='home-searchbar'>
               <input
@@ -39,41 +31,40 @@ export default memo(function AdminTopbar() {
                 placeholder='جستجو...'
               />
             </div>
-            <div className='home-notification'>
-              <button type='button'>
+            <div className='home-notification '>
+              <button type='button' onMouseEnter={showNotifHandler}>
                 <i className='far fa-bell'></i>
               </button>
             </div>
-            <div className='home-notification-modal'>
-              <ul className='home-notification-modal-list'>
-                <li className='home-notification-modal-item'>
-                  <span className='home-notification-modal-text'>پیغام ها</span>
-                  <label className='switch'>
-                    <input type='checkbox' checked />
-                    <span className='slider round'></span>
-                  </label>
-                </li>
-                <li className='home-notification-modal-item'>
-                  <span className='home-notification-modal-text'>پیغام ها</span>
-                  <label className='switch'>
-                    <input type='checkbox' checked />
-                    <span className='slider round'></span>
-                  </label>
-                </li>
-                <li className='home-notification-modal-item'>
-                  <span className='home-notification-modal-text'>پیغام ها</span>
-                  <label className='switch'>
-                    <input type='checkbox' checked />
-                    <span className='slider round'></span>
-                  </label>
-                </li>
-                <li className='home-notification-modal-item'>
-                  <span className='home-notification-modal-text'>پیغام ها</span>
-                  <label className='switch'>
-                    <input type='checkbox' checked />
-                    <span className='slider round'></span>
-                  </label>
-                </li>
+            <div
+              className='home-notification-modal '
+              onMouseLeave={hideNotifHandler}
+              onMouseEnter={showNotifHandler}>
+              <ul className='home-notification-modal-list '>
+                {adminNotifications.length ? (
+                  <>
+                    {adminNotifications.map((notif) => (
+                      <li
+                        key={notif._id}
+                        className='home-notification-modal-item'>
+                        <span className='home-notification-modal-text'>
+                          {notif.msg}
+                        </span>
+                        <Button
+                          className=' border-0 bg-transparent p-2'
+                          onClick={() => seeNotif(notif._id)}>
+                          دیدم
+                        </Button>
+                      </li>
+                    ))}
+                  </>
+                ) : (
+                  <li className='home-notification-modal-item'>
+                    <span className='home-notification-modal-text'>
+                      پیام جدیدی ندارید
+                    </span>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
@@ -81,11 +72,11 @@ export default memo(function AdminTopbar() {
             <div className='home-profile'>
               <div className='home-profile-image'>
                 <Button to='/p-admin'>
-                  <img src={userData.profile} alt='' />
+                  <img src={adminData.profile} alt='' />
                 </Button>
               </div>
               <div className='home-profile-name'>
-                <Button to='/p-admin'>{userData.name}</Button>
+                <Button to='/p-admin'>{adminData.name}</Button>
               </div>
               <div className='home-profile-icon'>
                 <i className='fas fa-angle-down'></i>
