@@ -47,7 +47,7 @@ export default memo(function AdminTopbar({
                       <li
                         key={notif._id}
                         className='home-notification-modal-item'>
-                        <span className='home-notification-modal-text'>
+                        <span className='home-notification-modal-text bg-warning p-1'>
                           {notif.msg}
                         </span>
                         <Button
@@ -60,7 +60,7 @@ export default memo(function AdminTopbar({
                   </>
                 ) : (
                   <li className='home-notification-modal-item'>
-                    <span className='home-notification-modal-text'>
+                    <span className='home-notification-modal-text alert alert-warning w-100'>
                       پیام جدیدی ندارید
                     </span>
                   </li>

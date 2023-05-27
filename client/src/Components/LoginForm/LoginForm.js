@@ -58,8 +58,8 @@ export default function LoginForm() {
           title: "با موفقیت وارد شدید",
           icon: "success",
           button: "ورود به پنل کاربری",
-        }).then((value) => {
-          navigate("/");
+        }).then(() => {
+          navigate("/p-admin");
         });
       })
       .catch((err) => {
@@ -122,3 +122,4 @@ export default function LoginForm() {
     </form>
   );
 }
+s

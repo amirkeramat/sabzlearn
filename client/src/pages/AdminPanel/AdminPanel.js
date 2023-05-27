@@ -8,7 +8,7 @@ export default function AdminPanel() {
   const [adminData, setAdminData] = useState([]);
   const [isAllow, setIsAllow] = useState(false);
   const [adminNotifications, setAdminNotifications] = useState([]);
-  const [notifUpdate,setNotifUpdate] = useState(false)
+  const [notifUpdate, setNotifUpdate] = useState(false);
   useEffect(() => {
     let localStorageData = JSON.parse(localStorage.getItem("user"));
     fetch("http://localhost:4000/v1/auth/me", {
@@ -48,11 +48,11 @@ export default function AdminPanel() {
         Authorization: `Bearer ${localStorageData.token}`,
       },
     }).then((res) => {
-      if(res.ok){
-        setNotifUpdate(prv=>!prv)
+      if (res.ok) {
+        setNotifUpdate((prv) => !prv);
       }
     });
-  }
+  };
   if (!isAllow) {
     return <Error404 />;
   } else {
@@ -66,9 +66,12 @@ export default function AdminPanel() {
               adminNotifications={adminNotifications}
               seeNotification={seeNotification}
             />
+
+            <div class='container-fluid' id='home-content'>
+              <Outlet />
+            </div>
           </div>
         </div>
-        <Outlet />
       </>
     );
   }

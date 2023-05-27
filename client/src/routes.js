@@ -28,7 +28,7 @@ const routes = [
     element: <AdminPanel />,
     children: [
       {
-        path: "users",
+        path: "users/:pageNumber",
         element: <AdminUsers />,
       },
       {

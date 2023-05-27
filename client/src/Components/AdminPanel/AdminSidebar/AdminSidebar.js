@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "./AdminSidebar.css";
 import Button from "../../Form/Button/Button";
+import AuthContext from "../../../context/AuthContext";
+import swal from "sweetalert";
 export default function AdminSidebar() {
+  const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
+  const signOutHandler = () => {
+    authContext.logout();
+     swal({
+       title:"از حساب خود با موفقیت خارج شدید",
+       icon: "success",
+       button: "ورود به سایت",
+     }).then((value) => {
+       navigate("/login");
+     });
+  };
   return (
     <div id='sidebar' className='col-2'>
       <div className='sidebar-header'>
@@ -38,7 +53,7 @@ export default function AdminSidebar() {
             </Button>
           </li>
           <li>
-            <Button to='users'>
+            <Button to='users/1'>
               <span>کاربران</span>
             </Button>
           </li>
@@ -50,6 +65,11 @@ export default function AdminSidebar() {
           <li>
             <Button to='category'>
               <span>دسته‌بندی‌ها</span>
+            </Button>
+          </li>
+          <li>
+            <Button onClick={signOutHandler} to=''>
+              <span>خروج از حساب</span>
             </Button>
           </li>
         </ul>

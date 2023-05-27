@@ -59,6 +59,17 @@
     font-size: 15px;
 }
 
+#sidebar .sidebar-menu ul li button {
+    background-color: transparent;
+    border: none;
+    outline-style: none;
+    color: #8c90a0;
+    transition: all 0.2s ease;
+    display: block;
+    padding: 15px 25px;
+    font-size: 15px;
+}
+
 #sidebar .sidebar-menu ul li a:hover {
     color: #fff;
 }

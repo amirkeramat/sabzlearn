@@ -37,9 +37,23 @@ export default function RegisterForm() {
     })
       .then((res) => {
         if (!res.ok) {
-          return res.text().then((text) => {
-            throw new Error(text);
-          });
+          if (res.status === 409) {
+            swal({
+              title: "کاربری با ایمیل ثبت شده است وارد شوید",
+              icon: "error",
+              button: "ورود به سایت",
+            }).then(() => {
+              navigate("/login");
+            });
+          }else if(res.status === 403){
+             swal({
+               title: "شما از سایت بن شده اید و نمیتوانید ثبت نام انجام دهید با پشتیبانی ارتباط بگیرید",
+               icon: "error",
+               button: "ارتباط با ما",
+             }).then(() => {
+               navigate("/contact");
+             });
+          }
         } else {
           return res.json();
         }
@@ -55,12 +69,7 @@ export default function RegisterForm() {
         });
       })
       .catch((err) => {
-        console.log(err);
-        swal({
-          title: "نام کاربری یا ایمیل در سایت وجود دارد",
-          icon: "error",
-          button: "خروج",
-        });
+        console.log(JSON.parse(err));
       });
   };
 
