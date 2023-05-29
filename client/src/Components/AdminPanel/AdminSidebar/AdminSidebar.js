@@ -32,8 +32,8 @@ export default function AdminSidebar() {
       </div>
       <div className='sidebar-menu'>
         <ul>
-          <li className='active-menu'>
-            <Button to='/p-admin'>
+          <li >
+            <Button to='/'>
               <span>صفحه اصلی</span>
             </Button>
           </li>

@@ -1,0 +1,40 @@
+.home-content-edit .button-container button{
+border: 1px solid var(--primary-color);
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    width: 100px;
+    padding: 5px 1px;
+    border-radius: 10px;
+    transition: all .3s;
+}
+.home-content-edit .button-container button:hover{
+    border: 1px solid var(--primary-color);
+    background-color: var(--white-color);
+    color:var(--primary-color) ;
+}
+
+.home-content-edit .button-container{
+   width: 350px;
+}
+
+.home-content-edit .button-container button.active{
+
+    border: 1px solid var(--white-color);
+        background-color: var(--primary-color);
+        color: var(--white-color);
+}
+
+.home-content-edit .button-container .close-btn {
+    border: 1px solid red;
+    background-color: var(--white-color);
+    color: red;
+    width: 100px;
+    padding: 5px 1px;
+    border-radius: 10px;
+    transition: all .3s;
+}
+.home-content-edit .button-container .close-btn:hover {
+    border: 1px solid var(--white-color);
+        background-color: red;
+        color: var(--white-color);
+}
