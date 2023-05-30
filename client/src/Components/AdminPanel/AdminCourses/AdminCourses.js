@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../DataTable/DataTable";
 import Button from "../../Form/Button/Button";
+import AddEdit from "../AddEdit/AddEdit";
 export default function AdminCourses() {
   const [coursesData, setCoursesData] = useState([]);
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function AdminCourses() {
         }
       })
       .then((data) => {
+        console.log(data);
         setCoursesData(data);
       })
       .catch((err) => {
@@ -26,7 +28,10 @@ export default function AdminCourses() {
       });
   };
   return (
-    <div>
+    <>
+      <div className='home-content-edit'>
+        <AddEdit kind='course' getAllUser={getData} usersData={coursesData} />
+      </div>
       <DataTable title={"دوره ها"} count={coursesData.length}>
         <table className='table'>
           <thead>
@@ -73,6 +78,6 @@ export default function AdminCourses() {
           </tbody>
         </table>
       </DataTable>
-    </div>
+    </>
   );
 }

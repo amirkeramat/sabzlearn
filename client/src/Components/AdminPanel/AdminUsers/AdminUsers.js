@@ -5,11 +5,12 @@ import Button from "../../Form/Button/Button";
 import swal from "@sweetalert/with-react";
 import "./AdminUser.css";
 import AddEdit from "../AddEdit/AddEdit";
+
 export default function AdminUsers() {
   const [showUser, setShowUser] = useState([]);
   const [orderedUsers, setOrderedUsers] = useState([]);
   const [usersData, setUsersData] = useState([]);
-
+  
   useEffect(() => {
     getAllUser();
   }, []);
@@ -129,7 +130,7 @@ export default function AdminUsers() {
   return (
     <>
       <div className='home-content-edit'>
-        <AddEdit getAllUser={getAllUser} usersData={usersData} />
+        <AddEdit getAllUser={getAllUser} kind={"user"} usersData={usersData} />
       </div>
       <DataTable count={usersData.length} title='کاربران'>
         <table className='table'>

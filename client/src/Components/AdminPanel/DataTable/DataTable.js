@@ -10,7 +10,7 @@ export default function DataTable({ children, title, count }) {
           </span>
           <span className=' position-absolute start-0'>
             <span className='signup'>{count}</span>
-            :تعداد کاربران
+            :تعداد {title}
           </span>
         </div>
         <div className='home-content-users-table'>{children}</div>

@@ -1,9 +1,9 @@
 import React from "react";
 import swal from "@sweetalert/with-react";
 import { useForm } from "react-hook-form";
-import { registerSchema } from "../../../Validator/schema";
+import { registerSchema } from "../../../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-export default function Add({ getAllUser }) {
+export default function AddCourse({getAllUser}) {
   const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(registerSchema),
     mode: "all",
@@ -57,6 +57,7 @@ export default function Add({ getAllUser }) {
       })
       .catch((err) => {});
   };
+
   return (
     <form onSubmit={handleSubmit(fromSubmitHandler)} className='form'>
       <div className='col-6'>
@@ -65,8 +66,8 @@ export default function Add({ getAllUser }) {
           <input
             type='text'
             className=''
-            placeholder='لطفا نام و نام خانوادگی کاربر را وارد کنید...'
-            {...register("fullName")}
+            placeholder='نام دوره'
+            {...register("courseName")}
           />
           <span className='error-message text-danger'></span>
         </div>
@@ -74,60 +75,67 @@ export default function Add({ getAllUser }) {
       <div className='col-6'>
         <div className='family input'>
           <label className='input-title'>نام کاربری</label>
-          <input
-            type='text'
+          <textarea
+            type=''
             className=''
-            placeholder='لطفا نام کاربری را وارد کنید...'
-            {...register("username")}
+            placeholder='توضیحات دوره'
+            {...register("courseDescription")}
           />
           <span className='error-message text-danger'></span>
         </div>
       </div>
       <div className='col-6'>
         <div className='email input'>
-          <label className='input-title'>ایمیل</label>
+          <label className='input-title'>عکس دوره</label>
           <input
             type='text'
             className=''
-            placeholder='لطفا ایمیل کاربر را وارد کنید...'
-            {...register("email")}
+            placeholder='مسیر عکس دوره را وارد نمایید'
+            {...register("CourseCover")}
           />
           <span className='error-message text-danger'></span>
         </div>
       </div>
       <div className='col-6'>
         <div className='phone input'>
-          <label className='input-title'>شماره تلفن</label>
+          <label className='input-title'>لینک دوره</label>
           <input
             type='text'
             className=''
-            placeholder='لطفا شماره تلفن کاربر را وارد کنید...'
-            {...register("phone")}
+            placeholder='لینک دوره را وارد نمایید'
+            {...register("courseLink")}
           />
           <span className='error-message text-danger'></span>
         </div>
       </div>
       <div className='col-6'>
         <div className='password input'>
-          <label className='input-title'>رمز عبور</label>
+          <label className='input-title'>مبلغ دوره </label>
           <input
             type='text'
             className=''
-            placeholder='لطفا رمز عبور کاربر را وارد کنید...'
-            {...register("password")}
+            placeholder='مبلغ دوره را وارد نمایید'
+            {...register("coursePrice")}
           />
           <span className='error-message text-danger'></span>
         </div>
       </div>
       <div className='col-6'>
         <div className='password input'>
-          <label className='input-title'>تکرار رمز</label>
+          <label className='input-title'>وضعیت </label>
           <input
             type='text'
             className=''
-            placeholder='تکرار رمز عبور'
-            {...register("confirmPassword")}
+            placeholder='در حال برگذاری یا تمام شده؟'
+            {...register("courseStatue")}
           />
+          <span className='error-message text-danger'></span>
+        </div>
+      </div>
+      <div className='col-6'>
+        <div className='password input'>
+          <label className='input-title'>دسته بندی </label>
+          <select {...register("courseCategory")} name='' id=''></select>
           <span className='error-message text-danger'></span>
         </div>
       </div>

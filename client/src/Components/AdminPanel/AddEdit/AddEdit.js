@@ -1,12 +1,15 @@
-import { useState } from "react";
-import React from "react";
-import Add from "./Add";
-import Edit from "./Edit";
+import React, { useState } from "react";
+
 import Button from "../../Form/Button/Button";
-export default function AddEdit({ usersData ,getAllUser }) {
+import AddUser from "./AddUser/AddUser";
+import AddCategory from "./AddCategory/AddCategory";
+import AddCourse from "./AddCourse/AddCourse";
+import EditUser from "./EditUser/EditUser";
+import EditCourse from "./EditCourse/EditCourse";
+import EditCategory from "./EditCategory/EditCategory";
+export default function AddEdit({ kind, usersData, getAllUser }) {
   const [activeBtn, setActiveBtn] = useState("");
   const [showEditInput, setShowEditInput] = useState(false);
-
 
   const btnChangeHandler = (btnValue) => {
     setActiveBtn(btnValue);
@@ -22,12 +25,12 @@ export default function AddEdit({ usersData ,getAllUser }) {
         <Button
           className={`add-btn ${activeBtn === "add-btn" && "active"}`}
           onClick={() => btnChangeHandler("add-btn")}>
-          افزودن کاربر
+          افزودن
         </Button>
         <Button
           className={`edit-btn ${activeBtn === "edit-btn" && "active"}`}
           onClick={() => btnChangeHandler("edit-btn")}>
-          ویرایش کاربر
+          ویرایش
         </Button>
         {activeBtn !== "" && (
           <Button
@@ -37,9 +40,31 @@ export default function AddEdit({ usersData ,getAllUser }) {
           </Button>
         )}
       </div>
-      {activeBtn === "add-btn" && <Add getAllUser={getAllUser} />}
-      {activeBtn === "edit-btn" && (
-        <Edit
+      {activeBtn === "add-btn" && kind === "user" && (
+        <AddUser getAllUser={getAllUser} />
+      )}
+      {activeBtn === "edit-btn" && kind === "user" && (
+        <EditUser
+          showEditInput={showEditInput}
+          setShowEditInput={setShowEditInput}
+          usersData={usersData}
+        />
+      )}
+      {activeBtn === "add-btn" && kind === "course" && (
+        <AddCourse getAllUser={getAllUser} />
+      )}
+      {activeBtn === "edit-btn" && kind === "course" && (
+        <EditCourse
+          showEditInput={showEditInput}
+          setShowEditInput={setShowEditInput}
+          usersData={usersData}
+        />
+      )}
+      {activeBtn === "add-btn" && kind === "category" && (
+        <AddCategory getAllUser={getAllUser} />
+      )}
+      {activeBtn === "edit-btn" && kind === "category" && (
+        <EditCategory
           showEditInput={showEditInput}
           setShowEditInput={setShowEditInput}
           usersData={usersData}

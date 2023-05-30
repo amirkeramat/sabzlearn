@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import swal from "@sweetalert/with-react";
 import { useForm } from "react-hook-form";
-import { EditUserSchema } from "../../../Validator/schema";
+import { EditUserSchema } from "../../../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import SearchBox from "../../searchBox/SearchBox";
-
-export default function Edit({ usersData, showEditInput, setShowEditInput }) {
+import SearchBox from "../../../searchBox/SearchBox";
+export default function EditUser({
+  usersData,
+  showEditInput,
+  setShowEditInput,
+}) {
   const [editedUserID, setEditedUserID] = useState(null);
   const [searchedUser, setSearchedUser] = useState([]);
   const {
@@ -25,8 +28,6 @@ export default function Edit({ usersData, showEditInput, setShowEditInput }) {
       username: data.username,
       email: data.email,
       phone: data.phone,
-      // password: data.password,
-      // confirmPassword: data.confirmPassword,
     };
     fetch(`http://localhost:4000/v1/users/${editedUserID}`, {
       method: "PUT",
@@ -169,30 +170,6 @@ export default function Edit({ usersData, showEditInput, setShowEditInput }) {
               <span className='error-message text-danger'></span>
             </div>
           </div>
-          {/* <div className='col-6'>
-                  <div className='password input'>
-                    <label className='input-title'>رمز عبور</label>
-                    <input
-                      type='password'
-                      className=''
-                      placeholder='لطفا رمز عبور کاربر را وارد کنید...'
-                      {...register("password")}
-                    />
-                    <span className='error-message text-danger'></span>
-                  </div>
-                </div>
-                <div className='col-6'>
-                  <div className='password input'>
-                    <label className='input-title'>تکرار رمز</label>
-                    <input
-                      type='password'
-                      className=''
-                      placeholder='تکرار رمز عبور'
-                      {...register("confirmPassword")}
-                    />
-                    <span className='error-message text-danger'></span>
-                  </div>
-                </div> */}
           <div className='col-12'>
             <div className='bottom-form'>
               <div className='submit-btn'>

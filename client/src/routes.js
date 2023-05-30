@@ -12,6 +12,7 @@ import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import AdminUsers from "./Components/AdminPanel/AdminUsers/AdminUsers";
 import AdminCourses from "./Components/AdminPanel/AdminCourses/AdminCourses";
 import AdminArticles from "./Components/AdminPanel/AdminArticles/AdminArticles";
+import AdminCategory from "./Components/AdminPanel/AdminCategory/AdminCategory";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/course-info/:courseName", element: <CourseInfo /> },
@@ -38,6 +39,10 @@ const routes = [
       {
         path: "courses",
         element: <AdminCourses />,
+      },
+      {
+        path: "category",
+        element: <AdminCategory />,
       },
     ],
   },
