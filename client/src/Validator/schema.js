@@ -16,6 +16,15 @@ const registerSchema = yup.object().shape({
     .oneOf([yup.ref("password"), null], "password not same")
     .required("confirm your password"),
 });
+const EditUserSchema = yup.object().shape({
+  fullName: yup.string().required("Name is required").min(8).max(20),
+  username: yup.string().required("username is required").min(8).max(30),
+  email: yup.string().email().required("password is required"),
+  phone: yup
+    .string()
+    .matches(phoneNumberRegex, "not a valid phone number")
+    .required("phone number is required"),
+});
 const loginSchema = yup.object().shape({
   username: yup.string().required("username is required").min(8).max(30),
   password: yup.string().min(8).max(20).required("password is required"),
@@ -53,4 +62,5 @@ export {
   searchSchema,
   contactSchema,
   newsLetterSchema,
+  EditUserSchema,
 };

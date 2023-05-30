@@ -153,7 +153,11 @@ export default function Sortbar({
       </div>
 
       <div className='courses-top-bar__left'>
-        <SearchBox allData={allData} setData={setOrderedData} />
+        <SearchBox
+          placeHolder='جستجوی دوره ...'
+          allData={allData}
+          setData={setOrderedData}
+        />
       </div>
     </div>
   );

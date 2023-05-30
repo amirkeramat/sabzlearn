@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import AdminSidebar from "../../Components/AdminPanel/AdminSidebar/AdminSidebar";
 import AdminTopbar from "../../Components/AdminPanel/AdminTopbar/AdminTopbar";
@@ -6,7 +6,7 @@ import Error404 from "../../Components/Error404/Error404";
 import "./AdminPanel.css";
 export default function AdminPanel() {
   const [adminData, setAdminData] = useState([]);
-  const [isAllow, setIsAllow] = useState(false);
+  const [isAllow, setIsAllow] = useState(null);
   const [adminNotifications, setAdminNotifications] = useState([]);
   const [notifUpdate, setNotifUpdate] = useState(false);
   useEffect(() => {
@@ -26,7 +26,6 @@ export default function AdminPanel() {
         }
       })
       .then((data) => {
-        console.log(data);
         if (data.role === "ADMIN") {
           setIsAllow(true);
           setAdminData(data);
@@ -53,6 +52,15 @@ export default function AdminPanel() {
       }
     });
   };
+  if (isAllow === null) {
+    return (
+      <div className='d-flex justify-content-center align-items-center bg-dark text-white position-absolute top-0 start-0 end-0 bottom-0'>
+        <div>
+          ...Loading...
+        </div>
+      </div>
+    );
+  }
   if (!isAllow) {
     return <Error404 />;
   } else {
@@ -67,7 +75,7 @@ export default function AdminPanel() {
               seeNotification={seeNotification}
             />
 
-            <div class='container-fluid' id='home-content'>
+            <div className='container-fluid' id='home-content'>
               <Outlet />
             </div>
           </div>

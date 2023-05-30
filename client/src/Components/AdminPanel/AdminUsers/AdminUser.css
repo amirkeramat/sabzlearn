@@ -38,3 +38,12 @@ border: 1px solid var(--primary-color);
         background-color: red;
         color: var(--white-color);
 }
+
+.search-list li{
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+}
+.search-list li:hover{
+    background-color: rgb(152, 152, 152) !important;
+}

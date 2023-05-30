@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { searchSchema } from "../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-export default function SearchBox({ setData, allData }) {
+export default function SearchBox({ setData, allData,placeHolder }) {
   const { register, handleSubmit } = useForm({
     resolver: yupResolver(searchSchema),
     mode: "onSubmit",
@@ -13,6 +13,7 @@ export default function SearchBox({ setData, allData }) {
     );
     setData(newData);
     value.searchValue = "";
+    console.log(newData);
   };
   return (
     <form
@@ -23,7 +24,7 @@ export default function SearchBox({ setData, allData }) {
         element='input'
         type='text'
         className='courses-top-bar__input'
-        placeholder='جستجوی دوره ...'
+        placeholder={placeHolder}
         {...register("searchValue")}
       />
       <button type='submit' className='courses-top-bar__search-icon'>
