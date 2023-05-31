@@ -7,7 +7,7 @@ import AddCourse from "./AddCourse/AddCourse";
 import EditUser from "./EditUser/EditUser";
 import EditCourse from "./EditCourse/EditCourse";
 import EditCategory from "./EditCategory/EditCategory";
-export default function AddEdit({ kind, usersData, getAllUser }) {
+export default function AddEdit({ kind, usersData, getAllData }) {
   const [activeBtn, setActiveBtn] = useState("");
   const [showEditInput, setShowEditInput] = useState(false);
 
@@ -41,7 +41,7 @@ export default function AddEdit({ kind, usersData, getAllUser }) {
         )}
       </div>
       {activeBtn === "add-btn" && kind === "user" && (
-        <AddUser getAllUser={getAllUser} />
+        <AddUser getAllData={getAllData} />
       )}
       {activeBtn === "edit-btn" && kind === "user" && (
         <EditUser
@@ -51,17 +51,18 @@ export default function AddEdit({ kind, usersData, getAllUser }) {
         />
       )}
       {activeBtn === "add-btn" && kind === "course" && (
-        <AddCourse getAllUser={getAllUser} />
+        <AddCourse getAllData={getAllData} />
       )}
       {activeBtn === "edit-btn" && kind === "course" && (
         <EditCourse
           showEditInput={showEditInput}
           setShowEditInput={setShowEditInput}
           usersData={usersData}
+          getAllData={getAllData}
         />
       )}
       {activeBtn === "add-btn" && kind === "category" && (
-        <AddCategory getAllUser={getAllUser} />
+        <AddCategory getAllData={getAllData} />
       )}
       {activeBtn === "edit-btn" && kind === "category" && (
         <EditCategory

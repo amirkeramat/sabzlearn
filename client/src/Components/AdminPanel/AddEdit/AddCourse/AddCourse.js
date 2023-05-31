@@ -3,7 +3,7 @@ import swal from "@sweetalert/with-react";
 import { useForm } from "react-hook-form";
 import { CourseSchema } from "../../../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-export default function AddCourse({ getAllUser }) {
+export default function AddCourse({ getAllData }) {
   const [categoryDatas, setCategoryDatas] = useState([]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function AddCourse({ getAllUser }) {
       headers: {
         Authorization: `Bearer ${localStorageData.token}`,
       },
-      body:formData,
+      body: formData,
     })
       .then((res) => {
         if (!res.ok) {
@@ -59,16 +59,15 @@ export default function AddCourse({ getAllUser }) {
           return res.json();
         }
       })
-      .then((result) => {
-        getAllUser();
-        reset();
+      .then((result) => {       
         swal({
           title: "دوره با موفقیت ساخته شد",
           icon: "success",
           button: "خروج",
-        }).then(()=>{
-          getAllUser()
-        })
+        }).then(() => {
+          getAllData();
+           reset();
+        });
       })
       .catch((err) => {
         console.log(err);

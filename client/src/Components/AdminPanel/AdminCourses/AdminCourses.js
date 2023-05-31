@@ -3,8 +3,12 @@ import DataTable from "../DataTable/DataTable";
 import Button from "../../Form/Button/Button";
 import AddEdit from "../AddEdit/AddEdit";
 import swal from "@sweetalert/with-react";
+import Pagination from "../../Pgination/Pagination";
+
 export default function AdminCourses() {
   const [coursesData, setCoursesData] = useState([]);
+  const [showCourse, setShowCourse] = useState([]);
+  const [orderedCourses, setOrderedCourses] = useState([]);
   useEffect(() => {
     getData();
   }, []);
@@ -22,6 +26,7 @@ export default function AdminCourses() {
       })
       .then((data) => {
         setCoursesData(data);
+        setOrderedCourses(data)
       })
       .catch((err) => {
         console.log(err);
@@ -69,7 +74,7 @@ export default function AdminCourses() {
   return (
     <>
       <div className='home-content-edit'>
-        <AddEdit kind='course' getAllUser={getData} usersData={coursesData} />
+        <AddEdit kind='course' getAllData={getData} usersData={coursesData} />
       </div>
       <DataTable title={"دوره ها"} count={coursesData.length}>
         <table className='table'>
@@ -86,7 +91,7 @@ export default function AdminCourses() {
             </tr>
           </thead>
           <tbody>
-            {coursesData.map((courseData, index) => (
+            {showCourse.map((courseData, index) => (
               <tr key={courseData._id}>
                 <td>{index + 1}</td>
                 <td>{courseData.name}</td>
@@ -121,6 +126,12 @@ export default function AdminCourses() {
           </tbody>
         </table>
       </DataTable>
+      <Pagination
+        items={orderedCourses}
+        itemCount={5}
+        pathName={`/p-admin/courses`}
+        setShow={setShowCourse}
+      />
     </>
   );
 }

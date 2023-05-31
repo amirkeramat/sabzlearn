@@ -5,12 +5,14 @@ import Button from "../../Form/Button/Button";
 import swal from "@sweetalert/with-react";
 import "./AdminUser.css";
 import AddEdit from "../AddEdit/AddEdit";
+import { date } from "yup";
 
 export default function AdminUsers() {
   const [showUser, setShowUser] = useState([]);
   const [orderedUsers, setOrderedUsers] = useState([]);
   const [usersData, setUsersData] = useState([]);
-  
+  const [itemCount] = useState(2)
+  const [dataCount,setDataCount] = useState(null)
   useEffect(() => {
     getAllUser();
   }, []);
@@ -37,10 +39,12 @@ export default function AdminUsers() {
       .then((data) => {
         setUsersData(data);
         setOrderedUsers(data);
+        setDataCount(data.length)
       })
       .catch((err) => {
         console.log(err);
       });
+      
   };
 
   // delete user from backend //
@@ -64,8 +68,9 @@ export default function AdminUsers() {
             swal("کاربر مورد نظر با موفقیت حذف گردید", {
               icon: "success",
               buttons: "خروج",
+            }).then(() => {
+              getAllUser();
             });
-            getAllUser();
           } else {
             swal("مشکلی پیش امده دوباره تلاش کنید", {
               icon: "Error",
@@ -130,7 +135,7 @@ export default function AdminUsers() {
   return (
     <>
       <div className='home-content-edit'>
-        <AddEdit getAllUser={getAllUser} kind={"user"} usersData={usersData} />
+        <AddEdit getAllData={getAllUser} kind={"user"} usersData={usersData} />
       </div>
       <DataTable count={usersData.length} title='کاربران'>
         <table className='table'>
@@ -175,9 +180,9 @@ export default function AdminUsers() {
       </DataTable>
       <Pagination
         items={orderedUsers}
-        itemCount={5}
+        itemCount={itemCount}
         pathName={`/p-admin/users`}
-        setShowCourse={setShowUser}
+        setShow={setShowUser}
       />
     </>
   );

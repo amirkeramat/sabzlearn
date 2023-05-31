@@ -8,6 +8,7 @@ export default function EditCourse({
   usersData,
   showEditInput,
   setShowEditInput,
+  getAllData,
 }) {
   useEffect(() => {
     getCategory();
@@ -27,12 +28,8 @@ export default function EditCourse({
   };
   const [searchedCourse, setSearchedCourse] = useState([]);
   const [categoryDatas, setCategoryDatas] = useState([]);
-  const [editedCourseID,SetEditedCourseID] = useState();
-  const {
-    register,
-    handleSubmit,
-    setValue,
-  } = useForm({
+  const [editedCourseID, SetEditedCourseID] = useState();
+  const { register, handleSubmit, setValue } = useForm({
     resolver: yupResolver(CourseSchema),
     mode: "all",
   });
@@ -40,7 +37,7 @@ export default function EditCourse({
     let localStorageData = JSON.parse(localStorage.getItem("user"));
     let EditedCategoryIDd = categoryDatas.find(
       (category) => category.title === data.categoryID
-    )
+    );
     const editedData = {
       name: data.courseName,
       description: data.courseDescription,
@@ -48,13 +45,15 @@ export default function EditCourse({
       shortName: data.courseLink,
       price: data.coursePrice,
       status: data.courseStatus,
-      categoryID: EditedCategoryIDd._id
+      categoryID: EditedCategoryIDd._id,
     };
 
-
-    fetch(`http://localhost:4000/v1/users/${editedCourseID}`, {
+    fetch(`http://localhost:4000/v1/courses/${editedCourseID}`, {
       method: "PUT",
-      headers: { Authorization: `Bearer ${localStorageData.token}` },
+      headers: {
+        Authorization: `Bearer ${localStorageData.token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(editedData),
     })
       .then((res) => {
@@ -68,9 +67,11 @@ export default function EditCourse({
       })
       .then((response) => {
         swal({
-          title: "کاربر با موفقیت ویرایش شد",
+          title: "دوره مورد نظر با موفقیت ویرایش شد",
           icon: "success",
           button: "خروج",
+        }).then(() => {
+          getAllData();
         });
       })
       .catch((err) => {

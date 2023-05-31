@@ -37,7 +37,7 @@ const routes = [
         element: <AdminArticles />,
       },
       {
-        path: "courses",
+        path: "courses/:pageNumber",
         element: <AdminCourses />,
       },
       {

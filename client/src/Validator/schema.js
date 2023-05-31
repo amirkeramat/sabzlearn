@@ -37,7 +37,8 @@ const CourseSchema = yup.object().shape({
   categoryID: yup.string().required("required"),
 });
 const CategorySchema = yup.object().shape({
-  categoryName: yup.string().required("required").min(8),
+  categoryName: yup.string().required("required").min(5),
+  categoryLink: yup.string().required("required").min(5),
 });
 
 const loginSchema = yup.object().shape({

@@ -8,7 +8,7 @@ export default function DataTable({ children, title, count }) {
           <span>
             لیست <span className='signup'>{title}</span>
           </span>
-          <span className=' position-absolute start-0'>
+          <span className=' position-absolute start-0 ms-4'>
             <span className='signup'>{count}</span>
             :تعداد {title}
           </span>

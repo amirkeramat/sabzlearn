@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "../DataTable/DataTable";
 import Button from "../../Form/Button/Button";
 import AddEdit from "../AddEdit/AddEdit";
+import swal from "@sweetalert/with-react";
 export default function AdminCategory() {
   const [categoryDatas, setCategoryDatas] = useState([]);
   useEffect(() => {
@@ -20,12 +21,51 @@ export default function AdminCategory() {
         setCategoryDatas(data);
       });
   };
+
+  const deleteCategoryHandler = (courseID) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    swal({
+      title: "",
+      text: "آیا از حذف دسته بندی اطمینان دارید؟",
+      icon: "warning",
+      buttons: ["خیر", "بله"],
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`http://localhost:4000/v1/category/${courseID}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        }).then((res) => {
+          if (res.ok) {
+            swal("دسته بندی مورد نظر با موفقیت حذف گردید", {
+              icon: "success",
+              buttons: "خروج",
+            }).then(() => {
+              getCategory();
+            });
+          } else {
+            swal("مشکلی پیش امده دوباره تلاش کنید", {
+              icon: "Error",
+              buttons: "خروج",
+            });
+          }
+        });
+      } else {
+        swal("حذف لغو شد !", {
+          icon: "warning",
+          buttons: "خروج",
+        });
+      }
+    });
+  };
   return (
     <>
       <div className='home-content-edit'>
         <AddEdit
           kind='category'
-          getAllUser={getCategory}
+          getAllData={getCategory}
           usersData={categoryDatas}
         />
       </div>
@@ -47,7 +87,11 @@ export default function AdminCategory() {
                     <td>{index + 1}</td>
                     <td>{categoryData.title}</td>
                     <td>
-                      <Button className='btn btn-danger'>حذف</Button>
+                      <Button
+                        onClick={() => deleteCategoryHandler(categoryData._id)}
+                        className='btn btn-danger'>
+                        حذف
+                      </Button>
                     </td>
                   </tr>
                 ))}

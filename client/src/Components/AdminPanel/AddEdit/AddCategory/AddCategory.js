@@ -1,35 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import swal from "@sweetalert/with-react";
 import { useForm } from "react-hook-form";
-import { registerSchema } from "../../../../Validator/schema";
+import { CategorySchema } from "../../../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-export default function AddCategory({ getAllUser }) {
-
-
-  useEffect(()=>{
-    
-  },[])
-
-
-  const getCategoryData = ()=>{
-    fetch()
-  }
-
-
-
+export default function AddCategory({ getAllData }) {
   const { register, handleSubmit, reset } = useForm({
-    resolver: yupResolver(registerSchema),
+    resolver: yupResolver(CategorySchema),
     mode: "all",
   });
 
   const fromSubmitHandler = (data) => {
+    let localStorageData = JSON.parse(localStorage.getItem("user"));
     const newCategory = {
       title: data.categoryName,
       name: data.categoryLink,
     };
-    fetch("http://localhost:4000/v1/auth/register", {
+    console.log(data);
+    fetch("http://localhost:4000/v1/category", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${localStorageData.token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(newCategory),
     })
       .then((res) => {
@@ -47,15 +39,18 @@ export default function AddCategory({ getAllUser }) {
         }
       })
       .then((result) => {
-        getAllUser();
         reset();
         swal({
           title: "دسته بندی جدید با موفقیت اضافه شد",
           icon: "success",
           button: "خروج",
+        }).then(() => {
+          getAllData();
         });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <form onSubmit={handleSubmit(fromSubmitHandler)} className='form'>

@@ -38,7 +38,7 @@ export default function AdminSidebar() {
             </Button>
           </li>
           <li>
-            <Button to='courses'>
+            <Button to='courses/1'>
               <span>دوره ها</span>
             </Button>
           </li>

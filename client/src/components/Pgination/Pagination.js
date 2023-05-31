@@ -1,24 +1,37 @@
 import React, { useEffect, useState } from "react";
 import "./Pagination.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Button from "../Form/Button/Button";
-export default function Pagination({
-  items,
-  itemCount,
-  pathName,
-  setShowCourse,
-}) {
+export default function Pagination({ items, itemCount, pathName, setShow }) {
   const [pageCount, setPageCount] = useState(null);
   const { pageNumber } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     let endIndex = itemCount * pageNumber;
     let startIndex = endIndex - itemCount;
     let paginatedItems = items.slice(startIndex, endIndex);
-    setShowCourse(paginatedItems);
+    setShow(paginatedItems);
 
     let pagesNumber = Math.ceil(items.length / itemCount);
     setPageCount(pagesNumber);
   }, [pageNumber, items]);
+
+  const backClickHandler = () => {
+    if (Number(pageNumber) === 1) {
+      navigate(`${pathName}/${1}`);
+    } else {
+      navigate(`${pathName}/${Number(pageNumber) - 1}`);
+    }
+   
+  };
+  const forwardClickHandler = ()=>{
+ if (Number(pageNumber) === pageCount) {
+   navigate(`${pathName}/${Number(pageNumber)}`);
+ } else {
+   navigate(`${pathName}/${Number(pageNumber) + 1}`);
+ }
+  }
+
   return (
     <>
       {items.length ? (
@@ -26,7 +39,7 @@ export default function Pagination({
           <ul className='courses__pagination-list'>
             <li className='courses__pagination-item'>
               <Button
-                to={`${pathName}/${Number(pageNumber) - 1}`}
+                onClick={backClickHandler}
                 className='courses__pagination-link'>
                 <i className='fas fa-long-arrow-alt-right courses__pagination-icon'></i>
               </Button>
@@ -48,7 +61,7 @@ export default function Pagination({
               ))}
             <li className='courses__pagination-item'>
               <Button
-                to={`${pathName}/${Number(pageNumber) + 1}`}
+                onClick={forwardClickHandler}
                 className='courses__pagination-link'>
                 <i className='fas fa-long-arrow-alt-left courses__pagination-icon'></i>
               </Button>
