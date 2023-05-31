@@ -1,43 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import swal from "@sweetalert/with-react";
 import { useForm } from "react-hook-form";
-import { registerSchema } from '../../../../Validator/schema';
+import { registerSchema } from "../../../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 export default function AddCategory({ getAllUser }) {
+
+
+  useEffect(()=>{
+    
+  },[])
+
+
+  const getCategoryData = ()=>{
+    fetch()
+  }
+
+
+
   const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(registerSchema),
     mode: "all",
   });
 
   const fromSubmitHandler = (data) => {
-    const newUser = {
-      name: data.fullName,
-      username: data.username,
-      email: data.email,
-      password: data.password,
-      confirmPassword: data.confirmPassword,
-      phone: data.phone,
+    const newCategory = {
+      title: data.categoryName,
+      name: data.categoryLink,
     };
     fetch("http://localhost:4000/v1/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newUser),
+      body: JSON.stringify(newCategory),
     })
       .then((res) => {
         if (!res.ok) {
-          if (res.status === 409) {
-            swal({
-              title: "نام کاربری یا ایمیل تکراری است",
-              icon: "error",
-              button: "خروج",
-            });
-          } else if (res.status === 403) {
-            swal({
-              title: "این شماره تماس مسدود شده است به پشتیبانی پیام دهید",
-              icon: "error",
-              button: "خروج",
-            });
-          }
+          swal({
+            title: "مشکلی پیش آمده دوباره سعی کنید",
+            icon: "error",
+            button: "خروج",
+          });
           return res.text().then((text) => {
             throw new Error(text);
           });
@@ -50,7 +51,7 @@ export default function AddCategory({ getAllUser }) {
         getAllUser();
         reset();
         swal({
-          title: "کاربر با موفقیت ساخته شد",
+          title: "دسته بندی جدید با موفقیت اضافه شد",
           icon: "success",
           button: "خروج",
         });
@@ -61,12 +62,24 @@ export default function AddCategory({ getAllUser }) {
     <form onSubmit={handleSubmit(fromSubmitHandler)} className='form'>
       <div className='col-6'>
         <div className='name input'>
-          <label className='input-title'>نام و نام خانوادگی</label>
+          <label className='input-title'>عنوان دسته بندی</label>
           <input
             type='text'
             className=''
-            placeholder='لطفا نام و نام خانوادگی کاربر را وارد کنید...'
-            {...register("fullName")}
+            placeholder='عنوان دسته بندی را وارد نمایید'
+            {...register("categoryName")}
+          />
+          <span className='error-message text-danger'></span>
+        </div>
+      </div>
+      <div className='col-6'>
+        <div className='name input'>
+          <label className='input-title'>لینک دسته بندی</label>
+          <input
+            type='text'
+            className=''
+            placeholder='لینک دسته بندی را وارد نمایید'
+            {...register("categoryLink")}
           />
           <span className='error-message text-danger'></span>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import swal from "@sweetalert/with-react";
 import { useForm } from "react-hook-form";
 import { CourseSchema } from "../../../../Validator/schema";
@@ -9,8 +9,27 @@ export default function EditCourse({
   showEditInput,
   setShowEditInput,
 }) {
-  const [editedCourseID, setEditedCourseID] = useState(null);
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  const getCategory = () => {
+    fetch("http://localhost:4000/v1/category")
+      .then((res) => {
+        if (!res.ok) {
+          console.log(res.ok());
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        setCategoryDatas(data);
+      });
+  };
   const [searchedCourse, setSearchedCourse] = useState([]);
+  const [categoryDatas, setCategoryDatas] = useState([]);
+  const [categoryID, setCategoryID] = useState(null);
   const {
     register,
     handleSubmit,
@@ -21,8 +40,7 @@ export default function EditCourse({
     mode: "all",
   });
   const editUserHandler = (data) => {
-    console.log(data);
-    let localStorageData = JSON.parse(localStorage.getItem("user"));
+    // let localStorageData = JSON.parse(localStorage.getItem("user"));
     const editedData = {
       name: data.courseName,
       description: data.courseDescription,
@@ -30,34 +48,38 @@ export default function EditCourse({
       shortName: data.courseLink,
       price: data.coursePrice,
       status: data.courseStatus,
-      categoryId: data.courseCategory,
+      categoryID: data.categoryID
     };
-    fetch(`http://localhost:4000/v1/users/${editedCourseID}`, {
-      method: "PUT",
-      headers: { Authorization: `Bearer ${localStorageData.token}` },
-      body: JSON.stringify(editedData),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          console.log(res);
-          return res.text().then((text) => {
-            throw new Error(text);
-          });
-        } else {
-          return res.json();
-        }
-      })
-      .then((response) => {
-        swal({
-          title: "کاربر با موفقیت ویرایش شد",
-          icon: "success",
-          button: "خروج",
-        });
-        editReset();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(editedData);
+    console.log(data);
+
+    // console.log(data);
+    // fetch(`http://localhost:4000/v1/users/${editedCourseID}`, {
+    //   method: "PUT",
+    //   headers: { Authorization: `Bearer ${localStorageData.token}` },
+    //   body: JSON.stringify(editedData),
+    // })
+    //   .then((res) => {
+    //     if (!res.ok) {
+    //       console.log(res);
+    //       return res.text().then((text) => {
+    //         throw new Error(text);
+    //       });
+    //     } else {
+    //       return res.json();
+    //     }
+    //   })
+    //   .then((response) => {
+    //     swal({
+    //       title: "کاربر با موفقیت ویرایش شد",
+    //       icon: "success",
+    //       button: "خروج",
+    //     });
+    //     editReset();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   const setValueGenerator = (data) => {
@@ -71,17 +93,18 @@ export default function EditCourse({
     setValue("courseStatus", data.status, {
       shouldValidate: true,
     });
-    setValue("courseCategory", data.categoryID.title, {
+    setValue("categoryID", data.categoryID._Id, {
+      shouldValidate: true,
+    });
+    setValue("category", data.categoryID.title, {
       shouldValidate: true,
     });
   };
   const selectUserHandler = (event) => {
-    console.log(event.target.value);
     let filteredData = usersData.filter(
       (userData) => userData.name === event.target.value
     );
     if (filteredData.length) {
-      setEditedCourseID(filteredData[0]._id);
       setShowEditInput(true);
     }
     setValueGenerator(filteredData[0]);
@@ -91,10 +114,10 @@ export default function EditCourse({
     <>
       <div className=''>
         <div className='m-4'>
-          <label htmlFor='user-select'>انتخاب کاربر:</label>
+          <label htmlFor='user-select'>انتخاب دوره:</label>
           <select onChange={selectUserHandler} name='' id='user-select'>
-            <option selected disabled value='کاربر را انخاب نمایید'>
-              کاربر را انخاب نماید
+            <option selected disabled>
+              دوره مورد نظر را انخاب نماید
             </option>
             {usersData.map((userData) => (
               <option key={userData._id}>{userData.name}</option>
@@ -104,7 +127,7 @@ export default function EditCourse({
         <div className='m-4'>
           <div className='d-flex align-items-center w-full'>
             <SearchBox
-              placeHolder={"جست جوی کاربر"}
+              placeHolder={"جست و جوی دوره"}
               allData={usersData}
               setData={setSearchedCourse}
             />
@@ -191,13 +214,35 @@ export default function EditCourse({
               <span className='error-message text-danger'></span>
             </div>
           </div>
-          <div className='col-6'>
+          <div className='col-3'>
             <div className='password input'>
-              <label className='input-title'>دسته بندی </label>
-              <select {...register("courseCategory")} name='' id=''></select>
+              <label className='input-title'>دسته بندی فعلی</label>
+              <input
+                disabled
+                {...register("category")}
+                type='text'
+                name=''
+                id=''
+              />
               <span className='error-message text-danger'></span>
             </div>
           </div>
+          <div className='col-3'>
+            <div className='password input'>
+              <label className='input-title'>تغییر دسته بندی</label>
+              <select {...register("categoryID")}>
+                <>
+                  {categoryDatas.map((categoryData) => (
+                    <option key={categoryData._id} value={categoryData._id}>
+                      {categoryData.title}
+                    </option>
+                  ))}
+                </>
+              </select>
+              <span className='error-message text-danger'></span>
+            </div>
+          </div>
+
           <div className='col-12'>
             <div className='family input'>
               <label className='input-title'>توضیحات</label>
@@ -213,7 +258,7 @@ export default function EditCourse({
           <div className='col-12'>
             <div className='bottom-form'>
               <div className='submit-btn'>
-                <input type='submit' value='افزودن' />
+                <input type='submit' value='ویرایش' />
               </div>
             </div>
           </div>

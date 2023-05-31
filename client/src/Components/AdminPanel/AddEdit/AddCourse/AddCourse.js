@@ -1,43 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import swal from "@sweetalert/with-react";
 import { useForm } from "react-hook-form";
-import { registerSchema } from "../../../../Validator/schema";
+import { CourseSchema } from "../../../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-export default function AddCourse({getAllUser}) {
-  const { register, handleSubmit, reset } = useForm({
-    resolver: yupResolver(registerSchema),
+export default function AddCourse({ getAllUser }) {
+  const [categoryDatas, setCategoryDatas] = useState([]);
+
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  const getCategory = () => {
+    fetch("http://localhost:4000/v1/category")
+      .then((res) => {
+        if (!res.ok) {
+          console.log(res.ok());
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        setCategoryDatas(data);
+      });
+  };
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(CourseSchema),
     mode: "all",
   });
 
   const fromSubmitHandler = (data) => {
-    const newUser = {
-      name: data.fullName,
-      username: data.username,
-      email: data.email,
-      password: data.password,
-      confirmPassword: data.confirmPassword,
-      phone: data.phone,
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const newCourse = {
+      name: data.courseName,
+      description: data.courseDescription,
+      cover: data.courseCover,
+      shortName: data.courseLink,
+      price: data.coursePrice,
+      status: data.courseStatus,
+      categoryID: data.categoryID,
     };
-    fetch("http://localhost:4000/v1/auth/register", {
+    console.log(data);
+    fetch("http://localhost:4000/v1/courses", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newUser),
+      headers: {
+        Authorization: `Bearer ${localStorageData.token}`,
+      },
+      body: JSON.stringify(newCourse),
     })
       .then((res) => {
         if (!res.ok) {
-          if (res.status === 409) {
-            swal({
-              title: "نام کاربری یا ایمیل تکراری است",
-              icon: "error",
-              button: "خروج",
-            });
-          } else if (res.status === 403) {
-            swal({
-              title: "این شماره تماس مسدود شده است به پشتیبانی پیام دهید",
-              icon: "error",
-              button: "خروج",
-            });
-          }
+          swal({
+            title: "مشکلی پیش آمده دوباره تکرار کنید",
+            icon: "error",
+            button: "خروج",
+          });
           return res.text().then((text) => {
             throw new Error(text);
           });
@@ -62,24 +85,12 @@ export default function AddCourse({getAllUser}) {
     <form onSubmit={handleSubmit(fromSubmitHandler)} className='form'>
       <div className='col-6'>
         <div className='name input'>
-          <label className='input-title'>نام و نام خانوادگی</label>
+          <label className='input-title'> عنوان دوره</label>
           <input
             type='text'
             className=''
             placeholder='نام دوره'
             {...register("courseName")}
-          />
-          <span className='error-message text-danger'></span>
-        </div>
-      </div>
-      <div className='col-6'>
-        <div className='family input'>
-          <label className='input-title'>نام کاربری</label>
-          <textarea
-            type=''
-            className=''
-            placeholder='توضیحات دوره'
-            {...register("courseDescription")}
           />
           <span className='error-message text-danger'></span>
         </div>
@@ -91,7 +102,7 @@ export default function AddCourse({getAllUser}) {
             type='text'
             className=''
             placeholder='مسیر عکس دوره را وارد نمایید'
-            {...register("CourseCover")}
+            {...register("courseCover")}
           />
           <span className='error-message text-danger'></span>
         </div>
@@ -127,15 +138,38 @@ export default function AddCourse({getAllUser}) {
             type='text'
             className=''
             placeholder='در حال برگذاری یا تمام شده؟'
-            {...register("courseStatue")}
+            {...register("courseStatus")}
           />
           <span className='error-message text-danger'></span>
         </div>
       </div>
       <div className='col-6'>
         <div className='password input'>
-          <label className='input-title'>دسته بندی </label>
-          <select {...register("courseCategory")} name='' id=''></select>
+          <label className='input-title d-block'>دسته بندی </label>
+          <select {...register("categoryID")}>
+            <>
+              <option selected disabled value=''>
+                یک دسته بندی انتخاب کنید
+              </option>
+              {categoryDatas.map((categoryData) => (
+                <option key={categoryData._id} value={categoryData._id}>
+                  {categoryData.title}
+                </option>
+              ))}
+            </>
+          </select>
+          <span className='error-message text-danger'></span>
+        </div>
+      </div>
+      <div className='col-12'>
+        <div className='family input'>
+          <label className='input-title'>توضیحات</label>
+          <textarea
+            type=''
+            className='w-100'
+            placeholder='توضیحات دوره'
+            {...register("courseDescription")}
+          />
           <span className='error-message text-danger'></span>
         </div>
       </div>

@@ -29,12 +29,12 @@ const EditUserSchema = yup.object().shape({
 
 const CourseSchema = yup.object().shape({
   courseName: yup.string().required("required").min(8),
-  CourseDescription: yup.string().required("required").min(8),
-  CourseCover: yup.string().email().required("required"),
-  CourseLink: yup.string().required("required"),
-  CoursePrice: yup.string().required("required"),
-  CourseStatus: yup.string().required("required"),
-  CourseCategory: yup.string().required("required"),
+  courseDescription: yup.string().required("required").min(8),
+  courseCover: yup.string().required("required"),
+  courseLink: yup.string().required("required"),
+  coursePrice: yup.string().required("required"),
+  courseStatus: yup.string().required("required"),
+  categoryID: yup.string().required("required"),
 });
 const CategorySchema = yup.object().shape({
   categoryName: yup.string().required("required").min(8),

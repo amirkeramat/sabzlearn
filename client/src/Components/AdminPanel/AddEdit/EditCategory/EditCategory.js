@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import swal from "@sweetalert/with-react";
 import { useForm } from "react-hook-form";
-import { EditUserSchema } from "../../../../Validator/schema";
+import { CategorySchema } from "../../../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SearchBox from "../../../searchBox/SearchBox";
 export default function EditCategory({
@@ -9,7 +9,7 @@ export default function EditCategory({
   showEditInput,
   setShowEditInput,
 }) {
-  const [editedUserID, setEditedUserID] = useState(null);
+  const [editedCategoryID, setEditedCategoryID] = useState(null);
   const [searchedUser, setSearchedUser] = useState([]);
   const {
     register,
@@ -17,7 +17,7 @@ export default function EditCategory({
     setValue,
     reset: editReset,
   } = useForm({
-    resolver: yupResolver(EditUserSchema),
+    resolver: yupResolver(CategorySchema),
     mode: "all",
   });
   const editUserHandler = (data) => {
@@ -29,7 +29,7 @@ export default function EditCategory({
       email: data.email,
       phone: data.phone,
     };
-    fetch(`http://localhost:4000/v1/users/${editedUserID}`, {
+    fetch(`http://localhost:4000/v1/users/${editedCategoryID}`, {
       method: "PUT",
       headers: { Authorization: `Bearer ${localStorageData.token}` },
       body: JSON.stringify(editedData),
@@ -46,7 +46,7 @@ export default function EditCategory({
       })
       .then((response) => {
         swal({
-          title: "کاربر با موفقیت ویرایش شد",
+          title: "دسته بندی با موفقیت ویرایش شد",
           icon: "success",
           button: "خروج",
         });
@@ -58,14 +58,9 @@ export default function EditCategory({
   };
 
   const setValueGenerator = (data) => {
-    setValue("fullName", data.name, { shouldValidate: true });
-    setValue("email", data.email, { shouldValidate: true });
-    setValue("username", data.username, { shouldValidate: true });
-    setValue("phone", data.phone, { shouldValidate: true });
-    setValue("password", data.password, { shouldValidate: true });
-    setValue("confirmPassword", data.password, {
-      shouldValidate: true,
-    });
+    setValue("categoryName", data.title, { shouldValidate: true });
+    setValue("categoryLink", data.name, { shouldValidate: true });
+   
   };
   const selectUserHandler = (event) => {
     console.log(event.target.value);
@@ -73,7 +68,7 @@ export default function EditCategory({
       (userData) => userData.name === event.target.value
     );
     if (filteredData.length) {
-      setEditedUserID(filteredData[0]._id);
+      setEditedCategoryID(filteredData[0]._id);
       setShowEditInput(true);
     }
     setValueGenerator(filteredData[0]);
@@ -83,10 +78,10 @@ export default function EditCategory({
     <>
       <div className=''>
         <div className='m-4'>
-          <label htmlFor='user-select'>انتخاب کاربر:</label>
+          <label htmlFor='user-select'>انتخاب دسته بندی:</label>
           <select onChange={selectUserHandler} name='' id='user-select'>
             <option selected disabled value='کاربر را انخاب نمایید'>
-              کاربر را انخاب نماید
+              دسته بندی را انتخاب نمایید
             </option>
             {usersData.map((userData) => (
               <option key={userData._id}>{userData.name}</option>
@@ -124,48 +119,24 @@ export default function EditCategory({
         <form onSubmit={handleSubmit(editUserHandler)} className='form'>
           <div className='col-6'>
             <div className='name input'>
-              <label className='input-title'>نام و نام خانوادگی</label>
+              <label className='input-title'>عنوان دسته بندی</label>
               <input
                 type='text'
                 className=''
-                placeholder='لطفا نام و نام خانوادگی کاربر را وارد کنید...'
-                {...register("fullName")}
+                placeholder='عنوان دسته بندی را وارد نمایید'
+                {...register("categoryName")}
               />
               <span className='error-message text-danger'></span>
             </div>
           </div>
           <div className='col-6'>
-            <div className='family input'>
-              <label className='input-title'>نام کاربری</label>
+            <div className='name input'>
+              <label className='input-title'>لینک دسته بندی</label>
               <input
                 type='text'
                 className=''
-                placeholder='لطفا نام کاربری را وارد کنید...'
-                {...register("username")}
-              />
-              <span className='error-message text-danger'></span>
-            </div>
-          </div>
-          <div className='col-6'>
-            <div className='email input'>
-              <label className='input-title'>ایمیل</label>
-              <input
-                type='text'
-                className=''
-                placeholder='لطفا ایمیل کاربر را وارد کنید...'
-                {...register("email")}
-              />
-              <span className='error-message text-danger'></span>
-            </div>
-          </div>
-          <div className='col-6'>
-            <div className='phone input'>
-              <label className='input-title'>شماره تلفن</label>
-              <input
-                type='text'
-                className=''
-                placeholder='لطفا شماره تلفن کاربر را وارد کنید...'
-                {...register("phone")}
+                placeholder='لینک دسته بندی را وارد نمایید'
+                {...register("categoryLink")}
               />
               <span className='error-message text-danger'></span>
             </div>
