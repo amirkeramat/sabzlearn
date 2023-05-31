@@ -29,8 +29,7 @@ export default function AdminCourses() {
       });
   };
 
-
-  const deleteUserHandler = (userID) => {
+  const deleteUserHandler = (courseID) => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
     swal({
       title: "",
@@ -40,7 +39,7 @@ export default function AdminCourses() {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:4000/v1/users/${userID}`, {
+        fetch(`http://localhost:4000/v1/courses/${courseID}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${localStorageData.token}`,
@@ -50,8 +49,9 @@ export default function AdminCourses() {
             swal("کاربر مورد نظر با موفقیت حذف گردید", {
               icon: "success",
               buttons: "خروج",
+            }).then(() => {
+              getData();
             });
-            getData();
           } else {
             swal("مشکلی پیش امده دوباره تلاش کنید", {
               icon: "Error",

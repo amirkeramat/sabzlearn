@@ -29,12 +29,10 @@ export default function EditCourse({
   };
   const [searchedCourse, setSearchedCourse] = useState([]);
   const [categoryDatas, setCategoryDatas] = useState([]);
-  const [categoryID, setCategoryID] = useState(null);
   const {
     register,
     handleSubmit,
     setValue,
-    reset: editReset,
   } = useForm({
     resolver: yupResolver(CourseSchema),
     mode: "all",
@@ -204,14 +202,27 @@ export default function EditCourse({
           </div>
           <div className='col-6'>
             <div className='password input'>
-              <label className='input-title'>وضعیت </label>
-              <input
-                type='text'
-                className=''
-                placeholder='در حال برگذاری یا تمام شده؟'
-                {...register("courseStatus")}
-              />
-              <span className='error-message text-danger'></span>
+              <label className='input-title'>وضعیت دوره</label>
+              <div className='d-flex justify-content-start'>
+                <label htmlFor='start-status'>در حال برگذاری</label>
+                <input
+                  className=' w-auto ms-5'
+                  type='radio'
+                  id='start-status'
+                  name='status'
+                  value='start'
+                  {...register("courseStatus")}
+                />
+                <label htmlFor='presell-status'>پیش فروش</label>
+                <input
+                  className=' w-auto'
+                  type='radio'
+                  name='status'
+                  id='presell-status'
+                  value='presell'
+                  {...register("courseStatus")}
+                />
+              </div>
             </div>
           </div>
           <div className='col-3'>

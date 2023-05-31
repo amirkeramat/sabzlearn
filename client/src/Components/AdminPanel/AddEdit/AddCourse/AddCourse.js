@@ -25,34 +25,28 @@ export default function AddCourse({ getAllUser }) {
       });
   };
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(CourseSchema),
     mode: "all",
   });
 
   const fromSubmitHandler = (data) => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
-    const newCourse = {
-      name: data.courseName,
-      description: data.courseDescription,
-      cover: data.courseCover,
-      shortName: data.courseLink,
-      price: data.coursePrice,
-      status: data.courseStatus,
-      categoryID: data.categoryID,
-    };
+    let formData = new FormData();
+    formData.append("name", data.courseName);
+    formData.append("description", data.courseDescription);
+    formData.append("cover", data.courseCover[0]);
+    formData.append("shortName", data.courseLink);
+    formData.append("price", data.coursePrice);
+    formData.append("status", data.courseStatus);
+    formData.append("categoryID", data.categoryID);
     console.log(data);
     fetch("http://localhost:4000/v1/courses", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorageData.token}`,
       },
-      body: JSON.stringify(newCourse),
+      body:formData,
     })
       .then((res) => {
         if (!res.ok) {
@@ -73,12 +67,16 @@ export default function AddCourse({ getAllUser }) {
         getAllUser();
         reset();
         swal({
-          title: "کاربر با موفقیت ساخته شد",
+          title: "دوره با موفقیت ساخته شد",
           icon: "success",
           button: "خروج",
-        });
+        }).then(()=>{
+          getAllUser()
+        })
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -99,7 +97,7 @@ export default function AddCourse({ getAllUser }) {
         <div className='email input'>
           <label className='input-title'>عکس دوره</label>
           <input
-            type='text'
+            type='file'
             className=''
             placeholder='مسیر عکس دوره را وارد نمایید'
             {...register("courseCover")}
@@ -133,14 +131,28 @@ export default function AddCourse({ getAllUser }) {
       </div>
       <div className='col-6'>
         <div className='password input'>
-          <label className='input-title'>وضعیت </label>
-          <input
-            type='text'
-            className=''
-            placeholder='در حال برگذاری یا تمام شده؟'
-            {...register("courseStatus")}
-          />
-          <span className='error-message text-danger'></span>
+          <label className='input-title'>وضعیت دوره</label>
+          <div className='d-flex justify-content-start'>
+            <label htmlFor='start-status'>در حال برگذاری</label>
+            <input
+              className=' w-auto ms-5'
+              type='radio'
+              id='start-status'
+              name='status'
+              value='start'
+              checked
+              {...register("courseStatus")}
+            />
+            <label htmlFor='presell-status'>پیش فروش</label>
+            <input
+              className=' w-auto'
+              type='radio'
+              name='status'
+              id='presell-status'
+              value='presell'
+              {...register("courseStatus")}
+            />
+          </div>
         </div>
       </div>
       <div className='col-6'>

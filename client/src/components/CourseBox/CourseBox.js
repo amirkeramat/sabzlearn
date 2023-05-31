@@ -23,7 +23,7 @@ export default function CourseBox({
       }`}>
       <Button to={`/course-info/${link}`} className='course-box__title-link'>
         <img
-          src='/images/courses/fareelancer.png'
+          src={`http://localhost:4000/courses/covers/${cover}`}
           alt='Course img'
           className='course-box__img'
           onLoad={onImageLoader}

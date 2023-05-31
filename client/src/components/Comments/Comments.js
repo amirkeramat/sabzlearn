@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "./Comments.css";
 import Button from "../Form/Button/Button";
 import AuthContext from "../../context/AuthContext";

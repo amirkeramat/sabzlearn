@@ -18,6 +18,7 @@ export default function Courses() {
       .then((data) => {
         setCoursesData(data);
         setOrderedCourses(data);
+        console.log(data);
       });
   }, []);
   return (
@@ -48,12 +49,13 @@ export default function Courses() {
                         key={course._id}
                         title={course.name}
                         price={course.price}
-                        teacher='امیر کرامت'
+                        teacher={course.creator}
                         student={course.registers}
                         link={course.shortName}
                         rate={course.courseAverageScore}
                         layout={layoutData}
                         desc={course.description}
+                        cover={course.cover}
                       />
                     ))}
                   </>

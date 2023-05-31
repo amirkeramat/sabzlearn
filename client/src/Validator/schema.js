@@ -30,7 +30,7 @@ const EditUserSchema = yup.object().shape({
 const CourseSchema = yup.object().shape({
   courseName: yup.string().required("required").min(8),
   courseDescription: yup.string().required("required").min(8),
-  courseCover: yup.string().required("required"),
+  courseCover: yup.mixed().required(),
   courseLink: yup.string().required("required"),
   coursePrice: yup.string().required("required"),
   courseStatus: yup.string().required("required"),

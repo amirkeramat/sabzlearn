@@ -31,7 +31,10 @@ export default function EditUser({
     };
     fetch(`http://localhost:4000/v1/users/${editedUserID}`, {
       method: "PUT",
-      headers: { Authorization: `Bearer ${localStorageData.token}` },
+      headers: {
+        Authorization: `Bearer ${localStorageData.token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(editedData),
     })
       .then((res) => {

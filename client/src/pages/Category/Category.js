@@ -42,7 +42,7 @@ export default function Category() {
         });
       });
   }, [categoryName]);
-
+  console.log(showCourse);
   return (
     <div>
       <Topbar />
@@ -68,12 +68,13 @@ export default function Category() {
                       key={courseData._id}
                       title={courseData.name}
                       price={courseData.price}
-                      teacher='امیر کرامت'
+                      teacher={courseData.creator}
                       student={courseData.registers}
                       link={courseData.shortName}
                       rate={courseData.courseAverageScore}
                       desc={courseData.description}
                       layout={layoutData}
+                      cover={courseData.cover}
                     />
                   ))
                 ) : (
