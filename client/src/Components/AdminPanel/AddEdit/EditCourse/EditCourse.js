@@ -29,6 +29,7 @@ export default function EditCourse({
   };
   const [searchedCourse, setSearchedCourse] = useState([]);
   const [categoryDatas, setCategoryDatas] = useState([]);
+  const [editedCourseID,SetEditedCourseID] = useState();
   const {
     register,
     handleSubmit,
@@ -38,7 +39,10 @@ export default function EditCourse({
     mode: "all",
   });
   const editUserHandler = (data) => {
-    // let localStorageData = JSON.parse(localStorage.getItem("user"));
+    let localStorageData = JSON.parse(localStorage.getItem("user"));
+    let EditedCategoryIDd = categoryDatas.find(
+      (category) => category.title === data.categoryID
+    )
     const editedData = {
       name: data.courseName,
       description: data.courseDescription,
@@ -46,38 +50,37 @@ export default function EditCourse({
       shortName: data.courseLink,
       price: data.coursePrice,
       status: data.courseStatus,
-      categoryID: data.categoryID
+      categoryID: EditedCategoryIDd._id
     };
     console.log(editedData);
     console.log(data);
 
     // console.log(data);
-    // fetch(`http://localhost:4000/v1/users/${editedCourseID}`, {
-    //   method: "PUT",
-    //   headers: { Authorization: `Bearer ${localStorageData.token}` },
-    //   body: JSON.stringify(editedData),
-    // })
-    //   .then((res) => {
-    //     if (!res.ok) {
-    //       console.log(res);
-    //       return res.text().then((text) => {
-    //         throw new Error(text);
-    //       });
-    //     } else {
-    //       return res.json();
-    //     }
-    //   })
-    //   .then((response) => {
-    //     swal({
-    //       title: "کاربر با موفقیت ویرایش شد",
-    //       icon: "success",
-    //       button: "خروج",
-    //     });
-    //     editReset();
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    fetch(`http://localhost:4000/v1/users/${editedCourseID}`, {
+      method: "PUT",
+      headers: { Authorization: `Bearer ${localStorageData.token}` },
+      body: JSON.stringify(editedData),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          console.log(res);
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
+        } else {
+          return res.json();
+        }
+      })
+      .then((response) => {
+        swal({
+          title: "کاربر با موفقیت ویرایش شد",
+          icon: "success",
+          button: "خروج",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const setValueGenerator = (data) => {
@@ -91,7 +94,7 @@ export default function EditCourse({
     setValue("courseStatus", data.status, {
       shouldValidate: true,
     });
-    setValue("categoryID", data.categoryID._Id, {
+    setValue("categoryID", data.categoryID.title, {
       shouldValidate: true,
     });
     setValue("category", data.categoryID.title, {
@@ -103,6 +106,7 @@ export default function EditCourse({
       (userData) => userData.name === event.target.value
     );
     if (filteredData.length) {
+      SetEditedCourseID(filteredData[0]._id);
       setShowEditInput(true);
     }
     setValueGenerator(filteredData[0]);
@@ -225,26 +229,13 @@ export default function EditCourse({
               </div>
             </div>
           </div>
-          <div className='col-3'>
-            <div className='password input'>
-              <label className='input-title'>دسته بندی فعلی</label>
-              <input
-                disabled
-                {...register("category")}
-                type='text'
-                name=''
-                id=''
-              />
-              <span className='error-message text-danger'></span>
-            </div>
-          </div>
-          <div className='col-3'>
+          <div className='col-6'>
             <div className='password input'>
               <label className='input-title'>تغییر دسته بندی</label>
               <select {...register("categoryID")}>
                 <>
                   {categoryDatas.map((categoryData) => (
-                    <option key={categoryData._id} value={categoryData._id}>
+                    <option key={categoryData._id} value={categoryData.title}>
                       {categoryData.title}
                     </option>
                   ))}
