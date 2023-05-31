@@ -42,7 +42,6 @@ export default function Category() {
         });
       });
   }, [categoryName]);
-  console.log(showCourse);
   return (
     <div>
       <Topbar />

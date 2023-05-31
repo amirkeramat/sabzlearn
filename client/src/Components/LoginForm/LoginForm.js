@@ -34,7 +34,6 @@ export default function LoginForm() {
       identifier: data.username,
       password: data.password,
     };
-    console.log(userData);
     fetch("http://localhost:4000/v1/auth/login", {
       method: "POST",
       headers: {
@@ -52,7 +51,6 @@ export default function LoginForm() {
         }
       })
       .then((result) => {
-        console.log(result);
         authContext.login({}, result.accessToken);
         swal({
           title: "با موفقیت وارد شدید",

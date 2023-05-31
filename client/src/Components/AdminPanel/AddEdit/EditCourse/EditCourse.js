@@ -17,13 +17,11 @@ export default function EditCourse({
     fetch("http://localhost:4000/v1/category")
       .then((res) => {
         if (!res.ok) {
-          console.log(res.ok());
         } else {
           return res.json();
         }
       })
       .then((data) => {
-        console.log(data);
         setCategoryDatas(data);
       });
   };
@@ -52,10 +50,8 @@ export default function EditCourse({
       status: data.courseStatus,
       categoryID: EditedCategoryIDd._id
     };
-    console.log(editedData);
-    console.log(data);
 
-    // console.log(data);
+
     fetch(`http://localhost:4000/v1/users/${editedCourseID}`, {
       method: "PUT",
       headers: { Authorization: `Bearer ${localStorageData.token}` },
@@ -63,7 +59,6 @@ export default function EditCourse({
     })
       .then((res) => {
         if (!res.ok) {
-          console.log(res);
           return res.text().then((text) => {
             throw new Error(text);
           });

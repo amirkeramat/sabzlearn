@@ -11,7 +11,6 @@ export default function PopularCourses() {
     fetch("http://localhost:4000/v1/courses/presell")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setPopularCourses(data);
       });
   }, []);

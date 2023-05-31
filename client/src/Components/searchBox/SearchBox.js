@@ -13,7 +13,6 @@ export default function SearchBox({ setData, allData,placeHolder }) {
     );
     setData(newData);
     value.searchValue = "";
-    console.log(newData);
   };
   return (
     <form

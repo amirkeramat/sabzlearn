@@ -20,7 +20,6 @@ export default function RegisterForm() {
     mode: "all",
   });
   const onSubmit = (data) => {
-    console.log(data);
     const newUser = {
       name: data.fullName,
       username: data.username,
@@ -29,7 +28,6 @@ export default function RegisterForm() {
       confirmPassword: data.confirmPassword,
       phone: data.phone,
     };
-    console.log(newUser);
     fetch("http://localhost:4000/v1/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -70,7 +68,7 @@ export default function RegisterForm() {
         });
       })
       .catch((err) => {
-        console.log(JSON.parse(err));
+        console.log(err);
       });
   };
 

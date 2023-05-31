@@ -21,7 +21,6 @@ export default function EditCategory({
     mode: "all",
   });
   const editUserHandler = (data) => {
-    console.log(data);
     let localStorageData = JSON.parse(localStorage.getItem("user"));
     const editedData = {
       name: data.fullName,
@@ -36,7 +35,6 @@ export default function EditCategory({
     })
       .then((res) => {
         if (!res.ok) {
-          console.log(res);
           return res.text().then((text) => {
             throw new Error(text);
           });
@@ -63,7 +61,6 @@ export default function EditCategory({
    
   };
   const selectUserHandler = (event) => {
-    console.log(event.target.value);
     let filteredData = usersData.filter(
       (userData) => userData.name === event.target.value
     );

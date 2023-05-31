@@ -17,7 +17,6 @@ export default function ContactForm() {
     mode: "all",
   });
   const onSubmit = (data) => {
-    console.log(data);
     const newContact = {
       name: data.fullName,
       email: data.email,

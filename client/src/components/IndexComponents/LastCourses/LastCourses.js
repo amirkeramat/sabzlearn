@@ -8,7 +8,6 @@ export default function LastCourses() {
     fetch("http://localhost:4000/v1/courses/presell")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setLatestCourses(data);
       });
   }, []);
@@ -27,8 +26,9 @@ export default function LastCourses() {
               {latestCourses.length &&
                 latestCourses
                   .slice(0, 3)
-                  .map((product) => (
+                  .map((product, index) => (
                     <CourseBox
+                      key={index}
                       title={product.name}
                       cover={product.cover}
                       teacher={product.teacher}

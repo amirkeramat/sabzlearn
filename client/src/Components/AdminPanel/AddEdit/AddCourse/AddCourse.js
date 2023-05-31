@@ -14,13 +14,11 @@ export default function AddCourse({ getAllUser }) {
     fetch("http://localhost:4000/v1/category")
       .then((res) => {
         if (!res.ok) {
-          console.log(res.ok());
         } else {
           return res.json();
         }
       })
       .then((data) => {
-        console.log(data);
         setCategoryDatas(data);
       });
   };
@@ -40,7 +38,6 @@ export default function AddCourse({ getAllUser }) {
     formData.append("price", data.coursePrice);
     formData.append("status", data.courseStatus);
     formData.append("categoryID", data.categoryID);
-    console.log(data);
     fetch("http://localhost:4000/v1/courses", {
       method: "POST",
       headers: {
@@ -59,7 +56,6 @@ export default function AddCourse({ getAllUser }) {
             throw new Error(text);
           });
         } else {
-          console.log(res);
           return res.json();
         }
       })

@@ -18,7 +18,6 @@ export default function Courses() {
       .then((data) => {
         setCoursesData(data);
         setOrderedCourses(data);
-        console.log(data);
       });
   }, []);
   return (

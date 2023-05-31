@@ -49,7 +49,6 @@ export default function Comments() {
         }
       })
       .then((result) => {
-        console.log(result);
         swal({
           title: "دیگاه با موفقیت ثبت گردید",
           icon: "success",

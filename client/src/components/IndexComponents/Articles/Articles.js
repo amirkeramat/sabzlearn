@@ -8,7 +8,6 @@ export default function Articles() {
     fetch("http://localhost:4000/v1/articles")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setArticles(data);
       });
   }, []);

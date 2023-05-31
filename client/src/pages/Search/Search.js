@@ -25,7 +25,6 @@ export default function Search() {
         }
       })
       .then((data) => {
-        console.log(data);
         setCoursesData(data.allResultCourses);
         setOrderedData(data.allResultCourses);
         setArticlesData(data.allResultArticles);

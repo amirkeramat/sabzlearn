@@ -12,13 +12,11 @@ export default function AdminCategory() {
     fetch("http://localhost:4000/v1/category")
       .then((res) => {
         if (!res.ok) {
-          console.log(res.ok());
         } else {
           return res.json();
         }
       })
       .then((data) => {
-        console.log(data);
         setCategoryDatas(data);
       });
   };

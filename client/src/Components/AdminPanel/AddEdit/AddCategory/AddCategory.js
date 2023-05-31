@@ -43,7 +43,6 @@ export default function AddCategory({ getAllUser }) {
             throw new Error(text);
           });
         } else {
-          console.log(res);
           return res.json();
         }
       })

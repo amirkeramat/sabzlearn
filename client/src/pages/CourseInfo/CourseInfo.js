@@ -57,7 +57,6 @@ export default function CourseInfo() {
         setUpdatedAt(courseData.updatedAt);
         setSessions(courseData.sessions);
         setCommentsData(courseData.comments);
-        console.log(courseData);
       })
       .catch((err) => {});
 
@@ -74,7 +73,6 @@ export default function CourseInfo() {
         }
       })
       .then((data) => {
-        console.log(data);
         setRelatedCourses(data);
       })
       .catch((err) => {

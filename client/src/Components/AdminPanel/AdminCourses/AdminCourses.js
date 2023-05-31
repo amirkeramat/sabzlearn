@@ -21,7 +21,6 @@ export default function AdminCourses() {
         }
       })
       .then((data) => {
-        console.log(data);
         setCoursesData(data);
       })
       .catch((err) => {

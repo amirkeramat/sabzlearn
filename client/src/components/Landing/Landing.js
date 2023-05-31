@@ -10,7 +10,6 @@ export default function Landing() {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const onSubmitHandler = (value) => {
-    console.log(value);
     if (value.searchValue !== "") {
       navigate(`/search/${value.searchValue}`);
     }
