@@ -48,7 +48,7 @@ export default function AdminSidebar() {
             </Button>
           </li>
           <li>
-            <Button to='articles'>
+            <Button to='articles/1'>
               <span>مقاله ها</span>
             </Button>
           </li>

@@ -7,6 +7,8 @@ import AddCourse from "./AddCourse/AddCourse";
 import EditUser from "./EditUser/EditUser";
 import EditCourse from "./EditCourse/EditCourse";
 import EditCategory from "./EditCategory/EditCategory";
+import AddArticle from "./AddArticle/AddArticle";
+import EditArticle from "./EditArticle/EditArticle";
 export default function AddEdit({ kind, usersData, getAllData }) {
   const [activeBtn, setActiveBtn] = useState("");
   const [showEditInput, setShowEditInput] = useState(false);
@@ -69,6 +71,17 @@ export default function AddEdit({ kind, usersData, getAllData }) {
           showEditInput={showEditInput}
           setShowEditInput={setShowEditInput}
           usersData={usersData}
+        />
+      )}
+      {activeBtn === "add-btn" && kind === "article" && (
+        <AddArticle getAllData={getAllData} />
+      )}
+      {activeBtn === "edit-btn" && kind === "article" && (
+        <EditArticle
+          showEditInput={showEditInput}
+          setShowEditInput={setShowEditInput}
+          usersData={usersData}
+          getAllData={getAllData}
         />
       )}
     </>

@@ -76,7 +76,7 @@ export default function Courses() {
             items={orderedCourses}
             itemCount={3}
             pathName={`/courses`}
-            setShowCourse={setShowCourse}
+            setShow={setShowCourse}
           />
         </div>
       </section>

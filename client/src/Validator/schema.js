@@ -40,7 +40,14 @@ const CategorySchema = yup.object().shape({
   categoryName: yup.string().required("required").min(5),
   categoryLink: yup.string().required("required").min(5),
 });
-
+const ArticleSchema = yup.object().shape({
+  articleName: yup.string().required("required").min(8),
+  articleDescription: yup.string().required("required").min(8),
+  articleCover: yup.mixed().required(),
+  articleLink: yup.string().required("required"),
+  articleBody: yup.string().required("required"),
+  categoryID: yup.string().required("required"),
+});
 const loginSchema = yup.object().shape({
   username: yup.string().required("username is required").min(8).max(30),
   password: yup.string().min(8).max(20).required("password is required"),
@@ -82,4 +89,5 @@ export {
   EditUserSchema,
   CourseSchema,
   CategorySchema,
+  ArticleSchema,
 };

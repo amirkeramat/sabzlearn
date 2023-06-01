@@ -4,7 +4,7 @@ export default function ArticleSection({ title, desc, img }) {
   return (
     <div className='article-section'>
       <h2 className='article-section__title'>
-        معرفی بهترین سایت ‌های آموزش جاوا اسکریپت:
+        {title}
       </h2>
       <p className='paragraph article-section__text'>
         توجه داشته باشید که تمام وب سایت‌هایی که به عنوان بهترین سایت آموزش جاوا

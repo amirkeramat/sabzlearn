@@ -33,7 +33,7 @@ const routes = [
         element: <AdminUsers />,
       },
       {
-        path: "articles",
+        path: "articles/:pageNumber",
         element: <AdminArticles />,
       },
       {
