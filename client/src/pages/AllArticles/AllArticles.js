@@ -74,7 +74,7 @@ export default function AllArticles() {
             items={orderedData}
             itemCount={3}
             pathName={`/all-articles`}
-            setShowCourse={setShowCourse}
+            setShow={setShowCourse}
           />
         </div>
       </section>

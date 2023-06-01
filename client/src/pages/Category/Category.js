@@ -89,7 +89,7 @@ export default function Category() {
               items={orderedCourses}
               itemCount={3}
               pathName={`/category-info/${categoryName}`}
-              setShowCourse={setShowCourse}
+              setShow={setShowCourse}
             />
           ) : null}
         </div>
