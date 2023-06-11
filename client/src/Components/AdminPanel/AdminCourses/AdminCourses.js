@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "../DataTable/DataTable";
 import Button from "../../Form/Button/Button";
 import AddEdit from "../AddEdit/AddEdit";
-import swal from "@sweetalert/with-react";
+import swal from "sweetalert";
 import Pagination from "../../Pgination/Pagination";
 
 export default function AdminCourses() {

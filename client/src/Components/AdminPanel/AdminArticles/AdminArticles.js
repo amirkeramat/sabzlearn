@@ -3,7 +3,7 @@ import DataTable from "../DataTable/DataTable";
 import Pagination from "../../Pgination/Pagination";
 import Button from "../../Form/Button/Button";
 import AddEdit from "../AddEdit/AddEdit";
-import swal from "@sweetalert/with-react";
+import swal from "sweetalert";
 export default function AdminArticles() {
   const [allArticles, setAllArticles] = useState([]);
   const [orderedArticles, setOrderedArticles] = useState([]);

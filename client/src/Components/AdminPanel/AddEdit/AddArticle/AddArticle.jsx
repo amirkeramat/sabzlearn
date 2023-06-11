@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import swal from "@sweetalert/with-react";
+import swal from "sweetalert";
 import { useForm } from "react-hook-form";
 import { ArticleSchema } from "../../../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import CkEditor from "../../../ckEditor/CkEditor";
 export default function AddArticle({ getAllData }) {
+
   const [categoryDatas, setCategoryDatas] = useState([]);
 
+  const [articleBody, setArticleBody] = useState("");
   useEffect(() => {
     getCategory();
   }, []);
@@ -34,7 +37,7 @@ export default function AddArticle({ getAllData }) {
     formData.append("description", data.articleDescription);
     formData.append("cover", data.articleCover[0]);
     formData.append("shortName", data.articleLink);
-    formData.append("body", data.articleBody);
+    formData.append("body", articleBody);
     formData.append("categoryID", data.categoryID);
     fetch(url, {
       method: "POST",
@@ -82,49 +85,49 @@ export default function AddArticle({ getAllData }) {
     sendArticle(data, url, msg);
   };
   return (
-    <form onSubmit={handleSubmit(fromSubmitHandler)} className='form'>
-      <div className='col-6'>
-        <div className='name input'>
-          <label className='input-title'> عنوان مقاله</label>
+    <form onSubmit={handleSubmit(fromSubmitHandler)} className="form">
+      <div className="col-6">
+        <div className="name input">
+          <label className="input-title"> عنوان مقاله</label>
           <input
-            type='text'
-            className=''
-            placeholder='نام مقاله'
+            type="text"
+            className=""
+            placeholder="نام مقاله"
             {...register("articleName")}
           />
-          <span className='error-message text-danger'></span>
+          <span className="error-message text-danger"></span>
         </div>
       </div>
-      <div className='col-6'>
-        <div className='email input'>
-          <label className='input-title'>عکس مقاله</label>
+      <div className="col-6">
+        <div className="email input">
+          <label className="input-title">عکس مقاله</label>
           <input
-            type='file'
-            className=''
-            placeholder='مسیر عکس مقاله را وارد نمایید'
+            type="file"
+            className=""
+            placeholder="مسیر عکس مقاله را وارد نمایید"
             {...register("articleCover")}
           />
-          <span className='error-message text-danger'></span>
+          <span className="error-message text-danger"></span>
         </div>
       </div>
-      <div className='col-6'>
-        <div className='phone input'>
-          <label className='input-title'>لینک مقاله</label>
+      <div className="col-6">
+        <div className="phone input">
+          <label className="input-title">لینک مقاله</label>
           <input
-            type='text'
-            className=''
-            placeholder='لینک مقاله را وارد نمایید'
+            type="text"
+            className=""
+            placeholder="لینک مقاله را وارد نمایید"
             {...register("articleLink")}
           />
-          <span className='error-message text-danger'></span>
+          <span className="error-message text-danger"></span>
         </div>
       </div>
-      <div className='col-6'>
-        <div className='password input'>
-          <label className='input-title d-block'>دسته بندی </label>
+      <div className="col-6">
+        <div className="password input">
+          <label className="input-title d-block">دسته بندی </label>
           <select {...register("categoryID")}>
             <>
-              <option selected disabled value=''>
+              <option selected disabled value="">
                 یک دسته بندی انتخاب کنید
               </option>
               {categoryDatas.map((categoryData) => (
@@ -134,42 +137,36 @@ export default function AddArticle({ getAllData }) {
               ))}
             </>
           </select>
-          <span className='error-message text-danger'></span>
+          <span className="error-message text-danger"></span>
         </div>
       </div>
-      <div className='col-12'>
-        <div className='family input'>
-          <label className='input-title'>توضیحات</label>
+      <div className="col-12">
+        <div className="family input">
+          <label className="input-title">خلاصه</label>
           <textarea
-            type=''
-            className='w-100'
-            placeholder='توضیحات مقاله'
+            type=""
+            className="w-100"
+            placeholder="خلاصه مقاله"
             {...register("articleDescription")}
           />
-          <span className='error-message text-danger'></span>
+          <span className="error-message text-danger"></span>
         </div>
       </div>
-      <div className='col-12'>
-        <div className='family input'>
-          <label className='input-title'>متن مقاله</label>
-          <textarea
-            type=''
-            className='w-100'
-            placeholder='متن مقاله'
-            {...register("articleBody")}
-          />
-          <span className='error-message text-danger'></span>
+      <div className="col-12">
+        <div className="family input">
+          <label className="input-title">متن مقاله</label>
         </div>
+        <CkEditor value={articleBody} setValue={setArticleBody} />
       </div>
-      <div className='col-12'>
-        <div className='bottom-form'>
-          <div className='submit-btn'>
-            <input name='send' type='submit' value='افزودن مقاله' />
+      <div className="col-12">
+        <div className="bottom-form">
+          <div className="submit-btn">
+            <input name="send" type="submit" value="افزودن مقاله" />
             <input
               onClick={handleSubmit(saveArticleToDraft)}
-              type='button'
-              name='saveDraft'
-              value='ذخیره مقاله'
+              type="button"
+              name="saveDraft"
+              value="ذخیره مقاله"
               className="me-5"
             />
           </div>

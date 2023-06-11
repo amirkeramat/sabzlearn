@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import swal from "@sweetalert/with-react";
+import swal from "sweetalert";
 import { useForm } from "react-hook-form";
 import { ArticleSchema } from "../../../../Validator/schema";
 import { yupResolver } from "@hookform/resolvers/yup";

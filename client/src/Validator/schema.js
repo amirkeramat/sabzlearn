@@ -45,7 +45,6 @@ const ArticleSchema = yup.object().shape({
   articleDescription: yup.string().required("required").min(8),
   articleCover: yup.mixed().required(),
   articleLink: yup.string().required("required"),
-  articleBody: yup.string().required("required"),
   categoryID: yup.string().required("required"),
 });
 const loginSchema = yup.object().shape({

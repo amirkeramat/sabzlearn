@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "../DataTable/DataTable";
 import Pagination from "../../Pgination/Pagination";
 import Button from "../../Form/Button/Button";
-import swal from "@sweetalert/with-react";
+import swal from "sweetalert";
 import "./AdminUser.css";
 import AddEdit from "../AddEdit/AddEdit";
 
