@@ -43,6 +43,11 @@ export default function AdminSidebar() {
             </Button>
           </li>
           <li>
+            <Button to='sessions'>
+              <span> جلسات</span>
+            </Button>
+          </li>
+          <li>
             <Button to='menus'>
               <span>منو ها</span>
             </Button>

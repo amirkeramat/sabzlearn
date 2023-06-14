@@ -85,26 +85,3 @@ export default function CourseBox({
     </div>
   );
 }
-
-{
-  /* <img
-              src='/images/svgs/star_fill.svg'
-              alt='rating'
-              className='course-box__star'
-            />
-            <img
-              src='/images/svgs/star_fill.svg'
-              alt='rating'
-              className='course-box__star'
-            />
-            <img
-              src='/images/svgs/star_fill.svg'
-              alt='rating'
-              className='course-box__star'
-            />
-            <img
-              src='/images/svgs/star_fill.svg'
-              alt='rating'
-              className='course-box__star'
-            /> */
-}

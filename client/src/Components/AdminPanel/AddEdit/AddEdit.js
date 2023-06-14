@@ -9,6 +9,7 @@ import EditCourse from "./EditCourse/EditCourse";
 import EditCategory from "./EditCategory/EditCategory";
 import AddArticle from "./AddArticle/AddArticle";
 import EditArticle from "./EditArticle/EditArticle";
+import AddSession from "../AddEdit/AddSession/AddSession";
 export default function AddEdit({ kind, usersData, getAllData }) {
   const [activeBtn, setActiveBtn] = useState("");
   const [showEditInput, setShowEditInput] = useState(false);
@@ -29,11 +30,14 @@ export default function AddEdit({ kind, usersData, getAllData }) {
           onClick={() => btnChangeHandler("add-btn")}>
           افزودن
         </Button>
-        <Button
-          className={`edit-btn ${activeBtn === "edit-btn" && "active"}`}
-          onClick={() => btnChangeHandler("edit-btn")}>
-          ویرایش
-        </Button>
+        {kind !== "session" && (
+          <Button
+            className={`edit-btn ${activeBtn === "edit-btn" && "active"}`}
+            onClick={() => btnChangeHandler("edit-btn")}>
+            ویرایش
+          </Button>
+        )}
+
         {activeBtn !== "" && (
           <Button
             className={`close-btn ${activeBtn === "" && "active"}`}
@@ -83,6 +87,9 @@ export default function AddEdit({ kind, usersData, getAllData }) {
           usersData={usersData}
           getAllData={getAllData}
         />
+      )}
+      {activeBtn === "add-btn" && kind === "session" && (
+        <AddSession getAllData={getAllData} />
       )}
     </>
   );
